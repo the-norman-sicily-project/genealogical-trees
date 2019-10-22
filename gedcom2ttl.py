@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # This script converts GEDCOM genealogy members
 # to the FHKB turtle semantic web ontology individuals.
@@ -7,45 +7,47 @@
 # Author: Evgeny Blokhin
 # License: MIT
 
-import os, sys
-from gedcom import Gedcom
-
+import sys
+from gedcom.parser import Parser
+from gedcom.element.individual import IndividualElement
+from gedcom.element.family import FamilyElement
 
 try: workpath = sys.argv[1]
 except IndexError: sys.exit("No gedcom defined!")
 
 def term2id(el):
-    return "i" + el.pointer().replace('@', '').lower()
+    return "i" + el.get_pointer().replace('@', '').lower()
 
-g = Gedcom(workpath)
-gedcom_dict = g.element_dict()
+g = Parser()
+g.parse_file(workpath)
+gedcom_dict = g.get_element_dictionary()
 individuals, marriages = {}, {}
 
-for k, v in gedcom_dict.iteritems():
-    if v.is_individual():
+for k, v in gedcom_dict.items():
+    if isinstance(v, IndividualElement):
         children, siblings = set(), set()
         idx = term2id(v)
 
-        title = v.name()[0].decode('utf8').encode('ascii', 'xmlcharrefreplace') + " " + v.name()[1].decode('utf8').encode('ascii', 'xmlcharrefreplace')
+        title = v.get_name()[0] + " " + v.get_name()[1]
         title = title.replace('"', '').replace('[', '').replace(']', '').replace('(', '').replace(')', '').strip()
 
-        own_families = g.families(v, 'FAMS')
+        own_families = g.get_families(v, 'FAMS')
         for fam in own_families:
             children |= set(term2id(i) for i in g.get_family_members(fam, "CHIL"))
 
-        parent_families = g.families(v, 'FAMC')
+        parent_families = g.get_families(v, 'FAMC')
         if len(parent_families):
             for member in g.get_family_members(parent_families[0], "CHIL"): # NB adoptive families i.e len(parent_families)>1 are not considered (TODO?)
-                if member.pointer() == v.pointer():
+                if member.get_pointer() == v.get_pointer():
                     continue
                 siblings.add(term2id(member))
 
         if idx in individuals:
             children |= individuals[idx].get('children', set())
             siblings |= individuals[idx].get('siblings', set())
-        individuals[idx] = {'sex': v.gender().lower(), 'children': children, 'siblings': siblings, 'title': title}
+        individuals[idx] = {'sex': v.get_gender().lower(), 'children': children, 'siblings': siblings, 'title': title}
 
-    elif v.is_family():
+    elif isinstance(v, FamilyElement):
         wife, husb, children = None, None, set()
         children = set(term2id(i) for i in g.get_family_members(v, "CHIL"))
 
@@ -64,24 +66,24 @@ for k, v in gedcom_dict.iteritems():
 
         if wife and husb: marriages[wife + husb] = (term2id(v), wife, husb)
 
-for idx, val in individuals.iteritems():
+for idx, val in individuals.items():
     added_terms = ''
     if val['sex'] == 'f':
         parent_predicate, sibl_predicate = "isMotherOf", "isSisterOf"
     else:
         parent_predicate, sibl_predicate = "isFatherOf", "isBrotherOf"
-    if len(val['children']):
+    if len(val['children']) > 0:
         added_terms += " ;\n    fhkb:" + parent_predicate + " " + ", ".join(["fhkb:" + i for i in val['children']])
-    if len(val['siblings']):
+    if len(val['siblings']) > 0:
         added_terms += " ;\n    fhkb:" + sibl_predicate + " " + ", ".join(["fhkb:" + i for i in val['siblings']])
-    print "fhkb:%s a owl:NamedIndividual, owl:Thing%s ;\n    rdfs:label \"%s\" .\n" % (idx, added_terms, val['title'])
+    print("fhkb:%s a owl:NamedIndividual, owl:Thing%s ;\n    rdfs:label \"%s\" .\n" % (idx, added_terms, val['title']))
 
-for k, v in marriages.iteritems():
-    print "fhkb:%s a owl:NamedIndividual, owl:Thing ;\n    fhkb:hasFemalePartner fhkb:%s ;\n    fhkb:hasMalePartner fhkb:%s .\n" % v
+for k, v in marriages.items():
+    print("fhkb:%s a owl:NamedIndividual, owl:Thing ;\n    fhkb:hasFemalePartner fhkb:%s ;\n    fhkb:hasMalePartner fhkb:%s .\n" % v)
 
-print "[] a owl:AllDifferent ;\n    owl:distinctMembers ("
-for idx in individuals.keys():
-    print "    fhkb:" + idx
-for k, v in marriages.iteritems():
-    print "    fhkb:" + v[0]
-print "    ) ."
+print("[] a owl:AllDifferent ;\n    owl:distinctMembers (")
+for idx, value in individuals.items():
+    print("    fhkb:" + idx)
+for k, v in marriages.items():
+    print("    fhkb:" + v[0])
+print("    ) .")

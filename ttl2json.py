@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-import os, sys
+import sys
 import json
 
 import rdflib
@@ -34,5 +34,5 @@ for i in g.subjects(object=FHKB.Person):
     for o in g.objects(subject=i, predicate=rdflib.RDFS.label):
         triples.append({'source': dump(i), 'target': o, 'type': 'label'})
 
-print json.dumps(triples, indent=0)
+print(json.dumps(triples, indent=0))
 sys.exit(0)

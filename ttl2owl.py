@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''
 NB / TODO
 The ontologies generated with this script have the following issue:
@@ -21,7 +21,6 @@ if recursion_limit > 0: sys.setrecursionlimit(recursion_limit)
 g = rdflib.Graph()
 g.parse(workpath, format="turtle")
 
-f = open(workpath + ".owl", "w")
-f.write(g.serialize(format="pretty-xml"))
-f.close()
+outpath = workpath + ".owl"
+g.serialize(destination=outpath, format="pretty-xml")
 sys.exit(0)

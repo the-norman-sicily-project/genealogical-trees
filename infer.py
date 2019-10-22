@@ -1,11 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-import os, sys
+import sys
 import time
 
 import rdflib
 
-from RDFClosure import DeductiveClosure, OWLRL_Extension
+from owlrl import DeductiveClosure, OWLRL_Extension
 
 
 try: workpath = sys.argv[1]
@@ -18,14 +18,13 @@ if recursion_limit > 0: sys.setrecursionlimit(recursion_limit)
 g = rdflib.Graph()
 g.parse(workpath, format="turtle")
 
-print "Recursion stack limit:", sys.getrecursionlimit()
-print "Triples before:", len(g)
+print("Recursion stack limit:", sys.getrecursionlimit())
+print("Triples before:", len(g))
 starttime = time.time()
 DeductiveClosure(OWLRL_Extension).expand(g)
-print "Done in %1.2f sc" % (time.time() - starttime)
-print "Triples after:", len(g)
+print("Done in %1.2f sc" % (time.time() - starttime))
+print("Triples after:", len(g))
 
-f = open(workpath + ".inferred", "w")
-f.write(g.serialize(format="turtle"))
-f.close()
+outpath = workpath + ".inferred"
+g.serialize(destination=outpath, format="turtle")
 sys.exit(0)
