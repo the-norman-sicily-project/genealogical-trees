@@ -31,6 +31,23 @@ for k, v in gedcom_dict.items():
         title = v.get_name()[0] + " " + v.get_name()[1]
         title = title.replace('"', '').replace('[', '').replace(']', '').replace('(', '').replace(')', '').strip()
 
+        birth_date = v.get_birth_data()[0]
+        death_date = v.get_death_data()[0]
+
+        dates_str = ''
+        if birth_date:
+            dates_str = "b. " + birth_date
+
+        if death_date:
+            if dates_str:
+                dates_str = dates_str + ' '
+            dates_str = dates_str + "d. " + death_date
+
+        if dates_str:
+            dates_str = ' (' + dates_str + ')'
+
+        title = title + dates_str
+
         own_families = g.get_families(v, 'FAMS')
         for fam in own_families:
             children |= set(term2id(i) for i in g.get_family_members(fam, "CHIL"))
