@@ -235,7 +235,7 @@
         return "translate(" + d.x + "," + d.y + ")";
     }
 
-    const build_graph = (width, height, svg, source) => {
+    const build_graph = (svg, source) => {
 
         const labels = source.filter(link => link.type === 'label').reduce((accumulator, currentValue) => {
             accumulator[currentValue.source] = currentValue.target;
@@ -379,7 +379,7 @@
 
     d3.json("data/hauteville.json", (error, json) => {
         if (error) throw error;
-        build_graph(width, height, svg, json);
+        build_graph(svg, json);
     });
 
 </script>
