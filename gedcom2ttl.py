@@ -18,6 +18,28 @@ except IndexError: sys.exit("No gedcom defined!")
 def term2id(el):
     return "i" + el.get_pointer().replace('@', '').lower()
 
+def formatGedcomDate(date_string):
+    return (date_string.replace('abt ABT', 'abt')
+            .replace('abt', 'ca.')
+            .replace('bef BEF', 'bef')
+            .replace('bef ', 'before ')
+            .replace('aft AFT', 'aft')
+            .replace('aft ', 'after')
+            .replace('bet', '')
+            .replace('and', '-')
+            .replace('JAN', 'Jan')
+            .replace('FEB', 'Feb')
+            .replace('MAR', 'Mar')
+            .replace('APR', 'Apr')
+            .replace('MAY', 'May')
+            .replace('JUN', 'Jun')
+            .replace('JUL', 'Jul')
+            .replace('AUG', 'Aug')
+            .replace('SEP', 'Sep')
+            .replace('OCT', 'Oct')
+            .replace('NOV', 'Nov')
+            .replace('DEC', 'Dec'))
+
 g = Parser()
 g.parse_file(workpath)
 gedcom_dict = g.get_element_dictionary()
@@ -36,12 +58,12 @@ for k, v in gedcom_dict.items():
 
         dates_str = ''
         if birth_date:
-            dates_str = "b. " + birth_date
+            dates_str = "b. " + formatGedcomDate(birth_date)
 
         if death_date:
             if dates_str:
                 dates_str = dates_str + ' '
-            dates_str = dates_str + "d. " + death_date
+            dates_str = dates_str + "d. " + formatGedcomDate(death_date)
 
         if dates_str:
             dates_str = ' (' + dates_str + ')'
