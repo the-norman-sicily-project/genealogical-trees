@@ -5,28 +5,32 @@
 <html>
 
 <head>
-    <title>Hauteville Geneaological Tree</title>
+    <title>The Norman Sicily Project Geneaological Tree</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <style>
         * {
-            font-family: Arial;
+            font-family: "Goudy Old Style", Baskerville, serif;
             margin: 0;
             padding: 0;
         }
 
+        body {
+            background-color: #f8f8ff;
+         }
+
         .edge {
             fill: none;
-            stroke: #3edbd8;
+            stroke: #73a567;
             stroke-width: 1px;
         }
 
         .edge.isMotherOf {
-            stroke: #ccbff5;
+            stroke: #ff76b8;
         }
 
         .edge.isFatherOf {
-            stroke: #49388e;
+            stroke: #6f93ad;
         }
 
         circle {
@@ -49,11 +53,11 @@
         }
 
         marker#isMotherOf {
-            fill: #ccbff5;
+            fill: #ff76b8;
         }
 
         marker#isFatherOf {
-            fill: #49388e;
+            fill: #6f93ad;
         }
 
         #mmreasoner_legend {
@@ -89,65 +93,6 @@
             display: inline-block;
         }
 
-        /* "Fork me on GitHub" CSS ribbon v0.1.1 */
-        .github-fork-ribbon {
-            position: fixed;
-            padding: 2px 0;
-            background-color: #666;
-            background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.15)));
-            background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-            background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-            background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-            background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-            -webkit-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
-            -moz-box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
-            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
-            font: 500 9px "Helvetica Neue", Helvetica, Arial, sans-serif;
-            z-index: 9999;
-            pointer-events: auto;
-        }
-
-        .github-fork-ribbon a,
-        .github-fork-ribbon a:hover {
-            color: #fff;
-            text-decoration: none;
-            text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            width: 100px;
-            line-height: 12px;
-            display: inline-block;
-            padding: 2px 0;
-            border-width: 1px 0;
-            border-style: dotted;
-            border-color: #fff;
-            border-color: rgba(255, 255, 255, 1);
-        }
-
-        .github-fork-ribbon-wrapper {
-            width: 100px;
-            height: 100px;
-            position: fixed;
-            overflow: hidden;
-            top: 0;
-            z-index: 9999;
-            pointer-events: none;
-        }
-
-        .github-fork-ribbon-wrapper.right {
-            right: 0;
-        }
-
-        .github-fork-ribbon-wrapper.right .github-fork-ribbon {
-            top: 16px;
-            right: -22px;
-            -webkit-transform: rotate(45deg);
-            -moz-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            -o-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
-
         .svg-container {
             display: inline-block;
             position: relative;
@@ -165,65 +110,49 @@
             left: 0;
         }
     </style>
-    <!--[if lt IE 9]>
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.ie.min.css" />
-    <![endif]-->
     <script type="text/javascript" src="d3.v3.5.17.min.js"></script>
 </head>
 
 <body>
     <div id="mmreasoner_legend">
-        <div style="width:100%;text-align:center;"><b><span class="i18n i18n_en">Legend</span></b>:</div>
         <ul>
-            <li><span style="font-size:2em;color:#ccbff5;">&rarr;</span> <span class="i18n i18n_en">Mother-children
-                    links</span></li>
-            <li><span style="font-size:2em;color:#49388e;">&rarr;</span> <span class="i18n i18n_en">Father-children
-                    links</span></li>
-            <li><span style="font-size:2em;color:#3edbd8;">&mdash;</span> <span class="i18n i18n_en">Marriage links</span>
-            </li>
-            <li><span class="leg_circ" style="background:#344b46;"></span><span
-                    class="i18n i18n_en">Grandparent</span></li>
-            <li><span class="leg_circ" style="background:#a43e03;"></span><span
-                    class="i18n i18n_en">Great-grandparent</span>
-            </li>
-            <li><span class="leg_circ" style="background:#d59e9a;"></span><span
-                    class="i18n i18n_en">Grandchildren</span></li>
-            <li><span class="leg_circ" style="background:#bce091;"></span><span
-                    class="i18n i18n_en">Great-grandchildren</span></li>
-            <li><span class="leg_circ" style="background:#a53460;"></span><span
-                    class="i18n i18n_en">Uncles and aunts</span></li>
-            <li><span class="leg_circ" style="background:#55f17b;"></span><span
-                    class="i18n i18n_en">Nephews and nieces</span></li>
-            <li><span class="leg_circ" style="background:#de0ca3;"></span><span
-                    class="i18n i18n_en">Brothers, sisters, cousins</span></li>
+            <li><span style="font-size:2em;color:#ff76b8;">&rarr;</span> <span class="i18n i18n_en">Mother-Children Link</span></li>
+            <li><span style="font-size:2em;color:#6f93ad;">&rarr;</span> <span class="i18n i18n_en">Father-Children Link</span></li>
+            <li><span style="font-size:2em;color:#73a567;">&mdash;</span> <span class="i18n i18n_en">Marriage Link</span> </li>
+            <li><span class="leg_circ" style="background:#eda268;"></span><span class="i18n i18n_en">Grandparent</span></li>
+            <li><span class="leg_circ" style="background:#e77a68;"></span><span class="i18n i18n_en">Great-Grandparent</span> </li>
+            <li><span class="leg_circ" style="background:#a88ebe;"></span><span class="i18n i18n_en">Grandchild</span></li>
+            <li><span class="leg_circ" style="background:#d688aa;"></span><span class="i18n i18n_en">Great-Grandchild</span></li>
+            <li><span class="leg_circ" style="background:#c683ea;"></span><span class="i18n i18n_en">Uncle or Aunt</span></li>
+            <li><span class="leg_circ" style="background:#e9ca7a;"></span><span class="i18n i18n_en">Nephew or Niece</span></li>
+            <li><span class="leg_circ" style="background:#6da296;"></span><span class="i18n i18n_en">Brother or Sister</span></li>
+            <li><span class="leg_circ" style="background:#6795fe;"></span><span class="i18n i18n_en">Cousin</span></li>
         </ul>
-    </div>
-    <div class="github-fork-ribbon-wrapper right">
-        <div class="github-fork-ribbon">
-            <a href="https://github.com/joephayes/genealogical-trees" target="_top">See on GitHub</a>
-        </div>
     </div>
     <div id="family-tree-container"></div>
 </body>
 <script type="text/javascript">
     const rel2col = {
-        'isGrandParentOf': '#d59e9a',
-        'hasGrandParent': '#344b46',
-        'isGreatGrandParentOf': '#bce091',
-        'hasGreatGrandParent': '#a43e03',
+        'isGrandParentOf': '#a88ebe',
+        'hasGrandParent': '#eda268',
+        'isGreatGrandParentOf': '#d688aa',
+        'hasGreatGrandParent': '#e77a68',
 
-        'isUncleOf': '#55f17b',
-        'hasUncle': '#a53460',
-        'isGreatUncleOf': '#55f17b',
-        'hasGreatUncle': '#a53460',
-        'isAuntOf': '#55f17b',
-        'hasAunt': '#a53460',
-        'isGreatAuntOf': '#55f17b',
-        'hasGreatAunt': '#a53460',
+        'isUncleOf': '#e9ca7a',
+        'hasUncle': '#c683ea',
+        'isGreatUncleOf': '#e9ca7a',
+        'hasGreatUncle': '#c683ea',
+        'isAuntOf': '#e9ca7a',
+        'hasAunt': '#c683ea',
+        'isGreatAuntOf': '#e9ca7a',
+        'hasGreatAunt': '#c683ea',
 
-        'isFirstCousinOf': '#de0ca3',
-        'isSecondCousinOf': '#de0ca3',
-        'isThirdCousinOf': '#de0ca3'
+        'isBrotherOf': '#6da296',
+        'isSisterOf': '#6da296',
+
+        'isFirstCousinOf': '#6795fe',
+        'isSecondCousinOf': '#6795fe',
+        'isThirdCousinOf': '#6795fe'
     };
 
     const direct = (d) => {
@@ -251,13 +180,15 @@
 
         const allTypes = new Set([...relationTypes, 'label']);
         const relationships = source.filter(link => !allTypes.has(link.type)).reduce((accumulator, currentValue) => {
-            if (accumulator[currentValue.source]) {
-                if (accumulator[currentValue.source][currentValue.type]) accumulator[currentValue.source][currentValue.type].push(currentValue.target);
-                else accumulator[currentValue.source][currentValue.type] = [currentValue.target];
-            } else {
-                const o = {};
-                o[currentValue.type] = [currentValue.target];
-                accumulator[currentValue.source] = o;
+            if (currentValue.source !== currentValue.target) {
+                if (accumulator[currentValue.source]) {
+                    if (accumulator[currentValue.source][currentValue.type]) accumulator[currentValue.source][currentValue.type].push(currentValue.target);
+                    else accumulator[currentValue.source][currentValue.type] = [currentValue.target];
+                } else {
+                    const o = {};
+                    o[currentValue.type] = [currentValue.target];
+                    accumulator[currentValue.source] = o;
+                }
             }
             return accumulator;
         }, {});
@@ -324,12 +255,12 @@
 
         const handle = (x) => {
             d3.select('#c_' + x.index)
-									.transition()
-									.duration(300)
-									.attr("r",5 + x.weight * 4);
+            .style('stroke', 'black')
+            .style('stroke-width', '2px');
+
             path.style('stroke-width', (l) => {
                 if (x === l.source || x === l.target)
-                  return 4;
+                  return 2;
                 else
                   return 1;
             });
@@ -347,9 +278,8 @@
 
         const dehandle = function(x) {
             d3.select('#c_' + x.index)
-									.transition()
-									.duration(300)
-									.attr("r",5 + x.weight * 2);
+            .style('stroke', '#999')
+            .style('stroke-width', 1);
             path.style('stroke-width', 1);
             d3.selectAll('text').style("fill", "#000");
             d3.selectAll('circle').style("fill", "#fff");
@@ -388,13 +318,16 @@
         .data(["isMotherOf", "isFatherOf"])
         .enter().append("marker")
         .attr("id", (d) => { return d })
+        .attr("viewBox", "0 0 40 20")
         .attr("refX", 55)
         .attr("refY", 10)
         .attr("markerWidth", 16)
         .attr("markerHeight", 12)
-        .attr("orient", "auto");
+        .attr("orient", "auto")
+        .append("polyline")
+        .attr("points", "0,0 40,10 0,20 10,10");
 
-    d3.json("data/hauteville.json", (error, json) => {
+    d3.json("data/nsp.json", (error, json) => {
         if (error) throw error;
         build_graph(svg, json);
     });
