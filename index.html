@@ -1,45 +1,86 @@
-<!-- SVG graph renderer based on d3.js
-     Created as NoMaD experiment at 28.12.13
-     Author: Evgeny Blokhin -->
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>The Norman Sicily Project Geneaological Tree</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <link rel="stylesheet" href="nsp.css" />
+        <title>The Norman Sicily Project Geneaological Tree</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        <link href="cytoscape.js-panzoom.css" rel="stylesheet" type="text/css" />
+        <link type="text/css" rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="index.css" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
 </head>
 
 <body>
-    <div id="mmreasoner_legend">
-        <ul>
-            <li><span style="font-size:2em;color:#ff76b8;">&rarr;</span> <span class="i18n i18n_en">Mother-Children
-                    Link</span></li>
-            <li><span style="font-size:2em;color:#6f93ad;">&rarr;</span> <span class="i18n i18n_en">Father-Children
-                    Link</span></li>
-            <li><span style="font-size:2em;color:#73a567;">&mdash;</span> <span class="i18n i18n_en">Marriage
-                    Link</span> </li>
-            <li><span class="leg_circ" style="background:#eda268;"></span><span class="i18n i18n_en">Grandparent</span>
-            </li>
-            <li><span class="leg_circ" style="background:#e77a68;"></span><span
-                    class="i18n i18n_en">Great-Grandparent</span> </li>
-            <li><span class="leg_circ" style="background:#a88ebe;"></span><span class="i18n i18n_en">Grandchild</span>
-            </li>
-            <li><span class="leg_circ" style="background:#d688aa;"></span><span
-                    class="i18n i18n_en">Great-Grandchild</span></li>
-            <li><span class="leg_circ" style="background:#c683ea;"></span><span class="i18n i18n_en">Uncle or
-                    Aunt</span></li>
-            <li><span class="leg_circ" style="background:#e9ca7a;"></span><span class="i18n i18n_en">Nephew or
-                    Niece</span></li>
-            <li><span class="leg_circ" style="background:#6da296;"></span><span class="i18n i18n_en">Brother or
-                    Sister</span></li>
-            <li><span class="leg_circ" style="background:#6795fe;"></span><span class="i18n i18n_en">Cousin</span></li>
-        </ul>
-    </div>
-    <div id="family-tree-container"></div>
+        <div id="relationship_legend">
+                <ul>
+                        <li><span style="font-size:2em;color:#ff76b8;">&rarr;</span> <span
+                                        class="i18n i18n_en">Mother-Children
+                                        Link</span></li>
+                        <li><span style="font-size:2em;color:#6f93ad;">&rarr;</span> <span
+                                        class="i18n i18n_en">Father-Children
+                                        Link</span></li>
+                        <li><span style="font-size:2em;color:#73a567;">&mdash;</span> <span
+                                        class="i18n i18n_en">Marriage
+                                        Link</span> </li>
+                        <li><span class="leg_circ" style="background:#eda268;"></span><span
+                                        class="i18n i18n_en">Grandparent</span>
+                        </li>
+                        <li><span class="leg_circ" style="background:#e77a68;"></span><span
+                                        class="i18n i18n_en">Great-Grandparent</span> </li>
+                        <li><span class="leg_circ" style="background:#a88ebe;"></span><span
+                                        class="i18n i18n_en">Grandchild</span>
+                        </li>
+                        <li><span class="leg_circ" style="background:#d688aa;"></span><span
+                                        class="i18n i18n_en">Great-Grandchild</span></li>
+                        <li><span class="leg_circ" style="background:#c683ea;"></span><span class="i18n i18n_en">Uncle
+                                        or
+                                        Aunt</span></li>
+                        <li><span class="leg_circ" style="background:#e9ca7a;"></span><span class="i18n i18n_en">Nephew
+                                        or
+                                        Niece</span></li>
+                        <li><span class="leg_circ" style="background:#6da296;"></span><span class="i18n i18n_en">Brother
+                                        or
+                                        Sister</span></li>
+                        <li><span class="leg_circ" style="background:#6795fe;"></span><span
+                                        class="i18n i18n_en">Cousin</span></li>
+                </ul>
+        </div>
+
+        <div id="node-search-container">
+                <label for"search">Search: </label>
+                <input id="search" placeholder="Select a name...">
+                <button type="button" id="reset">Reset</button>
+        </div>
+
+        <div id="cy"></div>
+
+        <div id="loading">
+                <span class="fa fa-spinner fa-spin fa-3x fa-fw" aria-hidden="true"></span>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.2/bluebird.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+
+        <script src="http://code.jquery.com/jquery-1.12.4.min.js"
+                integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+        <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+                integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+        <link href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet"
+                type="text/css" />
+
+
+        <script type="text/javascript" src="cytoscape.min.js"></script>
+        <script type="text/javascript" src="layout-base.js"></script>
+        <script type="text/javascript" src="cose-base.js"></script>
+        <script type="text/javascript" src="cytoscape-fcose.js"></script>
+        <script type="text/javascript" src="cytoscape-panzoom.js"></script>
+
+        <script type="text/javascript" src="index.js"></script>
 </body>
-<script type="text/javascript" src="d3.min.js"></script>
-<script type="text/javascript" src="index.js"></script>
 
 </html>
