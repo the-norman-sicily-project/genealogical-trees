@@ -164,64 +164,35 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         elements: fetch('data/nsp.json')
             .then(res => { return res.json(); })
-            .then(data => {
-                const graph = { nodes: [], edges: [] };
-
+            .then(graph => {
                 const nuclearRelationshipTypes = new Set(['isWifeOf', 'isMotherOf', 'isFatherOf']);
-                const edges = data.filter(e => nuclearRelationshipTypes.has(e.type));
+                const edges = graph.edges.filter(e => nuclearRelationshipTypes.has(e.data.type));
 
-                const otherRelationshipTypes = new Set([...nuclearRelationshipTypes, 'label']);
-                otherRelationships = data.filter(link => !otherRelationshipTypes.has(link.type)).reduce((a, e) => {
-                    if (e.source !== e.target) {
-                        if (a[e.source]) {
-                            if (a[e.source][e.type]) {
-                                a[e.source][e.type].push(e.target);
+                otherRelationships = graph.edges.filter(e => !nuclearRelationshipTypes.has(e.data.type)).reduce((a, e) => {
+                    if (e.data.source !== e.data.target) {
+                        if (a[e.data.source]) {
+                            if (a[e.data.source][e.data.type]) {
+                                a[e.data.source][e.data.type].push(e.data.target);
                             }
                             else {
-                                a[e.source][e.type] = [e.target];
+                                a[e.data.source][e.data.type] = [e.data.target];
                             }
                         } else {
                             const o = {};
-                            o[e.type] = [e.target];
-                            a[e.source] = o;
+                            o[e.data.type] = [e.data.target];
+                            a[e.data.source] = o;
                         }
                     }
                     return a;
                 }, {});
 
-                graph.nodes =
-                    [...edges.map(e => {
-                        return { data: { id: e.source } };
-                    }), ...edges.map(e => {
-                        return { data: { id: e.target } };
-                    })].filter((person, index, self) => self.findIndex(p => p.data.id === person.data.id) === index);
+                const nodeSize = graph.nodes.length;
 
-                const labels = data.filter(item => item.type === 'label');
-                const labelsSize = labels.length;
-
-                for (let i = 0; i < labelsSize; ++i) {
-                    const label = labels[i];
-                    const idx = graph.nodes.findIndex(n => n.data.id === label.source);
-                    if (idx !== -1) {
-                        graph.nodes[idx].data = Object.assign({}, graph.nodes[idx].data, { label: label.target, degree: 0, size: 10 });
-                        optArray.push(label.target);
-                    }
+                for (let i = 0; i < nodeSize; ++i) {
+                    optArray.push(graph.nodes[i].data.label);
                 }
 
-                const edgesSize = edges.length;
-
-                for (let i = 0; i < edgesSize; ++i) {
-                    const e = edges[i];
-                    graph.edges.push({
-                        data: {
-                            group: 'edges',
-                            id: `${e.source}-to-${e.target}`,
-                            source: e.source,
-                            target: e.target,
-                            type: e.type
-                        }
-                    });
-                }
+                graph.edges = Object.assign([], edges);
 
                 return graph;
             })

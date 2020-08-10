@@ -1,288 +1,573 @@
-@prefix fhkb: <http://www.example.com/genealogy.owl#> .
+@prefix : <http://www.example.com/genealogy.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fhkb: <http://www.example.com/genealogy.owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@base <http://www.example.com/genealogy.owl#> .
 
-<http://www.example.com/genealogy.owl#> a owl:Ontology .
-
-fhkb:DomainEntity a owl:Class .
-
-fhkb:Man a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf ( fhkb:Person [ a owl:Restriction ;
-                        owl:onProperty fhkb:hasSex ;
-                        owl:someValuesFrom fhkb:Male ] ) ] .
-
-fhkb:Woman a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf ( fhkb:Person [ a owl:Restriction ;
-                        owl:onProperty fhkb:hasSex ;
-                        owl:someValuesFrom fhkb:Female ] ) ] .
-
-fhkb:Person a owl:Class ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty fhkb:hasMother ;
-            owl:someValuesFrom fhkb:Woman ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-            owl:onClass fhkb:Person ;
-            owl:onProperty fhkb:hasParent ],
-        [ a owl:Restriction ;
-            owl:onProperty fhkb:hasFather ;
-            owl:someValuesFrom fhkb:Man ],
-        [ a owl:Restriction ;
-            owl:onProperty fhkb:hasSex ;
-            owl:someValuesFrom fhkb:Sex ],
-        fhkb:DomainEntity ;
-    owl:disjointWith fhkb:Sex ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:unionOf ( fhkb:Man fhkb:Woman ) ] .
-
-fhkb:Marriage a owl:Class ;
-    rdfs:subClassOf fhkb:DomainEntity .
-
-fhkb:Male a owl:Class ;
-    rdfs:subClassOf fhkb:Sex .
-
-fhkb:Female a owl:Class ;
-    rdfs:subClassOf fhkb:Sex ;
-    owl:disjointWith fhkb:Male .
-
-fhkb:Sex a owl:Class ;
-    rdfs:subClassOf fhkb:DomainEntity ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:unionOf ( fhkb:Female fhkb:Male ) ] .
-
-fhkb:Ancestor a owl:Class ;
-    owl:equivalentClass [ a owl:Class ;
-            owl:intersectionOf ( fhkb:Person [ a owl:Restriction ;
-                        owl:onProperty fhkb:isAncestorOf ;
-                        owl:someValuesFrom fhkb:Person ] ) ] .
-
-fhkb:hasFemalePartner a owl:ObjectProperty ;
-    rdfs:range fhkb:Woman ;
-    rdfs:domain fhkb:Marriage ;
-    rdfs:subPropertyOf fhkb:hasPartner ;
-    owl:inverseOf fhkb:isFemalePartnerIn .
-
-fhkb:hasMalePartner a owl:ObjectProperty ;
-    rdfs:range fhkb:Man ;
-    rdfs:domain fhkb:Marriage ;
-    rdfs:subPropertyOf fhkb:hasPartner ;
-    owl:inverseOf fhkb:isMalePartnerIn .
-
-fhkb:isFatherOf a owl:ObjectProperty .
-
-fhkb:isMotherOf a owl:ObjectProperty .
-
-fhkb:isBrotherOf a owl:ObjectProperty ;
-    rdfs:domain fhkb:Man ;
-    rdfs:range fhkb:Person ;
-    rdfs:subPropertyOf fhkb:isSiblingOf .
-
-fhkb:isSisterOf a owl:ObjectProperty ;
-    rdfs:domain fhkb:Woman ;
-    rdfs:range fhkb:Person ;
-    rdfs:subPropertyOf fhkb:isSiblingOf .
-
-fhkb:hasHusband a owl:ObjectProperty ;
-    rdfs:range fhkb:Man ;
-    rdfs:subPropertyOf fhkb:hasSpouse ;
-    owl:propertyChainAxiom ( fhkb:isFemalePartnerIn fhkb:hasMalePartner ) .
-
-fhkb:hasWife a owl:ObjectProperty ;
-    rdfs:range fhkb:Woman ;
-    rdfs:subPropertyOf fhkb:hasSpouse ;
-    owl:propertyChainAxiom ( fhkb:isMalePartnerIn fhkb:hasFemalePartner ) .
-
-fhkb:isHusbandOf a owl:ObjectProperty ;
-    owl:inverseOf fhkb:hasHusband .
-
-fhkb:isWifeOf a owl:ObjectProperty ;
-    owl:inverseOf fhkb:hasWife .
-
-fhkb:isPartnerIn a owl:ObjectProperty .
-
-fhkb:hasPartner a owl:ObjectProperty ;
-    rdfs:domain fhkb:Marriage ;
-    rdfs:range fhkb:Person ;
-    owl:inverseOf fhkb:isPartnerIn .
+<http://www.example.com/genealogy.owl#> rdf:type owl:Ontology .
 
-fhkb:isSpouseOf a owl:ObjectProperty .
+#################################################################
+#    Datatypes
+#################################################################
 
-fhkb:hasSpouse a owl:ObjectProperty ;
-    owl:inverseOf fhkb:isSpouseOf .
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
 
-fhkb:isFemalePartnerIn a owl:ObjectProperty .
 
-fhkb:isMalePartnerIn a owl:ObjectProperty .
+#################################################################
+#    Object Properties
+#################################################################
 
-fhkb:isSiblingOf a owl:ObjectProperty,
-        owl:SymmetricProperty,
-        owl:TransitiveProperty ;
-    rdfs:subPropertyOf fhkb:isBloodrelationOf ;
-    owl:propertyChainAxiom ( fhkb:hasParent fhkb:isParentOf ) .
+###  http://www.example.com/genealogy.owl#hasAncestor
+fhkb:hasAncestor rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf fhkb:hasRelation ;
+                 owl:inverseOf fhkb:isAncestorOf ;
+                 rdf:type owl:TransitiveProperty .
 
-fhkb:hasChild a owl:ObjectProperty .
 
-fhkb:isChildOf a owl:ObjectProperty ;
-    owl:inverseOf fhkb:hasChild .
+###  http://www.example.com/genealogy.owl#hasAunt
+fhkb:hasAunt rdf:type owl:ObjectProperty ;
+             owl:inverseOf fhkb:isAuntOf .
+
 
-fhkb:hasDaughter a owl:ObjectProperty ;
-    rdfs:subPropertyOf fhkb:hasChild .
+###  http://www.example.com/genealogy.owl#hasBirthPlace
+fhkb:hasBirthPlace rdf:type owl:ObjectProperty ,
+                            owl:FunctionalProperty ;
+                   rdfs:domain fhkb:Person ;
+                   rdfs:range <https://schema.org/birthPlace> .
 
-fhkb:hasSon a owl:ObjectProperty ;
-    rdfs:subPropertyOf fhkb:hasChild .
+
+###  http://www.example.com/genealogy.owl#hasChild
+fhkb:hasChild rdf:type owl:ObjectProperty ;
+              owl:inverseOf fhkb:isChildOf .
 
-fhkb:isDaughterOf a owl:ObjectProperty ;
-    rdfs:subPropertyOf fhkb:isChildOf ;
-    owl:inverseOf fhkb:hasDaughter .
 
-fhkb:isSonOf a owl:ObjectProperty ;
-    rdfs:subPropertyOf fhkb:isChildOf ;
-    owl:inverseOf fhkb:hasSon .
+###  http://www.example.com/genealogy.owl#hasDaughter
+fhkb:hasDaughter rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf fhkb:hasChild ;
+                 owl:inverseOf fhkb:isDaughterOf .
 
-fhkb:hasFather a owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:domain fhkb:Person ;
-    rdfs:range fhkb:Man ;
-    rdfs:subPropertyOf fhkb:hasParent ;
-    owl:inverseOf fhkb:isFatherOf .
 
-fhkb:hasMother a owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:domain fhkb:Person ;
-    rdfs:range fhkb:Woman ;
-    rdfs:subPropertyOf fhkb:hasParent ;
-    owl:inverseOf fhkb:isMotherOf .
+###  http://www.example.com/genealogy.owl#hasDeathPlace
+fhkb:hasDeathPlace rdf:type owl:ObjectProperty ,
+                            owl:FunctionalProperty ;
+                   rdfs:domain fhkb:Person ;
+                   rdfs:range <https://schema.org/deathPlace> .
+
 
-fhkb:hasParent a owl:ObjectProperty ;
-    rdfs:domain fhkb:Person ;
-    rdfs:range fhkb:Person ;
-    rdfs:subPropertyOf fhkb:hasAncestor ;
-    owl:equivalentProperty fhkb:isChildOf ;
-    owl:inverseOf fhkb:isParentOf .
+###  http://www.example.com/genealogy.owl#hasFather
+fhkb:hasFather rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf fhkb:hasParent ;
+               owl:inverseOf fhkb:isFatherOf ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain fhkb:Person ;
+               rdfs:range fhkb:Man .
 
-fhkb:isParentOf a owl:ObjectProperty .
 
-fhkb:hasSex a owl:FunctionalProperty,
-        owl:ObjectProperty ;
-    rdfs:domain fhkb:Person ;
-    rdfs:range fhkb:Sex .
+###  http://www.example.com/genealogy.owl#hasFemalePartner
+fhkb:hasFemalePartner rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf fhkb:hasPartner ;
+                      owl:inverseOf fhkb:isFemalePartnerIn ;
+                      rdfs:domain fhkb:Marriage ;
+                      rdfs:range fhkb:Woman .
+
 
-fhkb:isAncestorOf a owl:ObjectProperty ;
-    owl:inverseOf fhkb:hasAncestor .
+###  http://www.example.com/genealogy.owl#hasGrandParent
+fhkb:hasGrandParent rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf fhkb:hasAncestor ;
+                    owl:inverseOf fhkb:isGrandParentOf ;
+                    rdfs:domain fhkb:Person ;
+                    rdfs:range fhkb:Person ;
+                    owl:propertyChainAxiom ( fhkb:hasParent
+                                             fhkb:hasParent
+                                           ) .
 
-fhkb:hasRelation a owl:ObjectProperty,
-        owl:SymmetricProperty ;
-    rdfs:domain fhkb:Person ;
-    rdfs:range fhkb:Person .
 
-fhkb:isBloodrelationOf a owl:ObjectProperty ;
-    rdfs:subPropertyOf fhkb:hasRelation .
+###  http://www.example.com/genealogy.owl#hasGrandfather
+fhkb:hasGrandfather rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf fhkb:hasGrandParent ;
+                    owl:inverseOf fhkb:isGrandfatherOf ;
+                    rdfs:range fhkb:Man ;
+                    owl:propertyChainAxiom ( fhkb:hasParent
+                                             fhkb:hasFather
+                                           ) .
 
-fhkb:hasAncestor a owl:ObjectProperty,
-        owl:TransitiveProperty ;
-    rdfs:subPropertyOf fhkb:hasRelation .
-
-fhkb:hasUncle a owl:ObjectProperty ;
-    owl:inverseOf fhkb:isUncleOf .
-
-fhkb:isUncleOf a owl:ObjectProperty ;
-    rdfs:domain fhkb:Man ;
-    rdfs:range fhkb:Person ;
-    owl:propertyChainAxiom ( fhkb:isBrotherOf fhkb:isParentOf ) .
-
-fhkb:hasGreatUncle a owl:ObjectProperty ;
-    owl:inverseOf fhkb:isGreatUncleOf .
-
-fhkb:isGreatUncleOf a owl:ObjectProperty ;
-    rdfs:domain fhkb:Man ;
-    rdfs:range fhkb:Person ;
-    owl:propertyChainAxiom ( fhkb:isBrotherOf fhkb:isGrandParentOf ) .
-
-fhkb:hasAunt a owl:ObjectProperty ;
-    owl:inverseOf fhkb:isAuntOf .
-
-fhkb:isAuntOf a owl:ObjectProperty ;
-    rdfs:domain fhkb:Woman ;
-    rdfs:range fhkb:Person ;
-    owl:propertyChainAxiom ( fhkb:isSisterOf fhkb:isParentOf ) .
-
-fhkb:hasGreatAunt a owl:ObjectProperty ;
-    owl:inverseOf fhkb:isGreatAuntOf .
-
-fhkb:isGreatAuntOf a owl:ObjectProperty ;
-    rdfs:domain fhkb:Woman ;
-    rdfs:range fhkb:Person ;
-    owl:propertyChainAxiom ( fhkb:isSisterOf fhkb:isGrandParentOf ) .
-
-fhkb:isCousinOf a owl:ObjectProperty ;
-    rdfs:subPropertyOf fhkb:isBloodrelationOf .
-
-fhkb:isFirstCousinOf a owl:ObjectProperty,
-        owl:SymmetricProperty ;
-    rdfs:subPropertyOf fhkb:isCousinOf ;
-    owl:propertyChainAxiom ( fhkb:hasParent fhkb:isSiblingOf fhkb:isParentOf ) .
-
-fhkb:isSecondCousinOf a owl:ObjectProperty,
-        owl:SymmetricProperty ;
-    rdfs:subPropertyOf fhkb:isCousinOf ;
-    owl:propertyChainAxiom ( fhkb:hasGrandParent fhkb:isSiblingOf fhkb:isGrandParentOf ) .
-
-fhkb:isThirdCousinOf a owl:ObjectProperty,
-        owl:SymmetricProperty ;
-    rdfs:subPropertyOf fhkb:isCousinOf ;
-    owl:propertyChainAxiom ( fhkb:hasGreatGrandParent fhkb:isSiblingOf fhkb:isGreatGrandParentOf ) .
-
-fhkb:isGrandfatherOf a owl:ObjectProperty ;
-    owl:inverseOf fhkb:hasGrandfather .
-
-fhkb:isGrandmotherOf a owl:ObjectProperty ;
-    owl:inverseOf fhkb:hasGrandmother .
-
-fhkb:isGrandParentOf a owl:ObjectProperty ;
-    owl:inverseOf fhkb:hasGrandParent .
-
-fhkb:hasGrandfather a owl:ObjectProperty ;
-    rdfs:range fhkb:Man ;
-    rdfs:subPropertyOf fhkb:hasGrandParent ;
-    owl:propertyChainAxiom ( fhkb:hasParent fhkb:hasFather ) .
-
-fhkb:hasGrandmother a owl:ObjectProperty ;
-    rdfs:range fhkb:Woman ;
-    rdfs:subPropertyOf fhkb:hasGrandParent ;
-    owl:propertyChainAxiom ( fhkb:hasParent fhkb:hasMother ) .
-
-fhkb:hasGrandParent a owl:ObjectProperty ;
-    rdfs:domain fhkb:Person ;
-    rdfs:range fhkb:Person ;
-    rdfs:subPropertyOf fhkb:hasAncestor ;
-    owl:propertyChainAxiom ( fhkb:hasParent fhkb:hasParent ) .
-
-fhkb:isGreatGrandfatherOf a owl:ObjectProperty ;
-    owl:inverseOf fhkb:hasGreatGrandfather .
-
-fhkb:isGreatGrandmotherOf a owl:ObjectProperty ;
-    owl:inverseOf fhkb:hasGreatGrandmother .
-
-fhkb:isGreatGrandParentOf a owl:ObjectProperty ;
-    owl:inverseOf fhkb:hasGreatGrandParent .
-
-fhkb:hasGreatGrandfather a owl:ObjectProperty ;
-    rdfs:range fhkb:Man ;
-    rdfs:subPropertyOf fhkb:hasGreatGrandParent ;
-    owl:propertyChainAxiom ( fhkb:hasParent fhkb:hasGrandfather ) .
-
-fhkb:hasGreatGrandmother a owl:ObjectProperty ;
-    rdfs:range fhkb:Woman ;
-    rdfs:subPropertyOf fhkb:hasGreatGrandParent ;
-    owl:propertyChainAxiom ( fhkb:hasParent fhkb:hasGrandmother ) .
-
-fhkb:hasGreatGrandParent a owl:ObjectProperty ;
-    rdfs:domain fhkb:Person ;
-    rdfs:range fhkb:Person ;
-    rdfs:subPropertyOf fhkb:hasAncestor ;
-    owl:propertyChainAxiom ( fhkb:hasParent fhkb:hasParent fhkb:hasParent ) .
+
+###  http://www.example.com/genealogy.owl#hasGrandmother
+fhkb:hasGrandmother rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf fhkb:hasGrandParent ;
+                    owl:inverseOf fhkb:isGrandmotherOf ;
+                    rdfs:range fhkb:Woman ;
+                    owl:propertyChainAxiom ( fhkb:hasParent
+                                             fhkb:hasMother
+                                           ) .
+
+
+###  http://www.example.com/genealogy.owl#hasGreatAunt
+fhkb:hasGreatAunt rdf:type owl:ObjectProperty ;
+                  owl:inverseOf fhkb:isGreatAuntOf .
+
+
+###  http://www.example.com/genealogy.owl#hasGreatGrandParent
+fhkb:hasGreatGrandParent rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf fhkb:hasAncestor ;
+                         owl:inverseOf fhkb:isGreatGrandParentOf ;
+                         rdfs:domain fhkb:Person ;
+                         rdfs:range fhkb:Person ;
+                         owl:propertyChainAxiom ( fhkb:hasParent
+                                                  fhkb:hasParent
+                                                  fhkb:hasParent
+                                                ) .
+
+
+###  http://www.example.com/genealogy.owl#hasGreatGrandfather
+fhkb:hasGreatGrandfather rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf fhkb:hasGreatGrandParent ;
+                         owl:inverseOf fhkb:isGreatGrandfatherOf ;
+                         rdfs:range fhkb:Man ;
+                         owl:propertyChainAxiom ( fhkb:hasParent
+                                                  fhkb:hasGrandfather
+                                                ) .
+
+
+###  http://www.example.com/genealogy.owl#hasGreatGrandmother
+fhkb:hasGreatGrandmother rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf fhkb:hasGreatGrandParent ;
+                         owl:inverseOf fhkb:isGreatGrandmotherOf ;
+                         rdfs:range fhkb:Woman ;
+                         owl:propertyChainAxiom ( fhkb:hasParent
+                                                  fhkb:hasGrandmother
+                                                ) .
+
+
+###  http://www.example.com/genealogy.owl#hasGreatUncle
+fhkb:hasGreatUncle rdf:type owl:ObjectProperty ;
+                   owl:inverseOf fhkb:isGreatUncleOf .
+
+
+###  http://www.example.com/genealogy.owl#hasHusband
+fhkb:hasHusband rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf fhkb:hasSpouse ;
+                owl:inverseOf fhkb:isHusbandOf ;
+                rdfs:range fhkb:Man ;
+                owl:propertyChainAxiom ( fhkb:isFemalePartnerIn
+                                         fhkb:hasMalePartner
+                                       ) .
+
+
+###  http://www.example.com/genealogy.owl#hasMalePartner
+fhkb:hasMalePartner rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf fhkb:hasPartner ;
+                    owl:inverseOf fhkb:isMalePartnerIn ;
+                    rdfs:domain fhkb:Marriage ;
+                    rdfs:range fhkb:Man .
+
+
+###  http://www.example.com/genealogy.owl#hasMother
+fhkb:hasMother rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf fhkb:hasParent ;
+               owl:inverseOf fhkb:isMotherOf ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain fhkb:Person ;
+               rdfs:range fhkb:Woman .
+
+
+###  http://www.example.com/genealogy.owl#hasParent
+fhkb:hasParent rdf:type owl:ObjectProperty ;
+               owl:equivalentProperty fhkb:isChildOf ;
+               rdfs:subPropertyOf fhkb:hasAncestor ;
+               owl:inverseOf fhkb:isParentOf ;
+               rdfs:domain fhkb:Person ;
+               rdfs:range fhkb:Person .
+
+
+###  http://www.example.com/genealogy.owl#hasPartner
+fhkb:hasPartner rdf:type owl:ObjectProperty ;
+                owl:inverseOf fhkb:isPartnerIn ;
+                rdfs:domain fhkb:Marriage ;
+                rdfs:range fhkb:Person .
+
+
+###  http://www.example.com/genealogy.owl#hasRelation
+fhkb:hasRelation rdf:type owl:ObjectProperty ,
+                          owl:SymmetricProperty ;
+                 rdfs:domain fhkb:Person ;
+                 rdfs:range fhkb:Person .
+
+
+###  http://www.example.com/genealogy.owl#hasSex
+fhkb:hasSex rdf:type owl:ObjectProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:domain fhkb:Person ;
+            rdfs:range fhkb:Sex .
+
+
+###  http://www.example.com/genealogy.owl#hasSon
+fhkb:hasSon rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf fhkb:hasChild ;
+            owl:inverseOf fhkb:isSonOf .
+
+
+###  http://www.example.com/genealogy.owl#hasSpouse
+fhkb:hasSpouse rdf:type owl:ObjectProperty ;
+               owl:inverseOf fhkb:isSpouseOf .
+
+
+###  http://www.example.com/genealogy.owl#hasUncle
+fhkb:hasUncle rdf:type owl:ObjectProperty ;
+              owl:inverseOf fhkb:isUncleOf .
+
+
+###  http://www.example.com/genealogy.owl#hasWife
+fhkb:hasWife rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf fhkb:hasSpouse ;
+             owl:inverseOf fhkb:isWifeOf ;
+             rdfs:range fhkb:Woman ;
+             owl:propertyChainAxiom ( fhkb:isMalePartnerIn
+                                      fhkb:hasFemalePartner
+                                    ) .
+
+
+###  http://www.example.com/genealogy.owl#isAncestorOf
+fhkb:isAncestorOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isAuntOf
+fhkb:isAuntOf rdf:type owl:ObjectProperty ;
+              rdfs:domain fhkb:Woman ;
+              rdfs:range fhkb:Person ;
+              owl:propertyChainAxiom ( fhkb:isSisterOf
+                                       fhkb:isParentOf
+                                     ) .
+
+
+###  http://www.example.com/genealogy.owl#isBloodrelationOf
+fhkb:isBloodrelationOf rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf fhkb:hasRelation .
+
+
+###  http://www.example.com/genealogy.owl#isBrotherOf
+fhkb:isBrotherOf rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf fhkb:isSiblingOf ;
+                 rdfs:domain fhkb:Man ;
+                 rdfs:range fhkb:Person .
+
+
+###  http://www.example.com/genealogy.owl#isChildOf
+fhkb:isChildOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isCousinOf
+fhkb:isCousinOf rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf fhkb:isBloodrelationOf .
+
+
+###  http://www.example.com/genealogy.owl#isDaughterOf
+fhkb:isDaughterOf rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf fhkb:isChildOf .
+
+
+###  http://www.example.com/genealogy.owl#isFatherOf
+fhkb:isFatherOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isFemalePartnerIn
+fhkb:isFemalePartnerIn rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isFirstCousinOf
+fhkb:isFirstCousinOf rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf fhkb:isCousinOf ;
+                     rdf:type owl:SymmetricProperty ;
+                     owl:propertyChainAxiom ( fhkb:hasParent
+                                              fhkb:isSiblingOf
+                                              fhkb:isParentOf
+                                            ) .
+
+
+###  http://www.example.com/genealogy.owl#isGrandParentOf
+fhkb:isGrandParentOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isGrandfatherOf
+fhkb:isGrandfatherOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isGrandmotherOf
+fhkb:isGrandmotherOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isGreatAuntOf
+fhkb:isGreatAuntOf rdf:type owl:ObjectProperty ;
+                   rdfs:domain fhkb:Woman ;
+                   rdfs:range fhkb:Person ;
+                   owl:propertyChainAxiom ( fhkb:isSisterOf
+                                            fhkb:isGrandParentOf
+                                          ) .
+
+
+###  http://www.example.com/genealogy.owl#isGreatGrandParentOf
+fhkb:isGreatGrandParentOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isGreatGrandfatherOf
+fhkb:isGreatGrandfatherOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isGreatGrandmotherOf
+fhkb:isGreatGrandmotherOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isGreatUncleOf
+fhkb:isGreatUncleOf rdf:type owl:ObjectProperty ;
+                    rdfs:domain fhkb:Man ;
+                    rdfs:range fhkb:Person ;
+                    owl:propertyChainAxiom ( fhkb:isBrotherOf
+                                             fhkb:isGrandParentOf
+                                           ) .
+
+
+###  http://www.example.com/genealogy.owl#isHusbandOf
+fhkb:isHusbandOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isMalePartnerIn
+fhkb:isMalePartnerIn rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isMotherOf
+fhkb:isMotherOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isParentOf
+fhkb:isParentOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isPartnerIn
+fhkb:isPartnerIn rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isSecondCousinOf
+fhkb:isSecondCousinOf rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf fhkb:isCousinOf ;
+                      rdf:type owl:SymmetricProperty ;
+                      owl:propertyChainAxiom ( fhkb:hasGrandParent
+                                               fhkb:isSiblingOf
+                                               fhkb:isGrandParentOf
+                                             ) .
+
+
+###  http://www.example.com/genealogy.owl#isSiblingOf
+fhkb:isSiblingOf rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf fhkb:isBloodrelationOf ;
+                 rdf:type owl:SymmetricProperty ,
+                          owl:TransitiveProperty ;
+                 owl:propertyChainAxiom ( fhkb:hasParent
+                                          fhkb:isParentOf
+                                        ) .
+
+
+###  http://www.example.com/genealogy.owl#isSisterOf
+fhkb:isSisterOf rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf fhkb:isSiblingOf ;
+                rdfs:domain fhkb:Woman ;
+                rdfs:range fhkb:Person .
+
+
+###  http://www.example.com/genealogy.owl#isSonOf
+fhkb:isSonOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf fhkb:isChildOf .
+
+
+###  http://www.example.com/genealogy.owl#isSpouseOf
+fhkb:isSpouseOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.com/genealogy.owl#isThirdCousinOf
+fhkb:isThirdCousinOf rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf fhkb:isCousinOf ;
+                     rdf:type owl:SymmetricProperty ;
+                     owl:propertyChainAxiom ( fhkb:hasGreatGrandParent
+                                              fhkb:isSiblingOf
+                                              fhkb:isGreatGrandParentOf
+                                            ) .
+
+
+###  http://www.example.com/genealogy.owl#isUncleOf
+fhkb:isUncleOf rdf:type owl:ObjectProperty ;
+               rdfs:domain fhkb:Man ;
+               rdfs:range fhkb:Person ;
+               owl:propertyChainAxiom ( fhkb:isBrotherOf
+                                        fhkb:isParentOf
+                                      ) .
+
+
+###  http://www.example.com/genealogy.owl#isWifeOf
+fhkb:isWifeOf rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://schema.org/additionalName
+<https://schema.org/additionalName> rdf:type owl:DatatypeProperty ;
+                                    rdfs:domain fhkb:Person ;
+                                    rdfs:range xsd:string .
+
+
+###  https://schema.org/birthDate
+<https://schema.org/birthDate> rdf:type owl:DatatypeProperty ,
+                                        owl:FunctionalProperty ;
+                               rdfs:domain fhkb:Person ;
+                               rdfs:range xsd:date .
+
+
+###  https://schema.org/deathDate
+<https://schema.org/deathDate> rdf:type owl:DatatypeProperty ,
+                                        owl:FunctionalProperty ;
+                               rdfs:domain fhkb:Person ;
+                               rdfs:range xsd:date .
+
+
+###  https://schema.org/familyName
+<https://schema.org/familyName> rdf:type owl:DatatypeProperty ;
+                                rdfs:domain fhkb:Person ;
+                                rdfs:range xsd:string .
+
+
+###  https://schema.org/givenName
+<https://schema.org/givenName> rdf:type owl:DatatypeProperty ;
+                               rdfs:domain fhkb:Person ;
+                               rdfs:range xsd:string .
+
+
+###  https://schema.org/honorificPrefix
+<https://schema.org/honorificPrefix> rdf:type owl:DatatypeProperty ;
+                                     rdfs:domain fhkb:Person ;
+                                     rdfs:range xsd:string .
+
+
+###  https://schema.org/honorificSuffix
+<https://schema.org/honorificSuffix> rdf:type owl:DatatypeProperty ;
+                                     rdfs:domain fhkb:Person ;
+                                     rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.example.com/genealogy.owl#Ancestor
+fhkb:Ancestor rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( fhkb:Person
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty fhkb:isAncestorOf ;
+                                                           owl:someValuesFrom fhkb:Person
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] .
+
+
+###  http://www.example.com/genealogy.owl#DomainEntity
+fhkb:DomainEntity rdf:type owl:Class .
+
+
+###  http://www.example.com/genealogy.owl#Female
+fhkb:Female rdf:type owl:Class ;
+            rdfs:subClassOf fhkb:Sex ;
+            owl:disjointWith fhkb:Male .
+
+
+###  http://www.example.com/genealogy.owl#Male
+fhkb:Male rdf:type owl:Class ;
+          rdfs:subClassOf fhkb:Sex .
+
+
+###  http://www.example.com/genealogy.owl#Man
+fhkb:Man rdf:type owl:Class ;
+         owl:equivalentClass [ owl:intersectionOf ( fhkb:Person
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty fhkb:hasSex ;
+                                                      owl:someValuesFrom fhkb:Male
+                                                    ]
+                                                  ) ;
+                               rdf:type owl:Class
+                             ] .
+
+
+###  http://www.example.com/genealogy.owl#Marriage
+fhkb:Marriage rdf:type owl:Class ;
+              rdfs:subClassOf fhkb:DomainEntity .
+
+
+###  http://www.example.com/genealogy.owl#Person
+fhkb:Person rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Class ;
+                                  owl:unionOf ( fhkb:Man
+                                                fhkb:Woman
+                                              )
+                                ] ;
+            rdfs:subClassOf fhkb:DomainEntity ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty fhkb:hasFather ;
+                              owl:someValuesFrom fhkb:Man
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty fhkb:hasMother ;
+                              owl:someValuesFrom fhkb:Woman
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty fhkb:hasSex ;
+                              owl:someValuesFrom fhkb:Sex
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty fhkb:hasParent ;
+                              owl:maxQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                              owl:onClass fhkb:Person
+                            ] ;
+            owl:disjointWith fhkb:Sex .
+
+
+###  http://www.example.com/genealogy.owl#Sex
+fhkb:Sex rdf:type owl:Class ;
+         owl:equivalentClass [ rdf:type owl:Class ;
+                               owl:unionOf ( fhkb:Female
+                                             fhkb:Male
+                                           )
+                             ] ;
+         rdfs:subClassOf fhkb:DomainEntity .
+
+
+###  http://www.example.com/genealogy.owl#Woman
+fhkb:Woman rdf:type owl:Class ;
+           owl:equivalentClass [ owl:intersectionOf ( fhkb:Person
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty fhkb:hasSex ;
+                                                        owl:someValuesFrom fhkb:Female
+                                                      ]
+                                                    ) ;
+                                 rdf:type owl:Class
+                               ] .
+
+
+###  https://schema.org/Place
+<https://schema.org/Place> rdf:type owl:Class .
+
+
+###  https://schema.org/birthPlace
+<https://schema.org/birthPlace> rdf:type owl:Class ;
+                                rdfs:subClassOf <https://schema.org/Place> .
+
+
+###  https://schema.org/deathPlace
+<https://schema.org/deathPlace> rdf:type owl:Class ;
+                                rdfs:subClassOf <https://schema.org/Place> .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

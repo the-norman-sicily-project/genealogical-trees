@@ -7,7 +7,7 @@
 
     *Vim*
 
-    1. Open the file with `:e +ff=mac nsp.ged`
+    1. Open the file with `:e ++ff=mac nsp.ged`
     2. convert the file format `:setlocal ff=unix`
     3. Write the changes `:w`
 
@@ -45,7 +45,7 @@
         cp ./data/nsp.ged.[run number]/nsp.ged.ttl ./data
         rm -rf ./data/nsp.ged.[run number]
         ```
-8. Run `genealogical-trees/tt2owl.py`
+8. Run `genealogical-trees/ttl2owl.py`
 
     ```
     ttl2owl.py ./data/nsp.ged.ttl 1500
