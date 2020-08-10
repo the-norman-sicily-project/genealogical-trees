@@ -76,3 +76,7 @@ span.leg_circ {
     font-size: 0.85em;
     opacity: 0.85;
 }
+
+.tippy-content div.label {
+    border-bottom: 1px solid #fff;
+}

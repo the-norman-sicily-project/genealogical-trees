@@ -39,6 +39,7 @@ const searchNode = (selectedVal) => {
 
     if (searchIndex !== -1) {
         highlightNetwork(nodesArray[searchIndex]);
+        nodesArray[searchIndex].tippy.show();
     }
 };
 
@@ -72,7 +73,7 @@ const highlightNetwork = (sel) => {
     cy.endBatch();
 };
 
-const resetNetwork = (sel) => {
+const resetNetwork = sel => {
     cy.startBatch();
     cy.elements().removeClass('semitransp highlight');
     cy.nodes().style({ 'background-color': '#fff' });
@@ -83,6 +84,60 @@ const resetButtonClickHandler = () => {
     $('#search').autocomplete('close').val('');
     resetNetwork();
 };
+
+const makePopper = el => {
+    if (el.isNode()) {
+        let ref = el.popperRef(); // used only for positioning
+
+        el.tippy = tippy(ref, { // tippy options:
+            content: () => {
+                let content = document.createElement('div');
+
+                let allTitles = [].concat(el.data().honorificPrefixes, el.data().honorificSuffixes);
+                
+                let titles = allTitles.length > 0 ?
+                    `<tr><td>${allTitles.length > 1 ? 'Titles' : 'Title'}</td><td>${allTitles.reduce((accum, title, index, titles) => {
+                        return accum + (titles.length > 1 && index + 1 === titles.length ? ' and ' : ', ') + title;
+                    })}</td></tr>`
+                    : '';
+
+                let alternateNames = el.data().alternateNames.length > 0 ?
+                    `<tr><td>Alternate ${el.data().alternateNames.length > 1 ? 'Spellings' : 'Spelling'}</td><td>${el.data().alternateNames.reduce((accum, name, index, names) => {
+                        return accum + (names.length > 1 && index + 1 === names.length ? ' or ' : ', ') + name;
+                    })}</td></tr>`
+                    : '';
+
+                let birthDate = el.data().birthDate && el.data().birthDate.length > 0 ?
+                    `<tr><td>Birth Date</td><td>${el.data().birthDate}</td></tr>` : '';
+
+                let birthPlace = el.data().birthPlace && el.data().birthPlace.length > 0 ?
+                    `<tr><td>Birth Place</td><td>${el.data().birthPlace}</td></tr>` : '';
+
+                let deathDate = el.data().deathDate && el.data().deathDate.length > 0 ?
+                    `<tr><td>Death Date</td><td>${el.data().deathDate}</td></tr>` : '';
+
+                let deathPlace = el.data().deathPlace && el.data().deathPlace.length > 0 ?
+                    `<tr><td>Death Place</td><td>${el.data().deathPlace}</td></tr>` : '';
+
+                content.innerHTML = `
+                <div class='label'>${el.data().label}</div>
+                <table><tbody>
+                    ${alternateNames}
+                    ${birthDate}
+                    ${birthPlace}
+                    ${deathDate}
+                    ${deathPlace}
+                    ${titles}
+                </tbody></table>
+
+            `;
+
+                return content;
+            },
+            trigger: 'manual' // probably want manual mode
+        });
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     let optArray = [];
@@ -228,14 +283,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cy.on('mouseover', 'node', (e) => {
         highlightNetwork(e.target);
+        e.target.tippy.show();
     });
 
     cy.on('mouseout', 'node', (e) => {
         resetNetwork(e.target);
+        e.target.tippy.hide();
     });
+
 
     cy.on('ready', (e) => {
         nodesArray = cy.nodes().toArray();
+        cy.elements().forEach(el => {
+            makePopper(el);
+        });
     });
 
     cy.panzoom({

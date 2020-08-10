@@ -45,23 +45,39 @@ graph['edges'] = []
 for i in g.subjects(object=FHKB.Person):
     for p, o in g.predicate_objects(subject=i):
         if p.startswith(FHKB) and dump(p) in RELS_OF_INTEREST:
-            graph['edges'].append({
-                'data': {
-                    'group': 'edges',
-                    'id': f'{dump(i)}-{dump(p)}-{dump(o)}',
-                    'source': dump(i),
-                    'target': dump(o),
-                    'type': dump(p)
-                }
-            })
+            graph['edges'].append(
+                {
+                    'data': {
+                        'group': 'edges',
+                        'id': f'{dump(i)}-{dump(p)}-{dump(o)}',
+                        'source': dump(i),
+                        'target': dump(o),
+                        'type': dump(p)
+                    }
+                })
 
-    node = {'data': {'degree': 0, 'size': 10}}
+    node = {
+        'data': {
+            'degree': 0,
+            'size': 10,
+            'alternateNames': [],
+            'honorificPrefixes': [],
+            'honorificSuffixes': [],
+        }
+    }
 
     for p, o in g.predicate_objects(subject=i):
         if p == FHKB.Sex:
             node['data'][dump(p)] = dump(o)
         elif p.startswith(SCHEMA_ORG):
-            node['data'][dump(p)] = o
+            if dump(p) == 'honorificSuffix':
+                node['data']['honorificSuffixes'].append(o)
+            elif dump(p) == 'honorificPrefix':
+                node['data']['honorificPrefixes'].append(o)
+            elif dump(p) == 'alternateName':
+                node['data']['alternateNames'].append(o)
+            else:
+                node['data'][dump(p)] = o
         elif p == rdflib.OWL.sameAs:
             node['data']['id'] = dump(o)
         elif p == rdflib.RDFS.label:

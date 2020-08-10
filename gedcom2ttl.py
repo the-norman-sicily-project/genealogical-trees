@@ -19,19 +19,16 @@ except IndexError:
     sys.exit("No gedcom defined!")
 
 
+#all_names = [a.get_value() for a in individual.get_child_elements() if a.get_tag() == gedcom.tags.GEDCOM_TAG_NAME]
+
 def get_titles(element):
+    # TODO Why no NPFX???
+
     titles = {
-        'honorific_suffixes': set(),
-        'honorific_prefixes': set(),
+        'honorific_suffixes': [a.get_value() for a in element.get_child_elements() if a.get_tag() in 'NOBI;NSFX'],
+        'honorific_prefixes': [a.get_value() for a in element.get_child_elements() if a.get_tag() == 'NPFX']
     }
 
-    for child in element.get_child_elements():
-        if child.get_tag() == 'NOBI':
-            titles['honorific_suffixes'].add(child.get_value())
-        if child.get_tag() == 'NPFX':
-            titles['honorific_prefixes'].add(child.get_value())
-        if child.get_tag() == 'NSFX':
-            titles['honorific_suffixes'].add(child.get_value())
     return titles
 
 
