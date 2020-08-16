@@ -35,7 +35,7 @@ let cy = null;
 let nodesArray = [];
 
 const searchNode = (selectedVal) => {
-    const searchIndex = nodesArray.findIndex(n => n.data().label === selectedVal);
+    const searchIndex = nodesArray.findIndex(n => n.data().id === selectedVal);
 
     if (searchIndex !== -1) {
         highlightNetwork(nodesArray[searchIndex]);
@@ -90,11 +90,13 @@ const makePopper = el => {
         let ref = el.popperRef(); // used only for positioning
 
         el.tippy = tippy(ref, { // tippy options:
+            theme: 'normanblue',
+            offset: '250,250',
             content: () => {
                 let content = document.createElement('div');
 
                 let allTitles = [].concat(el.data().honorificPrefixes, el.data().honorificSuffixes);
-                
+
                 let titles = allTitles.length > 0 ?
                     `<tr><td>${allTitles.length > 1 ? 'Titles' : 'Title'}</td><td>${allTitles.reduce((accum, title, index, titles) => {
                         return accum + (titles.length > 1 && index + 1 === titles.length ? ' and ' : ', ') + title;
@@ -134,10 +136,42 @@ const makePopper = el => {
 
                 return content;
             },
-            trigger: 'manual' // probably want manual mode
+            trigger: 'manual', // probably want manual mode
+            arrow: true,
+            placement: 'bottom',
         });
     }
-}
+};
+
+const positionTooltip = (e) => {
+    const el = e.target;
+
+    const tooltipEl = $(el).find("div.list-item-tooltip");
+
+    if (tooltipEl.length > 0) {
+        const left = el.offsetLeft;
+        const top = -10;
+        const height = $(el).height();
+        const width = $(el).width();
+        const tooltiph = tooltipEl.height();
+        
+        const yPos = Math.ceil(tooltiph / height) * top;
+        const xPos = left + width + 10 - 250;
+
+        tooltipEl.css("top", yPos + "px");
+        tooltipEl.css("left", xPos + "px");
+
+        tooltipEl.fadeIn('fast');
+    }
+};
+
+const fadeTooltip = (e) => {
+    const el = e.target;
+    const tooltipEl = $(el).find("div.list-item-tooltip");
+    if (tooltipEl.length > 0) {
+        tooltipEl.fadeOut('fast');
+    }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     let optArray = [];
@@ -244,7 +278,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 const nodeSize = graph.nodes.length;
 
                 for (let i = 0; i < nodeSize; ++i) {
-                    optArray.push(graph.nodes[i].data.label);
+
+                    let alternateNames = graph.nodes[i].data.alternateNames.length > 0 ?
+                        `(${graph.nodes[i].data.alternateNames.reduce((accum, name, index, names) => {
+                            return accum + (names.length > 1 && index + 1 === names.length ? ' or ' : ', ') + name;
+                        })})`
+                        : '';
+
+                    let allTitles = [].concat(graph.nodes[i].data.honorificPrefixes, graph.nodes[i].data.honorificSuffixes);
+
+                    let allTitlesStr = allTitles.length > 0 ?
+                        `${allTitles.reduce((accum, title, index, titles) => {
+                            return accum + (titles.length > 1 && index + 1 === titles.length ? ' and ' : ', ') + title;
+                        })}`
+                        : '';
+
+                    let birthDate = graph.nodes[i].data.birthDate && graph.nodes[i].data.birthDate.length > 0 ?
+                        `b. ${graph.nodes[i].data.birthDate}` : undefined;
+
+                    let birthPlace = graph.nodes[i].data.birthPlace && graph.nodes[i].data.birthPlace.length > 0 ?
+                        `${graph.nodes[i].data.birthPlace}` : undefined;
+
+                    let deathDate = graph.nodes[i].data.deathDate && graph.nodes[i].data.deathDate.length > 0 ?
+                        `d. ${graph.nodes[i].data.deathDate}` : undefined;
+
+                    let deathPlace = graph.nodes[i].data.deathPlace && graph.nodes[i].data.deathPlace.length > 0 ?
+                        `${graph.nodes[i].data.deathPlace}` : undefined;
+
+                    let tooltipData = `${[[birthDate, birthPlace].filter(Boolean).join(' at '), [deathDate, deathPlace].filter(Boolean).join(' at '), allTitlesStr].filter(Boolean).join('; ')}`
+
+                    optArray.push({
+                        label: graph.nodes[i].data.label,
+                        value: graph.nodes[i].data.id,
+                        desc: alternateNames,
+                        tooltipData,
+                    });
                 }
 
                 graph.edges = Object.assign([], edges);
@@ -291,7 +359,6 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.tippy.hide();
     });
 
-
     cy.on('ready', (e) => {
         nodesArray = cy.nodes().toArray();
         cy.elements().forEach(el => {
@@ -306,26 +373,49 @@ document.addEventListener('DOMContentLoaded', () => {
     optArray = optArray.sort();
 
     $('#search').autocomplete({
+        minLength: 0,
         source: optArray,
+        position: {
+            my: "left bottom",
+            at: "left top",
+            of: $("#search"),
+            collision: "flip flip"
+        },
+        focus: (event, ui) => {
+            $('#search').val(ui.item.label);
+            return false;
+        },
         select: (event, ui) => {
+            $('#search').val(ui.item.label);
             resetNetwork();
-            searchNode(ui.item.label);
+            searchNode(ui.item.value);
+            return false;
         },
         open: (event, ui) => {
-            const $input = $(event.target);
-            const $results = $input.autocomplete("widget");
-            const top = $results.position().top;
-            const height = $results.height();
-            const inputHeight = $input.height();
-            const newTop = top - height - inputHeight;
-
-            $results.css("top", `${newTop}px`);
-        }
-    });
+            $("div.list-item").on('mouseover', positionTooltip);
+            $("div.list-item").on('mouseout', fadeTooltip);
+        },
+        close: (event, ui) => {
+            $("div.list-item").off('mouseover', positionTooltip);
+            $("div.list-item").off('mouseout', fadeTooltip);
+        },
+    })
+        .autocomplete("instance")._renderItem = (ul, item) => {
+            return $('<li>')
+                .append(`
+                <div class="list-item" id="${item.value}">
+                    ${item.label}${item.tooltipData.length > 0 ? '*' : ''}
+                    <div class="list-item-description">${item.desc}</div>
+                    ${item.tooltipData.length > 0 ? `<div class="list-item-tooltip">${item.tooltipData}</div>` : ''}  
+                </div>`)
+                .appendTo(ul)
+        };
 
     $('#reset').click(() => {
         resetButtonClickHandler();
     });
+
+
 
     window.onkeydown = (e) => {
         const keyCode = e.key || e.keyIdentifier || e.keyCode;

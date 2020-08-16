@@ -25,7 +25,7 @@ def get_titles(element):
     # TODO Why no NPFX???
 
     titles = {
-        'honorific_suffixes': [a.get_value() for a in element.get_child_elements() if a.get_tag() in 'NOBI;NSFX'],
+        'honorific_suffixes': [a.get_value() for a in element.get_child_elements() if a.get_tag() in 'NOBI|NSFX'],
         'honorific_prefixes': [a.get_value() for a in element.get_child_elements() if a.get_tag() == 'NPFX']
     }
 
