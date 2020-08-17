@@ -127,3 +127,14 @@ span.leg_circ {
 .tippy-tooltip.normanblue-theme .tippy-backdrop {
     background-color: #004b8c;
 }
+
+.person-image-container {
+    height: 160px;
+    width: 100px;
+}
+
+.person-image {
+    height: 100%;
+    width: 100%;
+    object-fit: contain
+}

@@ -457,6 +457,10 @@ fhkb:isWifeOf rdf:type owl:ObjectProperty .
                                      rdfs:domain fhkb:Person ;
                                      rdfs:range xsd:string .
 
+###  https://schema.org/image
+<https://schema.org/image> rdf:type owl:DatatypeProperty ;
+                                rdfs:domain fhkb:Person ;
+                                rdfs:range xsd:string .
 
 #################################################################
 #    Classes

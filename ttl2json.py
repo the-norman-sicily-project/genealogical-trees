@@ -63,6 +63,7 @@ for i in g.subjects(object=FHKB.Person):
             'alternateNames': [],
             'honorificPrefixes': [],
             'honorificSuffixes': [],
+            'images': [],
         }
     }
 
@@ -76,6 +77,8 @@ for i in g.subjects(object=FHKB.Person):
                 node['data']['honorificPrefixes'].append(o)
             elif dump(p) == 'alternateName':
                 node['data']['alternateNames'].append(o)
+            elif dump(p) == 'image':
+                node['data']['images'].append(o)
             else:
                 node['data'][dump(p)] = o
         elif p == rdflib.OWL.sameAs:

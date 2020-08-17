@@ -31,10 +31,15 @@ def get_titles(element):
 
     return titles
 
+def get_files(element):
+    files = []
+    objects = [a.get_value() for a in element.get_child_elements() if a.get_tag() == 'OBJE']
+    for child_element in objects:
+        files += [f.get_value() for f in gedcom_dict[child_element].get_child_elements() if f.get_tag() == 'FILE']
+    return files
 
 def term2id(el):
     return "i" + el.get_pointer().replace('@', '').lower()
-
 
 def formatGedcomDate(date_string):
     return (date_string.lower()
@@ -88,6 +93,8 @@ for k, v in gedcom_dict.items():
 
         titles = get_titles(v)
 
+        files = get_files(v)
+
         birth_date = formatGedcomDate(v.get_birth_data()[0])
         birth_place = ', '.join(filter(None, v.get_birth_data()[1].split(',')))
         death_date = formatGedcomDate(v.get_death_data()[0])
@@ -123,6 +130,7 @@ for k, v in gedcom_dict.items():
             'death_place': death_place,
             'all_names': all_names,
             'titles': titles,
+            'files': files,
         }
 
     elif isinstance(v, FamilyElement):
@@ -179,6 +187,11 @@ for idx, val in individuals.items():
         honorifxPrefixes = ' ;\n'.join(list(map(lambda hp: '\tschema:honorificPrefix \"{0}\"'.format(
             hp), val['titles']['honorific_prefixes'])))
 
+    files = ''
+    if len(val['files']) > 0:
+        files = ' ;\n'.join(list(
+            map(lambda n: '\tschema:image \"{0}\"'.format(n), val['files'])))
+
     statement = 'fhkb:{0} a owl:NamedIndividual, owl:Thing{1}'.format(
         idx, added_terms)
     if len(alternate_names) > 0:
@@ -187,6 +200,8 @@ for idx, val in individuals.items():
         statement += ' ;\n{0}'.format(honorifxSuffixes)
     if len(honorifxPrefixes) > 0:
         statement += ' ;\n{0}'.format(honorifxPrefixes)
+    if len(files) > 0:
+        statement += ' ;\n{0}'.format(files)
     if len(val['name']) > 0:
         statement += ' ;\n\trdfs:label \"{0}\"'.format(val['name'])
     if len(val['given_name']) > 0:

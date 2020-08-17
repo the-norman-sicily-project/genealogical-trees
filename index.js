@@ -110,6 +110,12 @@ const makePopper = el => {
                     })}</td></tr>`
                     : '';
 
+                let images = el.data().images.length > 0 ?
+                    `<tr><td>${el.data().images.length > 1 ? 'Images' : 'Image'}</td><td>${el.data().images.reduce((accum, image) => {
+                        return accum = accum + `<div class="person-image-container"><img class="person-image" src="data/${image}"></div>`;
+                    }, '')}</td></tr>`
+                    : '';
+
                 let birthDate = el.data().birthDate && el.data().birthDate.length > 0 ?
                     `<tr><td>Birth Date</td><td>${el.data().birthDate}</td></tr>` : '';
 
@@ -131,6 +137,7 @@ const makePopper = el => {
                     ${deathDate}
                     ${deathPlace}
                     ${titles}
+                    ${images}
                 </tbody></table>
 
             `;
@@ -155,7 +162,7 @@ const positionTooltip = (e) => {
         const height = $(el).height();
         const width = $(el).width();
         const tooltiph = tooltipEl.height();
-        
+
         const yPos = Math.ceil(tooltiph / height) * top;
         const xPos = left + width + 10 - 250;
 
