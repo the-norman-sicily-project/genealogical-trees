@@ -68,14 +68,14 @@ const highlightNetwork = (sel) => {
             }
         }
     }
-    sel.addClass('highlight');
+    sel.addClass('root-highlight');
     sel.outgoers().union(sel.incomers()).addClass('highlight');
     cy.endBatch();
 };
 
 const resetNetwork = sel => {
     cy.startBatch();
-    cy.elements().removeClass('semitransp highlight');
+    cy.elements().removeClass('semitransp highlight root-highlight');
     cy.nodes().style({ 'background-color': '#fff' });
     cy.endBatch();
 };
@@ -92,6 +92,7 @@ const makePopper = el => {
         el.tippy = tippy(ref, { // tippy options:
             theme: 'normanblue',
             offset: '250,250',
+            zIndex: 99999,
             content: () => {
                 let content = document.createElement('div');
 
@@ -238,9 +239,20 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 selector: 'node.highlight',
                 style: {
-                    'border-width': '2px',
+                    'border-width': '3px',
                     'text-opacity': '1'
                 }
+
+            },
+            {
+                selector: 'node.root-highlight',
+                style: {
+                    'border-width': '6px',
+                    'text-opacity': '1',
+                    'background-fill': 'linear-gradient',
+                    'background-gradient-stop-colors': 'yellow gold orange'
+                }
+
             },
             {
                 selector: 'node.semitransp',
