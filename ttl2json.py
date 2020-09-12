@@ -4,12 +4,12 @@ import sys
 import json
 import rdflib
 
-RELS_TO_DRAW = ['isWifeOf', 'isMotherOf', 'isFatherOf']
+RELS_TO_DRAW = ['isWifeOf', 'isMotherOf', 'isFatherOf', 'isHusbandOf', 'isSpouseOf']
 RELS_TO_INFER = ['hasGrandParent', 'isGrandParentOf', 'hasGreatGrandParent',
                  'isGreatGrandParentOf', 'isUncleOf', 'hasUncle',
                  'isGreatUncleOf', 'hasGreatUncle', 'isAuntOf', 'hasAunt',
                  'isGreatAuntOf', 'hasGreatAunt',
-                 'isBrotherOf', 'isSisterOf',
+                 'isBrotherOf', 'isSisterOf', 'isSiblingOf'
                  'isFirstCousinOf', 'isSecondCousinOf', 'isThirdCousinOf']
 RELS_OF_INTEREST = RELS_TO_DRAW + RELS_TO_INFER
 
@@ -29,7 +29,7 @@ g = rdflib.Graph()
 g.parse(workpath, format="turtle")
 
 FHKB = rdflib.Namespace("http://www.example.com/genealogy.owl#")
-SCHEMA_ORG = rdflib.Namespace("http://schema.org/")
+SCHEMA_ORG = rdflib.Namespace("https://schema.org/")
 
 
 def dump(uriref):

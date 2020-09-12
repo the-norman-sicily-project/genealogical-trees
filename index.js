@@ -23,6 +23,7 @@ const relType2Color = {
 
     'isBrotherOf': '#6da296', // sibling
     'isSisterOf': '#6da296',
+    'isSiblingOf': '#6da296',
 
     'isFirstCousinOf': '#6795fe', //cousin
     'isSecondCousinOf': '#6795fe',
@@ -238,9 +239,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 selector: 'edge[type = \"isWifeOf\"]',
                 style: {
                     'line-color': '#73a567',
-                    'mid-target-arrow-color': '#73a567',
-                    'mid-target-arrow-shape': 'triangle',
-                    'mid-target-arrow-fill': 'filled',
+                }
+            },
+            {
+                selector: 'edge[type = \"isHusbandOf\"]',
+                style: {
+                    'line-color': '#73a567',
+                }
+            },
+            {
+                selector: 'edge[type = \"isSpouseOf\"]',
+                style: {
+                    'line-color': '#73a567',
                 }
             },
             {
@@ -273,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elements: fetch('data/nsp.json')
             .then(res => { return res.json(); })
             .then(graph => {
-                const nuclearRelationshipTypes = new Set(['isWifeOf', 'isMotherOf', 'isFatherOf']);
+                const nuclearRelationshipTypes = new Set(['isWifeOf', 'isMotherOf', 'isFatherOf', 'isHusbandOf', 'isSpouseOf']);
                 const edges = graph.edges.filter(e => nuclearRelationshipTypes.has(e.data.type));
 
                 otherRelationships = graph.edges.filter(e => !nuclearRelationshipTypes.has(e.data.type)).reduce((a, e) => {

@@ -17,7 +17,7 @@ if [ ! -d "$TMPDIR" ]; then
     mkdir -p $TMPDIR
 fi
 
-cp data/header.ttl $TMPDIR/$ONTONAME.ttl
+cp -p data/header.ttl $TMPDIR/$ONTONAME.ttl
 ./gedcom2ttl.py $1 >> $TMPDIR/$ONTONAME.ttl
 ./infer.py $TMPDIR/$ONTONAME.ttl $RECURSION_LIMIT
 ./ttl2json.py $TMPDIR/$ONTONAME.ttl.inferred > $2

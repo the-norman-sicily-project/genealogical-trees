@@ -5,10 +5,18 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix fhkb: <http://www.example.com/genealogy.owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <http://schema.org/> .
+@prefix schema: <https://schema.org/> .
 @base <http://www.example.com/genealogy.owl#> .
 
 <http://www.example.com/genealogy.owl#> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
 
 #################################################################
 #    Datatypes
@@ -34,13 +42,6 @@ fhkb:hasAunt rdf:type owl:ObjectProperty ;
              owl:inverseOf fhkb:isAuntOf .
 
 
-###  http://www.example.com/genealogy.owl#hasBirthPlace
-fhkb:hasBirthPlace rdf:type owl:ObjectProperty ,
-                            owl:FunctionalProperty ;
-                   rdfs:domain fhkb:Person ;
-                   rdfs:range <https://schema.org/birthPlace> .
-
-
 ###  http://www.example.com/genealogy.owl#hasChild
 fhkb:hasChild rdf:type owl:ObjectProperty ;
               owl:inverseOf fhkb:isChildOf .
@@ -50,13 +51,6 @@ fhkb:hasChild rdf:type owl:ObjectProperty ;
 fhkb:hasDaughter rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf fhkb:hasChild ;
                  owl:inverseOf fhkb:isDaughterOf .
-
-
-###  http://www.example.com/genealogy.owl#hasDeathPlace
-fhkb:hasDeathPlace rdf:type owl:ObjectProperty ,
-                            owl:FunctionalProperty ;
-                   rdfs:domain fhkb:Person ;
-                   rdfs:range <https://schema.org/deathPlace> .
 
 
 ###  http://www.example.com/genealogy.owl#hasFather
@@ -414,53 +408,67 @@ fhkb:isWifeOf rdf:type owl:ObjectProperty .
 #    Data properties
 #################################################################
 
-###  https://schema.org/additionalName
-<https://schema.org/additionalName> rdf:type owl:DatatypeProperty ;
-                                    rdfs:domain fhkb:Person ;
-                                    rdfs:range xsd:string .
+###  https://schema.org/alternateName
+schema:alternateName rdf:type owl:DatatypeProperty ;
+                     rdfs:domain fhkb:Person ;
+                     rdfs:range xsd:string .
 
 
 ###  https://schema.org/birthDate
-<https://schema.org/birthDate> rdf:type owl:DatatypeProperty ,
-                                        owl:FunctionalProperty ;
-                               rdfs:domain fhkb:Person ;
-                               rdfs:range xsd:date .
+schema:birthDate rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain fhkb:Person ;
+                 rdfs:range xsd:string .
+
+
+###  https://schema.org/birthPlace
+schema:birthPlace rdf:type owl:DatatypeProperty ;
+                  rdfs:domain fhkb:Person ;
+                  rdfs:range xsd:string .
 
 
 ###  https://schema.org/deathDate
-<https://schema.org/deathDate> rdf:type owl:DatatypeProperty ,
-                                        owl:FunctionalProperty ;
-                               rdfs:domain fhkb:Person ;
-                               rdfs:range xsd:date .
+schema:deathDate rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain fhkb:Person ;
+                 rdfs:range xsd:string .
+
+
+###  https://schema.org/deathPlace
+schema:deathPlace rdf:type owl:DatatypeProperty ;
+                  rdfs:domain fhkb:Person ;
+                  rdfs:range xsd:string .
 
 
 ###  https://schema.org/familyName
-<https://schema.org/familyName> rdf:type owl:DatatypeProperty ;
-                                rdfs:domain fhkb:Person ;
-                                rdfs:range xsd:string .
+schema:familyName rdf:type owl:DatatypeProperty ;
+                  rdfs:domain fhkb:Person ;
+                  rdfs:range xsd:string .
 
 
 ###  https://schema.org/givenName
-<https://schema.org/givenName> rdf:type owl:DatatypeProperty ;
-                               rdfs:domain fhkb:Person ;
-                               rdfs:range xsd:string .
+schema:givenName rdf:type owl:DatatypeProperty ;
+                 rdfs:domain fhkb:Person ;
+                 rdfs:range xsd:string .
 
 
 ###  https://schema.org/honorificPrefix
-<https://schema.org/honorificPrefix> rdf:type owl:DatatypeProperty ;
-                                     rdfs:domain fhkb:Person ;
-                                     rdfs:range xsd:string .
+schema:honorificPrefix rdf:type owl:DatatypeProperty ;
+                       rdfs:domain fhkb:Person ;
+                       rdfs:range xsd:string .
 
 
 ###  https://schema.org/honorificSuffix
-<https://schema.org/honorificSuffix> rdf:type owl:DatatypeProperty ;
-                                     rdfs:domain fhkb:Person ;
-                                     rdfs:range xsd:string .
+schema:honorificSuffix rdf:type owl:DatatypeProperty ;
+                       rdfs:domain fhkb:Person ;
+                       rdfs:range xsd:string .
+
 
 ###  https://schema.org/image
-<https://schema.org/image> rdf:type owl:DatatypeProperty ;
-                                rdfs:domain fhkb:Person ;
-                                rdfs:range xsd:string .
+schema:image rdf:type owl:DatatypeProperty ;
+             rdfs:domain fhkb:Person ;
+             rdfs:range xsd:string .
+
 
 #################################################################
 #    Classes
@@ -560,18 +568,55 @@ fhkb:Woman rdf:type owl:Class ;
                                ] .
 
 
-###  https://schema.org/Place
-<https://schema.org/Place> rdf:type owl:Class .
+#################################################################
+#    Rules
+#################################################################
 
+fhkb:y rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-###  https://schema.org/birthPlace
-<https://schema.org/birthPlace> rdf:type owl:Class ;
-                                rdfs:subClassOf <https://schema.org/Place> .
+fhkb:z rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+fhkb:x rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-###  https://schema.org/deathPlace
-<https://schema.org/deathPlace> rdf:type owl:Class ;
-                                rdfs:subClassOf <https://schema.org/Place> .
-
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "Sibling"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> fhkb:hasChild ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> fhkb:y ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> fhkb:z
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> fhkb:hasChild ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> fhkb:y ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> fhkb:x
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> fhkb:Person ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> fhkb:y
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> fhkb:x ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> fhkb:z
+                                                                                      ] ;
+                                                                            rdf:rest rdf:nil
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> fhkb:isSiblingOf ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> fhkb:x ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> fhkb:z
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

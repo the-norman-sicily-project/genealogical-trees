@@ -219,10 +219,8 @@ for idx, val in individuals.items():
         statement += ' ;\n\tschema:deathPlace \"{0}\"'.format(
             val['death_place'])
     if val['sex'] == 'f':
-        statement += ";\n\ta fhkb:Woman"
         statement += ";\n\tfhkb:hasSex fhkb:Female"
     else:
-        statement += ";\n\ta fhkb:Man"
         statement += ";\n\tfhkb:hasSex fhkb:Male"
     statement += " .\n"
 
