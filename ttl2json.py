@@ -47,7 +47,14 @@ graph['edges'] = []
 
 nodes = {}
 
-q = sparql.prepareQuery('PREFIX fhkb:<http://www.example.com/genealogy.owl#> SELECT ?person ?pred ?obj WHERE { ?person a fhkb:Person ; ?pred ?obj . } ORDER BY ?person')
+q = sparql.prepareQuery(
+"""PREFIX fhkb:<http://www.example.com/genealogy.owl#> 
+   SELECT ?person ?pred ?obj
+   WHERE { 
+       ?person a fhkb:Person ; 
+       ?pred ?obj .
+    } 
+    ORDER BY ?person""")
 
 for rel in RELS_OF_INTEREST:
     pred = rdflib.URIRef("{}{}".format(fhkb_str, rel))
@@ -64,7 +71,51 @@ for rel in RELS_OF_INTEREST:
                 }
             })
 
-person_query_results = g.query(q)    
+q_details = sparql.prepareQuery(
+"""PREFIX fhkb:<http://www.example.com/genealogy.owl#>
+   SELECT ?person ?pred ?obj
+   WHERE { 
+       ?person a fhkb:Person ; 
+           ?pred ?obj . 
+   FILTER NOT EXISTS {
+       ?person ?testPred ?obj .
+       VALUES ?testPred {
+           fhkb:isWifeOf
+           fhkb:isMotherOf
+           fhkb:isFatherOf
+           fhkb:isHusbandOf
+           fhkb:isSpouseOf
+           fhkb:hasGrandParent
+           fhkb:isGrandParentOf
+           fhkb:hasGreatGrandParent
+           fhkb:isGreatGrandParentOf
+           fhkb:isUncleOf
+           fhkb:hasUncle
+           fhkb:isGreatUncleOf
+           fhkb:hasGreatUncle
+           fhkb:isAuntOf
+           fhkb:hasAunt
+           fhkb:isGreatAuntOf
+           fhkb:hasGreatAunt
+           fhkb:isBrotherOf
+           fhkb:isSisterOf
+           fhkb:isSiblingOf
+           fhkb:isFirstCousinOf
+           fhkb:isSecondCousinOf
+           fhkb:isThirdCousinOf
+
+           fhkb:hasRelation
+           fhkb:isPartnerIn
+           fhkb:isMalePartnerIn
+           fhkb:isFemalePartnerIn
+           fhkb:isBloodrelationOf
+       }
+   }
+} 
+ORDER BY ?person"""
+)
+
+person_query_results = g.query(q_details)    
 for (subj, pred, obj) in person_query_results: 
     node = nodes.get(dump(subj), {
                 'data': {
