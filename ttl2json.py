@@ -3,14 +3,16 @@
 import sys
 import json
 import rdflib
+import rdflib.plugins.sparql as sparql
 
 RELS_TO_DRAW = ['isWifeOf', 'isMotherOf', 'isFatherOf', 'isHusbandOf', 'isSpouseOf']
 RELS_TO_INFER = ['hasGrandParent', 'isGrandParentOf', 'hasGreatGrandParent',
                  'isGreatGrandParentOf', 'isUncleOf', 'hasUncle',
                  'isGreatUncleOf', 'hasGreatUncle', 'isAuntOf', 'hasAunt',
                  'isGreatAuntOf', 'hasGreatAunt',
-                 'isBrotherOf', 'isSisterOf', 'isSiblingOf'
+                 'isBrotherOf', 'isSisterOf', 'isSiblingOf',
                  'isFirstCousinOf', 'isSecondCousinOf', 'isThirdCousinOf']
+
 RELS_OF_INTEREST = RELS_TO_DRAW + RELS_TO_INFER
 
 try:
@@ -28,68 +30,75 @@ if recursion_limit > 0:
 g = rdflib.Graph()
 g.parse(workpath, format="turtle")
 
-FHKB = rdflib.Namespace("http://www.example.com/genealogy.owl#")
-SCHEMA_ORG = rdflib.Namespace("https://schema.org/")
+fhkb_str = "http://www.example.com/genealogy.owl#"
+schema_str = "https://schema.org/"
 
+FHKB = rdflib.Namespace(fhkb_str)
+SCHEMA_ORG = rdflib.Namespace(schema_str)
 
 def dump(uriref):
     if uriref.__contains__('#'):
         return uriref.split('#')[-1]
     return uriref.split('/')[-1]
 
-
 graph = {}
 graph['nodes'] = []
 graph['edges'] = []
 
-for i in g.subjects(object=FHKB.Person):
-    for p, o in g.predicate_objects(subject=i):
-        if p.startswith(FHKB) and dump(p) in RELS_OF_INTEREST:
-            graph['edges'].append(
-                {
-                    'data': {
-                        'group': 'edges',
-                        'id': f'{dump(i)}-{dump(p)}-{dump(o)}',
-                        'source': dump(i),
-                        'target': dump(o),
-                        'type': dump(p)
-                    }
-                })
+nodes = {}
 
-    node = {
-        'data': {
-            'degree': 0,
-            'size': 10,
-            'alternateNames': [],
-            'honorificPrefixes': [],
-            'honorificSuffixes': [],
-            'images': [],
-        }
-    }
+q = sparql.prepareQuery('PREFIX fhkb:<http://www.example.com/genealogy.owl#> SELECT ?person ?pred ?obj WHERE { ?person a fhkb:Person ; ?pred ?obj . } ORDER BY ?person')
 
-    for p, o in g.predicate_objects(subject=i):
-        if p == FHKB.Sex:
-            node['data'][dump(p)] = dump(o)
-        elif p.startswith(SCHEMA_ORG):
-            if dump(p) == 'honorificSuffix':
-                node['data']['honorificSuffixes'].append(o)
-            elif dump(p) == 'honorificPrefix':
-                node['data']['honorificPrefixes'].append(o)
-            elif dump(p) == 'alternateName':
-                node['data']['alternateNames'].append(o)
-            elif dump(p) == 'image':
-                node['data']['images'].append(o)
-            else:
-                node['data'][dump(p)] = o
-        elif p == rdflib.OWL.sameAs:
-            node['data']['id'] = dump(o)
-        elif p == rdflib.RDFS.label:
-            node['data']['label'] = o
+for rel in RELS_OF_INTEREST:
+    pred = rdflib.URIRef("{}{}".format(fhkb_str, rel))
+    relation_query_results = g.query(q, initBindings={'pred': pred})
+    for (subj, pred, obj) in relation_query_results:
+        graph['edges'].append(
+            {
+                'data': {
+                    'group': 'edges',
+                    'id': f'{dump(subj)}-{dump(pred)}-{dump(obj)}',
+                    'source': dump(subj),
+                    'target': dump(obj),
+                    'type': dump(pred)
+                }
+            })
+
+person_query_results = g.query(q)    
+for (subj, pred, obj) in person_query_results: 
+    node = nodes.get(dump(subj), {
+                'data': {
+                    'label': '',
+                    'degree': 0,
+                    'size': 10,
+                    'alternateNames': [],
+                    'honorificPrefixes': [],
+                    'honorificSuffixes': [],
+                    'images': [],
+                    'id': dump(subj),
+                }}) 
+    
+    if pred == FHKB.Sex:
+        node['data'][dump(pred)] = dump(obj)
+    elif pred.startswith(SCHEMA_ORG):
+        if dump(pred) == 'honorificSuffix':
+            node['data']['honorificSuffixes'].append(obj)
+        elif dump(pred) == 'honorificPrefix':
+            node['data']['honorificPrefixes'].append(obj)
+        elif dump(pred) == 'alternateName':
+            node['data']['alternateNames'].append(obj)
+        elif dump(pred) == 'image':
+            node['data']['images'].append(obj)
         else:
-            continue
+            node['data'][dump(pred)] = obj
+    elif pred == rdflib.RDFS.label:
+        node['data']['label'] = obj
+    else:
+        continue
+    
+    nodes[dump(subj)] = node
 
-    if 'label' in node['data']:
-        graph['nodes'].append(node)
+graph['nodes'] = list(nodes.values())
 
 print(json.dumps(graph, indent=0))
 sys.exit(0)

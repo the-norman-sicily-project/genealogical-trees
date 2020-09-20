@@ -30,6 +30,32 @@ const relType2Color = {
     'isThirdCousinOf': '#6795fe'
 };
 
+const relType2Weight =  {
+    'isGrandParentOf': 55,
+    'hasGrandParent': 50,
+
+    'isGreatGrandParentOf': 45, // great-grandchild
+    'hasGreatGrandParent': 40, // great-grandparent
+
+    'isUncleOf': 35, //niece or nephew
+    'isGreatUncleOf': 30,
+    'isAuntOf': 35,
+    'isGreatAuntOf': 30,
+
+    'hasUncle': 35, // uncle or aunt
+    'hasGreatUncle': 30,
+    'hasAunt': 35,
+    'hasGreatAunt': 30,
+
+    'isBrotherOf': 25, // sibling
+    'isSisterOf': 25,
+    'isSiblingOf': 20,
+
+    'isFirstCousinOf': 15,
+    'isSecondCousinOf': 10,
+    'isThirdCousinOf': 5,
+}
+
 let otherRelationships = {};
 
 let cy = null;
@@ -55,20 +81,17 @@ const highlightNetwork = (sel) => {
     const selId = sel.data().id;
     if (otherRelationships[selId]) {
         let o = otherRelationships[selId];
-        for (const key in o) {
-            if (o.hasOwnProperty(key)) {
-                for (let i = 0; i < o[key].length; i++) {
-                    let idx = nodesArray.findIndex(p => p.data().id === o[key][i]);
-                    if (idx !== -1) {
-                        let n = nodesArray[idx];
-                        n.removeClass('semitransp');
-                        n.addClass('highlight');
-                        n.style({ 'background-color': relType2Color[key] });
-                    }
-                }
+        for (const target in o) {
+            let idx = nodesArray.findIndex(p => p.data().id === target);
+            if (idx !== -1) {
+                let n = nodesArray[idx];
+                n.removeClass('semitransp');
+                n.addClass('highlight');
+                n.style({ 'background-color': relType2Color[o[target]]});
             }
         }
     }
+
     sel.addClass('root-highlight');
     sel.outgoers().union(sel.incomers()).addClass('highlight');
     cy.endBatch();
@@ -289,15 +312,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 otherRelationships = graph.edges.filter(e => !nuclearRelationshipTypes.has(e.data.type)).reduce((a, e) => {
                     if (e.data.source !== e.data.target) {
                         if (a[e.data.source]) {
-                            if (a[e.data.source][e.data.type]) {
-                                a[e.data.source][e.data.type].push(e.data.target);
+                            if (a[e.data.source][e.data.target]) {
+                                a[e.data.source][e.data.target] =
+                                    relType2Weight[a[e.data.source][e.data.target]] > relType2Weight[e.data.type] ? 
+                                    a[e.data.source][e.data.target] :
+                                    e.data.type
                             }
                             else {
-                                a[e.data.source][e.data.type] = [e.data.target];
+                                a[e.data.source][e.data.target] = e.data.type;
                             }
                         } else {
                             const o = {};
-                            o[e.data.type] = [e.data.target];
+                            o[e.data.target] = e.data.type;
                             a[e.data.source] = o;
                         }
                     }

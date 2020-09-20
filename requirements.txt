@@ -1,3 +1,4 @@
+requests
 rdflib
 transliterate
 -e git://github.com/RDFLib/OWL-RL.git#egg=owlrl
