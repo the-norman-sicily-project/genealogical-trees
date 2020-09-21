@@ -116,7 +116,7 @@ const makePopper = el => {
         el.tippy = tippy(ref, { // tippy options:
             theme: 'normanblue',
             offset: '250,250',
-            zIndex: 99999,
+            zIndex: 3000,
             content: () => {
                 let content = document.createElement('div');
 

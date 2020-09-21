@@ -37,7 +37,7 @@ body {
 }
 
 #relationship_legend {
-    z-index: 99998;
+    z-index: 1000;
     width: auto;
     height: auto;
     background: #fcfcfc;
@@ -72,7 +72,7 @@ span.leg_circ {
 }
 
 #node-search-container {
-    z-index: 2000000;
+    z-index: 2000;
     position: fixed;
     bottom: 0;
     padding: 10px;
@@ -83,6 +83,17 @@ span.leg_circ {
     opacity: 0.85;
     background: #fcfcfc;
     border: 1px solid #ddd;
+}
+
+#node-search-container input#search {
+    min-width: 300px;
+}
+
+#node-search-container  div.help-text{
+    font-style: italic;
+    font-size: small;
+    text-align: center;
+    padding-top: 5px;
 }
 
 .tippy-content div.label {
@@ -108,7 +119,7 @@ span.leg_circ {
     padding: 10px;
     border-radius: 10px;
     display: none;
-    z-index: 99999;
+    z-index: 2100;
     box-shadow: 0 1px 3px 3px rgba(0, 0, 0, .05);
 }
 
