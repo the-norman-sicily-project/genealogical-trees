@@ -188,7 +188,7 @@ const positionTooltip = (e) => {
         const tooltiph = tooltipEl.height();
 
         const yPos = Math.ceil(tooltiph / height) * top;
-        const xPos = left + width + 10 - 250;
+        const xPos = left + width - 75;
 
         tooltipEl.css("top", yPos + "px");
         tooltipEl.css("left", xPos + "px");
