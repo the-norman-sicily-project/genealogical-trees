@@ -18,45 +18,45 @@
         <div id="relationship_legend">
                 <ul>
                         <li><span style="font-size:2em;color:#ff76b8;">&rarr;</span> <span
-                                        class="i18n i18n_en">Mother-Children
+                                        id="motherChildrenLink">Mother-Children
                                         Link</span></li>
                         <li><span style="font-size:2em;color:#6f93ad;">&rarr;</span> <span
-                                        class="i18n i18n_en">Father-Children
+                                        id="fatherChildrenLink">Father-Children
                                         Link</span></li>
-                        <li><span style="font-size:2em;color:#73a567;">&mdash;</span> <span
-                                        class="i18n i18n_en">Marriage (or Union)
+                        <li><span style="font-size:2em;color:#73a567;">&mdash;</span> <span id="marriageLink">Marriage
+                                        (or Union)
                                         Link</span> </li>
                         <li><span class="leg_circ" style="background:#eda268;"></span><span
-                                        class="i18n i18n_en">Grandparent</span>
+                                        id="grandparent">Grandparent</span>
                         </li>
                         <li><span class="leg_circ" style="background:#e77a68;"></span><span
-                                        class="i18n i18n_en">Great-Grandparent</span> </li>
+                                        id="greatGrandparent">Great-Grandparent</span> </li>
                         <li><span class="leg_circ" style="background:#a88ebe;"></span><span
-                                        class="i18n i18n_en">Grandchild</span>
+                                        id="grandchild">Grandchild</span>
                         </li>
                         <li><span class="leg_circ" style="background:#d688aa;"></span><span
-                                        class="i18n i18n_en">Great-Grandchild</span></li>
-                        <li><span class="leg_circ" style="background:#c683ea;"></span><span class="i18n i18n_en">Uncle
+                                        id="greatGrandchild">Great-Grandchild</span></li>
+                        <li><span class="leg_circ" style="background:#c683ea;"></span><span id="uncleOrAunt">Uncle
                                         or
                                         Aunt</span></li>
-                        <li><span class="leg_circ" style="background:#e9ca7a;"></span><span class="i18n i18n_en">Nephew
+                        <li><span class="leg_circ" style="background:#e9ca7a;"></span><span id="newphewOrNiece">Nephew
                                         or
                                         Niece</span></li>
-                        <li><span class="leg_circ" style="background:#6da296;"></span><span class="i18n i18n_en">Brother
+                        <li><span class="leg_circ" style="background:#6da296;"></span><span id="brotherOrSister">Brother
                                         or
                                         Sister</span></li>
-                        <li><span class="leg_circ" style="background:#6795fe;"></span><span
-                                        class="i18n i18n_en">Cousin</span></li>
+                        <li><span class="leg_circ" style="background:#6795fe;"></span><span id="cousin">Cousin</span>
+                        </li>
                 </ul>
         </div>
 
         <div id="node-search-container">
                 <div>
-                <label for"search">Search: </label>
-                <input id="search" placeholder="Select a name...">
-                <button type="button" id="reset">Reset</button>
-        </div>
-        <div class="help-text">Names with an asterisk (*) have additional information</div>
+                        <label id="searchLabel" for"search">Search: </label>
+                        <input id="search" placeholder="Select a name...">
+                        <button type="button" id="reset">Reset</button>
+                </div>
+                <div class="help-text">Names with an asterisk (*) have additional information</div>
         </div>
 
         <div id="cy"></div>
