@@ -6,6 +6,7 @@
 @prefix fhkb: <http://www.example.com/genealogy.owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @base <http://www.example.com/genealogy.owl#> .
 
 <http://www.example.com/genealogy.owl#> rdf:type owl:Ontology .

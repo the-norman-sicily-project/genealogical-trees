@@ -204,6 +204,7 @@ for idx, val in individuals.items():
         statement += ' ;\n{0}'.format(files)
     if len(val['name']) > 0:
         statement += ' ;\n\trdfs:label \"{0}\"'.format(val['name'])
+        statement += ' ;\n\tskos:prefLabel \"{0}\"'.format(val['name'])
     if len(val['given_name']) > 0:
         statement += ' ;\n\tschema:givenName \"{0}\"'.format(val['given_name'])
     if len(val['surname']) > 0:
