@@ -251,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 translate("searchLabel", "searchFieldTitle");
                 document.getElementById("search").placholder = translations[locale]["searchFieldPlaceholder"];
                 translate("reset", "resetButtonCaption");
+                translate("helpText", "helpTextCaption")
 
                 let optArray = [];
 
