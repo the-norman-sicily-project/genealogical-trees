@@ -2,7 +2,7 @@
     "en": {
         "motherChildrenLinkTitle": "Mother-Children Link",
         "fatherChildrenLinkTitle": "Father-Children Link",
-        "marriageeLinkTitle": "Marriage (or Union) Link",
+        "marriageLinkTitle": "Marriage (or Union) Link",
         "grandparentTitle": "Grandparent",
         "greatGrandparentTitle": "Great-Grandparent",
         "grandchildTitle": "Grandchild",
@@ -35,7 +35,7 @@
     "it": {
         "motherChildrenLinkTitle": "Madre-Figli",
         "fatherChildrenLinkTitle": "Padre-Figli",
-        "marriageeLinkTitle": "Matrimonio (o unione)",
+        "marriageLinkTitle": "Matrimonio (o unione)",
         "grandparentTitle": "Nonno",
         "greatGrandparentTitle": "Bisnonno",
         "grandchildTitle": "Nipote",
