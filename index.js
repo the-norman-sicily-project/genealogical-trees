@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 localizeLegend();
                 translate("searchLabel", "searchFieldTitle");
-                document.getElementById("search").placholder = translations[locale]["searchFieldPlaceholder"];
+                document.getElementById("search").placeholder = translations[locale]["searchFieldPlaceholder"];
                 translate("reset", "resetButtonCaption");
                 translate("helpText", "helpTextCaption")
 
