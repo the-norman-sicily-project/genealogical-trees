@@ -226,9 +226,9 @@
 1 _CRE
 2 DATE 16 MAR 2015
 3 TIME 22:31:47
-1 FAMS @F48968748@
 1 FAMS @F78721177@
 1 FAMS @F47458760@
+1 FAMS @F48968748@
 1 FAMC @F8227520@
 0 @3720817@ INDI
 1 NAME Odo //
@@ -493,12 +493,12 @@
 2 GIVN Sibylla
 2 SURN of Burgundy
 2 NPFX Queen of Sicily
-1 NAME Sybil //
-2 TYPE variation
-2 GIVN Sybil
 1 NAME Sibylle //
 2 TYPE variation
 2 GIVN Sibylle
+1 NAME Sybil //
+2 TYPE variation
+2 GIVN Sybil
 1 SEX F
 1 BIRT
 2 DATE abt 1126
@@ -547,8 +547,18 @@
 3 _LOD 14
 3 _LOM 45
 3 _LOS 56
-2 SOUR @S72313776@
-3 PAGE I: 467.
+2 SOUR @S16863108@
+3 PAGE I: Pages 5-6.
+3 QUAY 3
+3 _QUAL
+4 _INFO P
+2 SOUR @S6297357@
+3 PAGE 53ff.
+3 QUAY 3
+3 _QUAL
+4 _INFO P
+2 SOUR @S58716951@
+3 PAGE 136.
 3 QUAY 3
 3 _QUAL
 4 _INFO P
@@ -566,18 +576,8 @@
 3 QUAY 3
 3 _QUAL
 4 _INFO P
-2 SOUR @S16863108@
-3 PAGE I: Pages 5-6.
-3 QUAY 3
-3 _QUAL
-4 _INFO P
-2 SOUR @S6297357@
-3 PAGE 53ff.
-3 QUAY 3
-3 _QUAL
-4 _INFO P
-2 SOUR @S58716951@
-3 PAGE 136.
+2 SOUR @S72313776@
+3 PAGE I: 467.
 3 QUAY 3
 3 _QUAL
 4 _INFO P
@@ -729,18 +729,18 @@
 3 _LOD 13
 3 _LOM 21
 3 _LOS 21
-1 SOUR @S24609857@
-2 PAGE XXI: 508.
-2 QUAY 3
-2 _QUAL
-3 _INFO P
-1 SOUR @S88321536@
-2 PAGE XV: 884.
-2 QUAY 3
-2 _QUAL
-3 _INFO P
 1 SOUR @S74044872@
 2 PAGE look in index under "Beatrice of Rethel".
+2 QUAY 3
+2 _QUAL
+3 _INFO P
+1 SOUR @S16863108@
+2 PAGE II: 106.
+2 QUAY 3
+2 _QUAL
+3 _INFO P
+1 SOUR @S24609857@
+2 PAGE XXI: 508.
 2 QUAY 3
 2 _QUAL
 3 _INFO P
@@ -759,8 +759,8 @@
 2 QUAY 3
 2 _QUAL
 3 _INFO P
-1 SOUR @S16863108@
-2 PAGE II: 106.
+1 SOUR @S88321536@
+2 PAGE XV: 884.
 2 QUAY 3
 2 _QUAL
 3 _INFO P
@@ -1600,12 +1600,12 @@
 1 NAME Eudes /of Vieille-Ville/
 2 GIVN Eudes
 2 SURN of Vieille-Ville
-1 NAME Ebles //
-2 TYPE variation
-2 GIVN Ebles
 1 NAME Odo //
 2 TYPE variation
 2 GIVN Odo
+1 NAME Ebles //
+2 TYPE variation
+2 GIVN Ebles
 1 SEX M
 1 CHAN
 2 DATE 18 MAR 2019
@@ -1682,8 +1682,8 @@
 1 _CRE
 2 DATE 07 MAR 2018
 3 TIME 20:18:58
-1 FAMS @86966426@
 1 FAMS @6727675@
+1 FAMS @86966426@
 1 FAMC @60705428@
 1 FAMC @19135251@
 0 @I71339813@ INDI
@@ -1742,8 +1742,8 @@
 1 _CRE
 2 DATE 17 JAN 2019
 3 TIME 08:58:27
-1 FAMS @18947894@
 1 FAMS @6352745@
+1 FAMS @18947894@
 1 FAMC @38458106@
 0 @I91329006@ INDI
 1 NAME Robert //
@@ -1939,12 +1939,12 @@
 1 NAME Guglielmo //
 2 TYPE variation
 2 GIVN Guglielmo
-1 NAME Othon-Guillaume //
-2 TYPE variation
-2 GIVN Othon-Guillaume
 1 NAME /di Ivrea/
 2 TYPE family
 2 SURN di Ivrea
+1 NAME Othon-Guillaume //
+2 TYPE variation
+2 GIVN Othon-Guillaume
 1 SEX M
 1 NOBI Count of Nevers
 2 DATE bet bef 990 and 990
@@ -1995,8 +1995,8 @@
 1 _CRE
 2 DATE 02 OCT 2015
 3 TIME 12:31:53
-1 FAMS @41859492@
 1 FAMS @1704059@
+1 FAMS @41859492@
 1 FAMC @59433168@
 0 @I49941128@ INDI
 1 NAME Bertha /of Holland/
@@ -2463,12 +2463,12 @@
 2 GIVN William
 2 SURN of Gesualdus
 2 NPFX Count of Gesualdo and Lord of Lucera
-1 NAME /Gesualdo/
-2 TYPE variation
-2 SURN Gesualdo
 1 NAME Guillaume //
 2 TYPE variation
 2 GIVN Guillaume
+1 NAME /Gesualdo/
+2 TYPE variation
+2 SURN Gesualdo
 1 SEX M
 1 NOBI Lord of Lucera
 2 CHAN
@@ -3096,8 +3096,8 @@
 1 _CRE
 2 DATE 18 MAR 2019
 3 TIME 09:21:40
-1 FAMS @44119352@
 1 FAMS @76352720@
+1 FAMS @44119352@
 1 FAMC @40244744@
 0 @I83786512@ INDI
 1 NAME Jordan //
@@ -3128,12 +3128,12 @@
 2 GIVN Beatrice
 2 SURN of Burgundy
 2 NPFX Queen of León-Castile
-1 NAME Berthe //
-2 TYPE variation
-2 GIVN Berthe
 1 NAME Berta //
 2 TYPE variation
 2 GIVN Berta
+1 NAME Berthe //
+2 TYPE variation
+2 GIVN Berthe
 1 SEX F
 1 NOBI Queen of León-Castile
 2 DATE bet 1094 and 1100
@@ -3169,6 +3169,7 @@
 2 _CRE
 3 DATE 01 JUN 2020
 4 TIME 01:29:24
+1 NOTE @46070690@
 1 CHAN
 2 DATE 01 JUN 2020
 3 TIME 01:27:55
@@ -3176,7 +3177,7 @@
 2 DATE 01 JUN 2020
 3 TIME 01:27:40
 1 FAMS @72884184@
-1 FAMC @F72591347@
+1 FAMC @F86348150@
 0 @I34681617@ INDI
 1 NAME Geoffrey IV //
 2 GIVN Geoffrey IV
@@ -3534,8 +3535,8 @@
 1 _CRE
 2 DATE 17 JAN 2019
 3 TIME 09:56:45
-1 FAMS @63564001@
 1 FAMS @46403224@
+1 FAMS @63564001@
 1 FAMC @1124612@
 0 @I20073648@ INDI
 1 NAME Robert //
@@ -3725,8 +3726,8 @@
 1 _CRE
 2 DATE 15 MAR 2015
 3 TIME 13:41:14
-1 FAMS @F90166357@
 1 FAMS @F81113477@
+1 FAMS @F90166357@
 1 FAMS @F24530768@
 1 FAMC @F12798912@
 0 @I13421648@ INDI
@@ -3866,6 +3867,14 @@
 2 GIVN Unnamed
 2 SURN of Hauteville
 1 SEX F
+1 DEAT
+2 DATE
+2 CHAN
+3 DATE 08 MAR 2021
+4 TIME 21:36:37
+2 _CRE
+3 DATE 08 MAR 2021
+4 TIME 20:44:31
 1 CHAN
 2 DATE 16 MAR 2019
 3 TIME 17:47:17
@@ -4323,8 +4332,8 @@
 1 _CRE
 2 DATE 17 JAN 2019
 3 TIME 09:22:37
-1 FAMS @71240740@
 1 FAMS @88606776@
+1 FAMS @71240740@
 1 FAMC @F58727621@
 0 @21924064@ INDI
 1 NAME Eustace II //
@@ -4351,8 +4360,8 @@
 1 _CRE
 2 DATE 13 OCT 2016
 3 TIME 23:18:01
-1 FAMS @29897472@
 1 FAMS @21111061@
+1 FAMS @29897472@
 1 FAMC @79705702@
 0 @15437654@ INDI
 1 NAME Isaac /Comnenus/
@@ -4598,6 +4607,7 @@
 2 QUAY 3
 2 _QUAL
 3 _INFO P
+1 NOTE @23191250@
 1 CHAN
 2 DATE 17 MAR 2019
 3 TIME 01:26:50
@@ -4656,12 +4666,12 @@
 2 GIVN Dulce
 2 SURN of Aragon
 2 NPFX Queen of Portugal
-1 NAME /of Portugal/
-2 TYPE married
-2 SURN of Portugal
 1 NAME Dulcia //
 2 TYPE variation
 2 GIVN Dulcia
+1 NAME /of Portugal/
+2 TYPE married
+2 SURN of Portugal
 1 SEX F
 1 BIRT
 2 DATE 1160
@@ -5090,6 +5100,14 @@
 2 GIVN Maximilla
 2 SURN of Hauteville
 1 SEX F
+1 DEAT
+2 DATE
+2 CHAN
+3 DATE 08 MAR 2021
+4 TIME 21:35:20
+2 _CRE
+3 DATE 08 MAR 2021
+4 TIME 20:45:16
 1 NOTE @N5396488@
 1 CHAN
 2 DATE 01 OCT 2015
@@ -5529,12 +5547,12 @@
 1 NAME William //
 2 GIVN William
 2 NPFX Count of Ponthieu
-1 NAME Guillaume //
-2 TYPE variation
-2 GIVN Guillaume
 1 NAME /Talvas/
 2 TYPE nick
 2 SURN Talvas
+1 NAME Guillaume //
+2 TYPE variation
+2 GIVN Guillaume
 1 SEX M
 1 BIRT
 2 DATE abt 1093
@@ -5663,15 +5681,15 @@
 2 GIVN Mathilda
 2 SURN of Mâcon
 2 NPFX Countess of Nevers
+1 NAME Mathilde //
+2 TYPE variation
+2 GIVN Mathilde
 1 NAME Matilde //
 2 TYPE variation
 2 GIVN Matilde
 1 NAME Matilda //
 2 TYPE variation
 2 GIVN Matilda
-1 NAME Mathilde //
-2 TYPE variation
-2 GIVN Mathilde
 1 SEX F
 1 NOBI Countess of Nevers
 2 DATE abt 990
@@ -5942,8 +5960,8 @@
 1 _CRE
 2 DATE 14 MAR 2015
 3 TIME 16:05:16
-1 FAMS @F19004129@
 1 FAMS @86608307@
+1 FAMS @F19004129@
 1 FAMC @37613852@
 0 @88355687@ INDI
 1 NAME Henry /of Salerno/
@@ -6014,10 +6032,10 @@
 2 GIVN Eremburga
 2 SURN of Mortain
 2 NPFX Countess of Sicily
+2 TYPE family
 1 NAME Eremburge //
 2 TYPE variation
 2 GIVN Eremburge
-2 TYPE family
 1 SEX F
 1 NOBI Countess of Sicily
 2 DATE bet 1077 and bef 1089
@@ -6027,6 +6045,11 @@
 2 _CRE
 3 DATE 17 MAR 2019
 4 TIME 17:14:36
+1 DEAT
+2 DATE bef 1089
+2 _CRE
+3 DATE 08 MAR 2021
+4 TIME 21:05:08
 1 CHAN
 2 DATE 17 MAR 2019
 3 TIME 17:14:10
@@ -6039,15 +6062,15 @@
 2 GIVN Gilberga
 2 SURN of Couserans
 2 NPFX Queen of Aragon
-1 NAME Gerberge //
-2 TYPE variation
-2 GIVN Gerberge
 1 NAME Ermesenda //
 2 TYPE adoptive
 2 GIVN Ermesenda
 1 NAME /de Foix/
 2 TYPE variation
 2 SURN de Foix
+1 NAME Gerberge //
+2 TYPE variation
+2 GIVN Gerberge
 1 SEX F
 1 NOBI Queen of Aragon
 2 DATE bet 1036 and 1063
@@ -6172,12 +6195,12 @@
 1 NAME Eudes /of Roucy/
 2 GIVN Eudes
 2 SURN of Roucy
-1 NAME Ebles //
-2 TYPE variation
-2 GIVN Ebles
 1 NAME Odo //
 2 TYPE variation
 2 GIVN Odo
+1 NAME Ebles //
+2 TYPE variation
+2 GIVN Ebles
 1 SEX M
 1 NOTE @95539362@
 1 CHAN
@@ -6318,8 +6341,8 @@
 1 _CRE
 2 DATE 15 MAR 2015
 3 TIME 16:35:18
-1 FAMS @29721776@
 1 FAMS @F25445251@
+1 FAMS @29721776@
 0 @87342072@ INDI
 1 NAME Peter /of Flanders/
 2 GIVN Peter
@@ -6620,12 +6643,12 @@
 2 GIVN Adalmode
 2 SURN of Périgueux
 2 NPFX Duchess of Aquitaine and Countess of Poitou
-1 NAME /of Limoges/
-2 TYPE variation
-2 SURN of Limoges
 1 NAME /Périgord/
 2 TYPE variation
 2 SURN Périgord
+1 NAME /of Limoges/
+2 TYPE variation
+2 SURN of Limoges
 1 SEX F
 1 NOBI Duchess of Aquitaine
 2 DATE bet abt 997 and abt 1011
@@ -7000,6 +7023,11 @@
 2 TYPE variation
 2 GIVN Flandrina
 1 SEX F
+1 DEAT
+2 DATE aft 1141
+2 _CRE
+3 DATE 08 MAR 2021
+4 TIME 20:38:53
 1 NOTE @N76062560@
 1 CHAN
 2 DATE 01 OCT 2015
@@ -7289,12 +7317,12 @@
 2 GIVN Hugh
 2 SURN of Ibelin
 2 NPFX Lord of Rama
-1 NAME Hugues //
-2 TYPE variation
-2 GIVN Hugues
 1 NAME /Ramla/
 2 TYPE other
 2 SURN Ramla
+1 NAME Hugues //
+2 TYPE variation
+2 GIVN Hugues
 1 SEX M
 1 CHAN
 2 DATE 16 OCT 2016
@@ -7738,8 +7766,8 @@
 3 _LOM 21
 3 _LOS 35
 2 CHAN
-3 DATE 09 MAY 2020
-4 TIME 09:38:13
+3 DATE 08 MAR 2021
+4 TIME 21:35:50
 1 BURI
 2 DATE 1154
 2 PLAC Palermo,Provincia di Palermo,Sicily,Italy
@@ -7765,8 +7793,8 @@
 2 DATE 17 MAR 2015
 3 TIME 11:02:57
 1 _STP
-1 FAMS @96225378@
 1 FAMS @35757150@
+1 FAMS @96225378@
 1 FAMS @F95705608@
 1 FAMS @F72248532@
 1 FAMS @F55450680@
@@ -8101,9 +8129,9 @@
 1 _CRE
 2 DATE 16 OCT 2016
 3 TIME 20:08:14
-1 FAMS @93803081@
-1 FAMS @38662956@
 1 FAMS @55350342@
+1 FAMS @38662956@
+1 FAMS @93803081@
 1 FAMC @76072903@
 0 @87238128@ INDI
 1 NAME George /of Antioch/
@@ -8373,12 +8401,12 @@
 1 NAME /Sekretos/
 2 TYPE variation
 2 SURN Sekretos
-1 NAME /Secretus/
-2 TYPE variation
-2 SURN Secretus
 1 NAME /Secatis/
 2 TYPE variation
 2 SURN Secatis
+1 NAME /Secretus/
+2 TYPE variation
+2 SURN Secretus
 1 SEX M
 1 NOTE @39913800@
 1 CHAN
@@ -8392,15 +8420,15 @@
 1 NAME Odo-Henry //
 2 GIVN Odo-Henry
 2 NPFX Count of Nevers (as Odo) and Duke of Burgundy (as Henry)
-1 NAME Odo-Henri //
-2 TYPE variation
-2 GIVN Odo-Henri
 1 NAME Henri //
 2 TYPE variation
 2 GIVN Henri
 1 NAME Otto-Henry //
 2 TYPE variation
 2 GIVN Otto-Henry
+1 NAME Odo-Henri //
+2 TYPE variation
+2 GIVN Odo-Henri
 1 SEX M
 1 BIRT
 2 DATE abt 946
@@ -8501,8 +8529,8 @@
 1 _CRE
 2 DATE 14 OCT 2016
 3 TIME 23:43:12
-1 FAMS @83147672@
 1 FAMS @13504868@
+1 FAMS @83147672@
 1 FAMC @19124181@
 0 @I74150784@ INDI
 1 NAME Urraca /of Portugal/
@@ -8591,12 +8619,12 @@
 2 GIVN Yvetta
 2 SURN of Jerusalem
 2 NPFX Abbess of Bethany
-1 NAME Iveta //
-2 TYPE variation
-2 GIVN Iveta
 1 NAME Judith //
 2 TYPE variation
 2 GIVN Judith
+1 NAME Iveta //
+2 TYPE variation
+2 GIVN Iveta
 1 SEX F
 1 NOBI Abbess of Bethany
 2 _CRE
@@ -9383,8 +9411,8 @@
 2 DATE 14 OCT 2016
 3 TIME 22:32:27
 1 FAMS @40952520@
-1 FAMS @23783436@
 1 FAMS @90051971@
+1 FAMS @23783436@
 1 FAMS @31549856@
 1 FAMC @12484354@
 0 @I59913038@ INDI
@@ -9666,12 +9694,12 @@
 2 GIVN Ryksa
 2 SURN of Silesia
 2 NPFX Queen of León-Castile
-1 NAME Riquilda //
-2 TYPE variation
-2 GIVN Riquilda
 1 NAME Rica //
 2 TYPE variation
 2 GIVN Rica
+1 NAME Riquilda //
+2 TYPE variation
+2 GIVN Riquilda
 1 SEX F
 1 NOBI Queen of León-Castile
 2 DATE bet 1152 and 1157
@@ -9872,6 +9900,11 @@
 2 _CRE
 3 DATE 14 MAR 2019
 4 TIME 18:17:25
+1 DEAT
+2 DATE bef 1080
+2 _CRE
+3 DATE 08 MAR 2021
+4 TIME 21:04:26
 1 CHAN
 2 DATE 14 MAR 2019
 3 TIME 18:17:18
@@ -9954,8 +9987,8 @@
 1 _CRE
 2 DATE 16 MAR 2015
 3 TIME 11:02:57
-1 FAMS @F99380942@
 1 FAMS @74155442@
+1 FAMS @F99380942@
 1 FAMC @F77667311@
 0 @998557@ INDI
 1 NAME Beatrice //
@@ -9983,12 +10016,12 @@
 1 NAME Mabilia /of Hauteville/
 2 GIVN Mabilia
 2 SURN of Hauteville
-1 NAME /of Apulia/
-2 TYPE variation
-2 SURN of Apulia
 1 NAME Mabel //
 2 TYPE variation
 2 GIVN Mabel
+1 NAME /of Apulia/
+2 TYPE variation
+2 SURN of Apulia
 1 SEX F
 1 CHAN
 2 DATE 03 OCT 2020
@@ -10137,8 +10170,8 @@
 1 _CRE
 2 DATE 15 MAR 2015
 3 TIME 16:32:07
-1 FAMS @94283176@
 1 FAMS @42004720@
+1 FAMS @94283176@
 1 FAMS @F80525038@
 1 FAMC @29897472@
 0 @I44853752@ INDI
@@ -10271,10 +10304,10 @@
 2 GIVN Robert I
 2 SURN of Basunvilla
 2 NPFX Count of Conversano
+2 TYPE variation
 1 NAME /Bassonville/
 2 TYPE variation
 2 SURN Bassonville
-2 TYPE variation
 1 SEX M
 1 NOBI Count of Conversano
 2 DATE 1136
@@ -11000,15 +11033,15 @@
 1 NAME Geoffrey /of Hauteville/
 2 GIVN Geoffrey
 2 SURN of Hauteville
-2 NPFX Count of Ragusa
+2 NPFX Lord of Ragusa
 1 NAME Godfrey //
 2 TYPE variation
 2 GIVN Godfrey
 1 SEX M
-1 NOBI Count of Ragusa
+1 NOBI Lord of Ragusa
 2 CHAN
-3 DATE 11 JUL 2020
-4 TIME 16:59:38
+3 DATE 08 MAR 2021
+4 TIME 08:18:05
 2 _CRE
 3 DATE 13 MAR 2018
 4 TIME 00:23:24
@@ -11019,13 +11052,13 @@
 4 TIME 20:32:47
 1 NOTE @N27822970@
 1 CHAN
-2 DATE 15 MAR 2019
-3 TIME 23:18:51
+2 DATE 08 MAR 2021
+3 TIME 08:20:28
 1 _CRE
 2 DATE 15 MAR 2015
 3 TIME 16:26:06
 1 FAMS @11948933@
-1 FAMC @F16792352@
+1 FAMC @F72591347@
 0 @50580522@ INDI
 1 NAME Henry //
 2 GIVN Henry
@@ -11466,15 +11499,15 @@
 1 NAME Giulietta //
 2 TYPE variation
 2 GIVN Giulietta
+1 NAME Giulia //
+2 TYPE variation
+2 GIVN Giulia
 1 NAME Julia //
 2 TYPE variation
 2 GIVN Julia
 1 NAME Juliet //
 2 TYPE variation
 2 GIVN Juliet
-1 NAME Giulia //
-2 TYPE variation
-2 GIVN Giulia
 1 SEX F
 1 NOBI Countess of Sciacca
 2 DATE bet 1100 and abt 1134
@@ -11541,12 +11574,12 @@
 1 NAME Angerius /of Sanseverino/
 2 GIVN Angerius
 2 SURN of Sanseverino
-1 NAME Angerus //
-2 TYPE variation
-2 GIVN Angerus
 1 NAME the Norman //
 2 TYPE nick
 2 GIVN the Norman
+1 NAME Angerus //
+2 TYPE variation
+2 GIVN Angerus
 1 SEX M
 1 CHAN
 2 DATE 18 MAR 2019
@@ -11693,7 +11726,10 @@
 3 DATE 11 JUL 2020
 4 TIME 22:57:50
 1 DEAT
-2 DATE 1092
+2 DATE Sep 1092
+2 CHAN
+3 DATE 08 MAR 2021
+4 TIME 20:52:50
 1 CHAN
 2 DATE 11 JUL 2020
 3 TIME 21:11:56
@@ -11798,12 +11834,12 @@
 1 NAME William /of Sanseverino/
 2 GIVN William
 2 SURN of Sanseverino
-1 NAME Guillaume //
-2 TYPE variation
-2 GIVN Guillaume
 1 NAME Guglielmo //
 2 TYPE variation
 2 GIVN Guglielmo
+1 NAME Guillaume //
+2 TYPE variation
+2 GIVN Guillaume
 1 SEX M
 1 CHAN
 2 DATE 17 JAN 2019
@@ -12053,12 +12089,12 @@
 1 NAME William /of Hauteville/
 2 GIVN William
 2 SURN of Hauteville
-1 NAME Guillaume //
-2 TYPE variation
-2 GIVN Guillaume
 1 NAME Guglielmo //
 2 TYPE variation
 2 GIVN Guglielmo
+1 NAME Guillaume //
+2 TYPE variation
+2 GIVN Guillaume
 1 SEX M
 1 CHAN
 2 DATE 15 MAR 2019
@@ -12072,12 +12108,12 @@
 2 GIVN Reginald II
 2 SURN of Bar
 2 NPFX Count of Bar
-1 NAME Renaud //
-2 TYPE variation
-2 GIVN Renaud
 1 NAME Renaut //
 2 TYPE variation
 2 GIVN Renaut
+1 NAME Renaud //
+2 TYPE variation
+2 GIVN Renaud
 1 SEX M
 1 NOBI Count of Bar
 2 DATE bet 1149 and 1170
@@ -12322,12 +12358,12 @@
 2 GIVN Roger
 2 SURN Machabeus
 2 NPFX Count of Montescaglioso
-1 NAME /Macabeo/
-2 TYPE variation
-2 SURN Macabeo
 1 NAME Ruggiero //
 2 TYPE variation
 2 GIVN Ruggiero
+1 NAME /Macabeo/
+2 TYPE variation
+2 SURN Macabeo
 1 SEX M
 1 NOBI Count of Montescaglioso
 2 _CRE
@@ -12522,15 +12558,15 @@
 2 GIVN Matthew
 2 SURN of Ajello
 2 NPFX Royal Chancellor
-1 NAME /Agello/
-2 TYPE variation
-2 SURN Agello
 1 NAME /of Aiello/
 2 TYPE variation
 2 SURN of Aiello
 1 NAME /of Salerno/
 2 TYPE variation
 2 SURN of Salerno
+1 NAME /Agello/
+2 TYPE variation
+2 SURN Agello
 1 SEX M
 1 DEAT
 2 DATE 1193
@@ -12836,12 +12872,12 @@
 1 NAME Anquetil //
 2 TYPE variation
 2 GIVN Anquetil
-1 NAME Aschettin //
-2 TYPE variation
-2 GIVN Aschettin
 1 NAME Drengot //
 2 TYPE variation
 2 GIVN Drengot
+1 NAME Aschettin //
+2 TYPE variation
+2 GIVN Aschettin
 1 SEX M
 1 NOBI Count of Acerenza
 2 _CRE
@@ -13016,15 +13052,15 @@
 1 NAME Matilda //
 2 TYPE variation
 2 GIVN Matilda
-1 NAME Maud //
-2 TYPE variation
-2 GIVN Maud
 1 NAME Mathilde //
 2 TYPE variation
 2 GIVN Mathilde
 1 NAME /Savoie/
 2 TYPE variation
 2 SURN Savoie
+1 NAME Maud //
+2 TYPE variation
+2 GIVN Maud
 1 SEX F
 1 NOBI Queen of Portugal
 2 DATE bet abt 1146 and 04 Nov 1157
@@ -13152,12 +13188,12 @@
 1 NAME /de Secretis/
 2 TYPE variation
 2 SURN de Secretis
-1 NAME /Sekretos/
-2 TYPE variation
-2 SURN Sekretos
 1 NAME /Secatis/
 2 TYPE variation
 2 SURN Secatis
+1 NAME /Sekretos/
+2 TYPE variation
+2 SURN Sekretos
 1 SEX M
 1 NOTE @87301902@
 1 CHAN
@@ -13171,12 +13207,12 @@
 2 GIVN Rodulf
 2 SURN of Loritello
 2 NPFX Count of Catanzaro
-1 NAME Rao //
-2 TYPE variation
-2 GIVN Rao
 1 NAME Raoul //
 2 TYPE variation
 2 GIVN Raoul
+1 NAME Rao //
+2 TYPE variation
+2 GIVN Rao
 1 SEX M
 1 NOBI Count of Catanzaro
 2 DATE bet abt 1088 and aft 1088
@@ -14152,8 +14188,8 @@
 1 _CRE
 2 DATE 14 OCT 2016
 3 TIME 14:29:25
-1 FAMS @54864138@
 1 FAMS @67139827@
+1 FAMS @54864138@
 1 FAMC @55800158@
 0 @37173325@ INDI
 1 NAME Unnamed //
@@ -14765,18 +14801,18 @@
 1 NAME Christodoulos //
 2 GIVN Christodoulos
 2 NPFX Admiral
-1 NAME 'Abd Allāh //
-2 TYPE variation
-2 GIVN 'Abd Allāh
-1 NAME 'Abd al-Rahmān al-Nasrānī //
-2 TYPE variation
-2 GIVN 'Abd al-Rahmān al-Nasrānī
-1 NAME Christoforus //
-2 TYPE variation
-2 GIVN Christoforus
 1 NAME Christodulus //
 2 TYPE variation
 2 GIVN Christodulus
+1 NAME 'Abd al-Rahmān al-Nasrānī //
+2 TYPE variation
+2 GIVN 'Abd al-Rahmān al-Nasrānī
+1 NAME 'Abd Allāh //
+2 TYPE variation
+2 GIVN 'Abd Allāh
+1 NAME Christoforus //
+2 TYPE variation
+2 GIVN Christoforus
 1 SEX M
 1 NOBI Admiral
 2 DATE bet abt 1107 and abt 1126
@@ -14802,12 +14838,12 @@
 2 GIVN Adèle
 2 SURN of Champagne
 2 NPFX Queen of France
-1 NAME /of Blois/
-2 TYPE variation
-2 SURN of Blois
 1 NAME Alix //
 2 TYPE variation
 2 GIVN Alix
+1 NAME /of Blois/
+2 TYPE variation
+2 SURN of Blois
 1 NAME Adela //
 2 TYPE variation
 2 GIVN Adela
@@ -15035,15 +15071,15 @@
 1 NAME Turgisius  /of Sanseverino/
 2 GIVN Turgisius 
 2 SURN of Sanseverino
-1 NAME the Younger //
-2 TYPE nick
-2 GIVN the Younger
 1 NAME Troisio //
 2 TYPE variation
 2 GIVN Troisio
 1 NAME /of Monte Mileto/
 2 TYPE variation
 2 SURN of Monte Mileto
+1 NAME the Younger //
+2 TYPE nick
+2 GIVN the Younger
 1 SEX M
 1 NOTE @8433920@
 1 CHAN
@@ -15181,15 +15217,15 @@
 2 GIVN Oddone
 2 SURN del Vasto
 2 NPFX Marquess
-1 NAME Teuto //
-2 TYPE variation
-2 GIVN Teuto
-1 NAME Teotone //
-2 TYPE variation
-2 GIVN Teotone
 1 NAME Otto //
 2 TYPE variation
 2 GIVN Otto
+1 NAME Teotone //
+2 TYPE variation
+2 GIVN Teotone
+1 NAME Teuto //
+2 TYPE variation
+2 GIVN Teuto
 1 SEX M
 1 CHAN
 2 DATE 10 MAR 2019
@@ -15389,12 +15425,12 @@
 2 GIVN Geoffrey
 2 SURN of Hauteville
 2 NPFX Count of Capitanata
-1 NAME Godefroi //
-2 TYPE variation
-2 GIVN Godefroi
 1 NAME Godfrey //
 2 TYPE variation
 2 GIVN Godfrey
+1 NAME Godefroi //
+2 TYPE variation
+2 GIVN Godefroi
 1 SEX M
 1 NOBI Count of the Capitanata
 2 CHAN
@@ -15846,12 +15882,12 @@
 1 NAME Giselbert //
 2 GIVN Giselbert
 2 NPFX Duke of Lorraine
-1 NAME Gilbert //
-2 TYPE variation
-2 GIVN Gilbert
 1 NAME /Lotharingia/
 2 TYPE variation
 2 SURN Lotharingia
+1 NAME Gilbert //
+2 TYPE variation
+2 GIVN Gilbert
 1 SEX M
 1 BIRT
 2 DATE abt 880
@@ -16364,12 +16400,12 @@
 2 GIVN Alexius I
 2 SURN Comnenus
 2 NPFX Emperor of Byzantium
-1 NAME /Komnenos/
-2 TYPE variation
-2 SURN Komnenos
 1 NAME Alexios //
 2 TYPE variation
 2 GIVN Alexios
+1 NAME /Komnenos/
+2 TYPE variation
+2 SURN Komnenos
 1 SEX M
 1 BIRT
 2 DATE 1057
@@ -16613,12 +16649,12 @@
 1 NAME William /of Sanseverino/
 2 GIVN William
 2 SURN of Sanseverino
-1 NAME Guillaume //
-2 TYPE variation
-2 GIVN Guillaume
 1 NAME Guglielmo //
 2 TYPE variation
 2 GIVN Guglielmo
+1 NAME Guillaume //
+2 TYPE variation
+2 GIVN Guillaume
 1 SEX M
 1 CHAN
 2 DATE 17 JAN 2019
@@ -16713,12 +16749,12 @@
 2 GIVN Pierre
 2 SURN of Poitou
 2 NPFX Duke of Aquitaine and Count of Poitou
-1 NAME William //
-2 TYPE adoptive
-2 GIVN William
 1 NAME Peter //
 2 TYPE variation
 2 GIVN Peter
+1 NAME William //
+2 TYPE adoptive
+2 GIVN William
 1 SEX M
 1 BIRT
 2 DATE 1023
@@ -16769,12 +16805,12 @@
 0 @I84580800@ INDI
 1 NAME Herleve of Falaise //
 2 GIVN Herleve of Falaise
-1 NAME Arlette //
-2 TYPE variation
-2 GIVN Arlette
 1 NAME Arletta //
 2 TYPE variation
 2 GIVN Arletta
+1 NAME Arlette //
+2 TYPE variation
+2 GIVN Arlette
 1 NAME Herleva //
 2 TYPE variation
 2 GIVN Herleva
@@ -17062,10 +17098,10 @@
 2 GIVN Stephen I
 2 SURN of Burgundy
 2 NPFX Count of Mâcon
+2 TYPE variation
 1 NAME Tête-Hardi //
 2 TYPE nick
 2 GIVN Tête-Hardi
-2 TYPE variation
 1 SEX M
 1 NOBI Count of Mâcon
 2 DATE bet 1087 and 1102
@@ -17951,13 +17987,13 @@
 2 GIVN Piroska
 2 SURN of Hungary
 2 NPFX Empress of Byzantium
-2 TYPE adoptive
 1 NAME Irene //
 2 TYPE married
 2 GIVN Irene
 1 NAME Eirene //
 2 TYPE variation
 2 GIVN Eirene
+2 TYPE adoptive
 1 SEX F
 1 NOBI Empress of Byzantium
 2 DATE bet abt 1104 and 1134
@@ -18358,12 +18394,12 @@
 1 NAME Hugues /of Moulins/
 2 GIVN Hugues
 2 SURN of Moulins
-1 NAME Hugh //
-2 TYPE variation
-2 GIVN Hugh
 1 NAME Ugo //
 2 TYPE variation
 2 GIVN Ugo
+1 NAME Hugh //
+2 TYPE variation
+2 GIVN Hugh
 1 SEX M
 1 CHAN
 2 DATE 17 MAR 2019
@@ -18718,15 +18754,15 @@
 1 NAME Helias /of Semur/
 2 GIVN Helias
 2 SURN of Semur
-1 NAME Petronille //
-2 TYPE religious
-2 GIVN Petronille
 1 NAME Petronilla //
 2 TYPE religious
 2 GIVN Petronilla
 1 NAME Helie //
 2 TYPE variation
 2 GIVN Helie
+1 NAME Petronille //
+2 TYPE religious
+2 GIVN Petronille
 1 SEX F
 1 CHAN
 2 DATE 01 OCT 2015
@@ -18856,12 +18892,12 @@
 1 NAME Adelasia //
 2 GIVN Adelasia
 2 NPFX Countess of Adernò, Countess of Montescaglioso, Lady of Collesano, Lady of Polizzi and Lady of Centuripe(?)
-1 NAME Adelisia //
-2 TYPE variation
-2 GIVN Adelisia
 1 NAME Adelicia //
 2 TYPE variation
 2 GIVN Adelicia
+1 NAME Adelisia //
+2 TYPE variation
+2 GIVN Adelisia
 1 SEX F
 1 NOBI Countess of Adernò
 2 CHAN
@@ -19058,12 +19094,12 @@
 2 GIVN Elizabeth
 2 SURN of Mâcon
 2 NPFX Countess of Champagne
-1 NAME Isabelle //
-2 TYPE variation
-2 GIVN Isabelle
 1 NAME Isabella //
 2 TYPE variation
 2 GIVN Isabella
+1 NAME Isabelle //
+2 TYPE variation
+2 GIVN Isabelle
 1 SEX F
 1 BIRT
 2 DATE abt 1090
@@ -19192,9 +19228,9 @@
 1 _CRE
 2 DATE 18 SEP 2015
 3 TIME 15:10:02
+1 FAMS @F42698175@
 1 FAMS @19354712@
 1 FAMS @F33497986@
-1 FAMS @F42698175@
 1 FAMC @F48733725@
 0 @61496048@ INDI
 1 NAME Amaury II /of Lusignan/
@@ -19333,8 +19369,8 @@
 1 _CRE
 2 DATE 17 JAN 2019
 3 TIME 09:38:51
-1 FAMS @6692277@
 1 FAMS @12913302@
+1 FAMS @6692277@
 1 FAMC @60711372@
 0 @I89041695@ INDI
 1 NAME Elvira /of León-Castile/
@@ -19368,13 +19404,26 @@
 4 TIME 08:20:19
 1 DEAT
 2 DATE 06 Feb 1135
+2 SOUR @S8567481@
+3 PAGE Page 10, note 7.
+3 QUAY 3
+3 _QUAL
+4 _INFO P
 2 SOUR @S69732592@
 3 PAGE Page 170, note 31.
 3 QUAY 3
 3 _QUAL
 4 _INFO P
-2 SOUR @S24997388@
-3 PAGE III, I, page 129.
+2 SOUR @S70861388@
+3 PAGE p. volume I, pp. 83 ss;
+3 QUAY 3
+3 _QUAL
+4 _INFO P
+2 SOUR @S44121173@
+3 QUAY 3
+3 _QUAL
+4 _INFO P
+2 SOUR @S53459732@
 3 QUAY 3
 3 _QUAL
 4 _INFO P
@@ -19383,8 +19432,18 @@
 3 QUAY 3
 3 _QUAL
 4 _INFO P
-2 SOUR @S70861388@
-3 PAGE p. volume I, pp. 83 ss;
+2 SOUR @S81244480@
+3 PAGE February 8, 1135.
+3 QUAY 3
+3 _QUAL
+4 _INFO P
+2 SOUR @S29913874@
+3 PAGE 1145, page 16.
+3 QUAY 3
+3 _QUAL
+4 _INFO P
+2 SOUR @S24997388@
+3 PAGE III, I, page 129.
 3 QUAY 3
 3 _QUAL
 4 _INFO P
@@ -19397,31 +19456,8 @@
 3 QUAY 3
 3 _QUAL
 4 _INFO P
-2 SOUR @S53459732@
-3 QUAY 3
-3 _QUAL
-4 _INFO P
-2 SOUR @S29913874@
-3 PAGE 1145, page 16.
-3 QUAY 3
-3 _QUAL
-4 _INFO P
 2 SOUR @S15728408@
 3 PAGE Page 2 s.
-3 QUAY 3
-3 _QUAL
-4 _INFO P
-2 SOUR @S8567481@
-3 PAGE Page 10, note 7.
-3 QUAY 3
-3 _QUAL
-4 _INFO P
-2 SOUR @S81244480@
-3 PAGE February 8, 1135.
-3 QUAY 3
-3 _QUAL
-4 _INFO P
-2 SOUR @S44121173@
 3 QUAY 3
 3 _QUAL
 4 _INFO P
@@ -19450,53 +19486,8 @@
 3 QUAY 3
 3 _QUAL
 4 _INFO P
-1 SOUR @S83011631@
-2 PAGE p. volume VI (1913), page 277;
-2 QUAY 3
-2 _QUAL
-3 _INFO P
-1 SOUR @S84564124@
-2 PAGE 10: Page (or pages) 155 s.
-2 QUAY 3
-2 _QUAL
-3 _INFO P
-1 SOUR @S96802678@
-2 PAGE I: 129.
-2 QUAY 3
-2 _QUAL
-3 _INFO P
-1 SOUR @S47132994@
-2 PAGE 312 (MGH SS, XIX, print edition).
-2 QUAY 3
-2 _QUAL
-3 _INFO P
-1 SOUR @S58716951@
-2 PAGE 18, 60, 70, and 158.
-2 QUAY 3
-2 _QUAL
-3 _INFO P
-1 SOUR @S24984280@
-2 PAGE Available Online: http://libro.uca.edu/alfonso6/alfonso.htm: 318.
-2 QUAY 3
-2 _QUAL
-3 _INFO P
-1 SOUR @S59503026@
-2 PAGE Page 265.
-2 QUAY 3
-2 _QUAL
-3 _INFO P
-1 SOUR @S38217204@
-2 PAGE 3: Pages 3-7.
-2 QUAY 3
-2 _QUAL
-3 _INFO P
-1 SOUR @S44829437@
-2 PAGE accessed 4 Feb 2013)
-2 QUAY 3
-2 _QUAL
-3 _INFO P
-1 SOUR @S47863464@
-2 PAGE I believe the article runs from pages 14-22. Ina ny event, those are the pages Houben highlights in his article on Elvira in the L'enciclopedia italiana
+1 SOUR @S15943688@
+2 PAGE Pages 60, 75, 129, 152, 156, 158 and Table 8.
 2 QUAY 3
 2 _QUAL
 3 _INFO P
@@ -19505,8 +19496,43 @@
 2 QUAY 3
 2 _QUAL
 3 _INFO P
+1 SOUR @S84564124@
+2 PAGE 10: Page (or pages) 155 s.
+2 QUAY 3
+2 _QUAL
+3 _INFO P
+1 SOUR @S47132994@
+2 PAGE 312 (MGH SS, XIX, print edition).
+2 QUAY 3
+2 _QUAL
+3 _INFO P
+1 SOUR @S38217204@
+2 PAGE 3: Pages 3-7.
+2 QUAY 3
+2 _QUAL
+3 _INFO P
 1 SOUR @S22394282@
 2 PAGE I: 279r, 289r, 290v, and 303r.
+2 QUAY 3
+2 _QUAL
+3 _INFO P
+1 SOUR @S96802678@
+2 PAGE I: 129.
+2 QUAY 3
+2 _QUAL
+3 _INFO P
+1 SOUR @S83011631@
+2 PAGE p. volume VI (1913), page 277;
+2 QUAY 3
+2 _QUAL
+3 _INFO P
+1 SOUR @S24984280@
+2 PAGE Available Online: http://libro.uca.edu/alfonso6/alfonso.htm: 318.
+2 QUAY 3
+2 _QUAL
+3 _INFO P
+1 SOUR @S58716951@
+2 PAGE 18, 60, 70, and 158.
 2 QUAY 3
 2 _QUAL
 3 _INFO P
@@ -19515,13 +19541,23 @@
 2 QUAY 3
 2 _QUAL
 3 _INFO P
+1 SOUR @S47863464@
+2 PAGE I believe the article runs from pages 14-22. Ina ny event, those are the pages Houben highlights in his article on Elvira in the L'enciclopedia italiana
+2 QUAY 3
+2 _QUAL
+3 _INFO P
 1 SOUR @S74044872@
 2 PAGE (German edition): 427 ss. and 526.
 2 QUAY 3
 2 _QUAL
 3 _INFO P
-1 SOUR @S15943688@
-2 PAGE Pages 60, 75, 129, 152, 156, 158 and Table 8.
+1 SOUR @S44829437@
+2 PAGE accessed 4 Feb 2013)
+2 QUAY 3
+2 _QUAL
+3 _INFO P
+1 SOUR @S59503026@
+2 PAGE Page 265.
 2 QUAY 3
 2 _QUAL
 3 _INFO P
@@ -20389,12 +20425,12 @@
 2 GIVN Renaud
 2 SURN of Châtillon
 2 NPFX Prince of Antioch
-1 NAME Reynald //
-2 TYPE variation
-2 GIVN Reynald
 1 NAME Reginald //
 2 TYPE variation
 2 GIVN Reginald
+1 NAME Reynald //
+2 TYPE variation
+2 GIVN Reynald
 1 NAME Raynald //
 2 TYPE variation
 2 GIVN Raynald
@@ -20540,21 +20576,21 @@
 1 NAME Symon /of Théville/
 2 GIVN Symon
 2 SURN of Théville
-1 NAME /Tibilis/
-2 TYPE variation
-2 SURN Tibilis
-1 NAME /Tivilla/
-2 TYPE variation
-2 SURN Tivilla
-1 NAME the Norman //
-2 TYPE nick
-2 GIVN the Norman
 1 NAME Simon //
 2 TYPE variation
 2 GIVN Simon
+1 NAME the Norman //
+2 TYPE nick
+2 GIVN the Norman
+1 NAME /Tibilis/
+2 TYPE variation
+2 SURN Tibilis
 1 NAME Simone //
 2 TYPE variation
 2 GIVN Simone
+1 NAME /Tivilla/
+2 TYPE variation
+2 SURN Tivilla
 1 SEX M
 1 CHAN
 2 DATE 19 MAR 2019
@@ -20562,8 +20598,8 @@
 1 _CRE
 2 DATE 17 JAN 2019
 3 TIME 11:39:45
-1 FAMS @70694386@
 1 FAMS @71240740@
+1 FAMS @70694386@
 0 @I2981585@ INDI
 1 NAME Pedro I /of Aragon-Navarre/
 2 GIVN Pedro I
@@ -20952,10 +20988,10 @@
 2 GIVN Alfonso
 2 SURN of Hauteville
 2 NPFX Prince of Capua and Duke of Naples
+2 TYPE variation
 1 NAME Anfuso //
 2 TYPE married
 2 GIVN Anfuso
-2 TYPE variation
 1 SEX M
 1 BIRT
 2 DATE Abt 1119
@@ -21017,12 +21053,12 @@
 2 GIVN Roger
 2 SURN of Hauteville
 2 NPFX Duke of Apulia
-1 NAME Ruggero //
-2 TYPE variation
-2 GIVN Ruggero
 1 NAME Roger III //
 2 TYPE title
 2 GIVN Roger III
+1 NAME Ruggero //
+2 TYPE variation
+2 GIVN Ruggero
 1 SEX M
 1 BIRT
 2 DATE abt 1117
@@ -21218,8 +21254,8 @@
 1 _CRE
 2 DATE 14 OCT 2016
 3 TIME 14:02:12
-1 FAMS @83097346@
 1 FAMS @30471411@
+1 FAMS @83097346@
 1 FAMC @17737050@
 0 @I34338736@ INDI
 1 NAME Beatrix /of Lorraine/
@@ -21559,12 +21595,12 @@
 2 GIVN Adelheid
 2 SURN of Troyes
 2 NPFX Duchess of Lower Lorraine
-1 NAME Adelais //
-2 TYPE variation
-2 GIVN Adelais
 1 NAME /Lotharingia/
 2 TYPE variation
 2 SURN Lotharingia
+1 NAME Adelais //
+2 TYPE variation
+2 GIVN Adelais
 1 SEX F
 1 CHAN
 2 DATE 19 MAR 2019
@@ -21764,12 +21800,12 @@
 0 @76967614@ INDI
 1 NAME Sybilla //
 2 GIVN Sybilla
-1 NAME Sibilla //
-2 TYPE variation
-2 GIVN Sibilla
 1 NAME Sibillia //
 2 TYPE variation
 2 GIVN Sibillia
+1 NAME Sibilla //
+2 TYPE variation
+2 GIVN Sibilla
 1 SEX F
 1 CHAN
 2 DATE 17 JAN 2019
@@ -21837,12 +21873,12 @@
 2 GIVN William VI
 2 SURN of Aquitaine
 2 NPFX Duke of Aquitaine and Count of Poitiers
-1 NAME Guy-Geoffrey //
-2 TYPE variation
-2 GIVN Guy-Geoffrey
 1 NAME Guillaume //
 2 TYPE variation
 2 GIVN Guillaume
+1 NAME Guy-Geoffrey //
+2 TYPE variation
+2 GIVN Guy-Geoffrey
 1 SEX M
 1 NOBI William VI, Duke of Aquitaine
 2 DATE bet 1029 and 1038
@@ -21914,12 +21950,12 @@
 1 NAME Sibylla /of Apulia/
 2 GIVN Sibylla
 2 SURN of Apulia
-1 NAME Sibylle //
-2 TYPE variation
-2 GIVN Sibylle
 1 NAME Sibyl //
 2 TYPE variation
 2 GIVN Sibyl
+1 NAME Sibylle //
+2 TYPE variation
+2 GIVN Sibylle
 1 SEX F
 1 CHAN
 2 DATE 18 MAR 2019
@@ -22124,9 +22160,9 @@
 1 _CRE
 2 DATE 17 JAN 2019
 3 TIME 08:03:14
-1 FAMS @82085286@
 1 FAMS @37892970@
 1 FAMS @99945056@
+1 FAMS @82085286@
 1 FAMC @77520524@
 0 @I45726600@ INDI
 1 NAME Daughter Six /of Hauteville/
@@ -22170,15 +22206,15 @@
 1 NAME García VI //
 2 GIVN García VI
 2 NPFX King of Navarre
+1 NAME García V //
+2 TYPE title
+2 GIVN García V
 1 NAME /The Restorer/
 2 TYPE nick
 2 SURN The Restorer
 1 NAME García IV //
 2 TYPE title
 2 GIVN García IV
-1 NAME García V //
-2 TYPE title
-2 GIVN García V
 1 SEX M
 1 NOBI King of Navarre
 2 DATE bet 1134 and 25 Nov 1150
@@ -22713,12 +22749,12 @@
 1 NAME Eudes /of Roucy/
 2 GIVN Eudes
 2 SURN of Roucy
-1 NAME Odo //
-2 TYPE variation
-2 GIVN Odo
 1 NAME Ebles //
 2 TYPE variation
 2 GIVN Ebles
+1 NAME Odo //
+2 TYPE variation
+2 GIVN Odo
 1 SEX M
 1 DEAT
 2 DATE after 1156
@@ -22956,12 +22992,12 @@
 0 @61816502@ INDI
 1 NAME Herbert //
 2 GIVN Herbert
-1 NAME Erbertus //
-2 TYPE variation
-2 GIVN Erbertus
 1 NAME the Norman //
 2 TYPE nick
 2 GIVN the Norman
+1 NAME Erbertus //
+2 TYPE variation
+2 GIVN Erbertus
 1 SEX M
 1 NOTE @20701795@
 1 CHAN
@@ -23088,12 +23124,12 @@
 2 GIVN Hugh II
 2 SURN of Molise
 2 NPFX Count of Boiano and Count of Molise
-1 NAME Hugues //
-2 TYPE variation
-2 GIVN Hugues
 1 NAME Ugo //
 2 TYPE variation
 2 GIVN Ugo
+1 NAME Hugues //
+2 TYPE variation
+2 GIVN Hugues
 1 SEX M
 1 CHAN
 2 DATE 30 AUG 2020
@@ -23287,6 +23323,14 @@
 2 GIVN Matilda
 2 SURN of Hauteville
 1 SEX F
+1 DEAT
+2 DATE
+2 CHAN
+3 DATE 08 MAR 2021
+4 TIME 21:36:22
+2 _CRE
+3 DATE 08 MAR 2021
+4 TIME 20:46:38
 1 NOTE @71951651@
 1 CHAN
 2 DATE 01 OCT 2015
@@ -23793,8 +23837,8 @@
 0 @59099301@ INDI
 1 NAME Robert //
 2 GIVN Robert
-2 TYPE title
 2 TYPE nick
+2 TYPE title
 1 SEX M
 1 CHAN
 2 DATE 12 JUL 2020
@@ -24043,12 +24087,12 @@
 2 GIVN Henry
 2 SURN of Navarre
 2 NPFX Count of Montescaglioso and Count of the Principate
-1 NAME Rodrigo //
-2 TYPE variation
-2 GIVN Rodrigo
 1 NAME Enrico //
 2 TYPE variation
 2 GIVN Enrico
+1 NAME Rodrigo //
+2 TYPE variation
+2 GIVN Rodrigo
 1 SEX M
 1 DEAT
 2 DATE aft 1171
@@ -24745,9 +24789,9 @@
 1 _CRE
 2 DATE 30 AUG 2020
 3 TIME 20:02:38
+1 FAMS @9929264@
 1 FAMS @34979260@
 1 FAMS @81286568@
-1 FAMS @9929264@
 1 FAMC @81587104@
 0 @69482508@ INDI
 1 NAME Sibylla /of Aquino/
@@ -25199,8 +25243,8 @@
 1 _CRE
 2 DATE 31 AUG 2020
 3 TIME 08:55:52
-1 FAMS @77963236@
 1 FAMS @78497944@
+1 FAMS @77963236@
 0 @63876674@ INDI
 1 NAME Matthew /of Castelvetere/
 2 GIVN Matthew
@@ -25275,8 +25319,8 @@
 1 _CRE
 2 DATE 31 AUG 2020
 3 TIME 08:53:18
-1 FAMS @9703618@
 1 FAMS @77963236@
+1 FAMS @9703618@
 1 FAMC @64948700@
 0 @19009004@ INDI
 1 NAME Unnamed //
@@ -25437,15 +25481,15 @@
 1 NAME Ruggero /del Vasto/
 2 GIVN Ruggero
 2 SURN del Vasto
-1 NAME Roger //
-2 TYPE variation
-2 GIVN Roger
-1 NAME /Sclavus/
-2 TYPE nick
-2 SURN Sclavus
 1 NAME Ruggiero //
 2 TYPE variation
 2 GIVN Ruggiero
+1 NAME /Sclavus/
+2 TYPE nick
+2 SURN Sclavus
+1 NAME Roger //
+2 TYPE variation
+2 GIVN Roger
 1 SEX M
 1 CHAN
 2 DATE 09 SEP 2020
@@ -25458,12 +25502,12 @@
 1 NAME Ruggero /del Vasto/
 2 GIVN Ruggero
 2 SURN del Vasto
-1 NAME Roger //
-2 TYPE variation
-2 GIVN Roger
 1 NAME Ruggiero //
 2 TYPE variation
 2 GIVN Ruggiero
+1 NAME Roger //
+2 TYPE variation
+2 GIVN Roger
 1 SEX M
 1 DEAT
 2 DATE aft 1134
@@ -25632,8 +25676,8 @@
 1 _CRE
 2 DATE 30 SEP 2020
 3 TIME 22:09:51
-1 FAMS @71930540@
 1 FAMS @17155200@
+1 FAMS @71930540@
 1 FAMC @40581176@
 0 @7796312@ INDI
 1 NAME Herleva //
@@ -25726,11 +25770,11 @@
 1 _CRE
 2 DATE 30 SEP 2020
 3 TIME 22:14:27
-1 FAMS @96442148@
-1 FAMS @93176628@
-1 FAMS @95088456@
-1 FAMS @39172595@
 1 FAMS @95937840@
+1 FAMS @93176628@
+1 FAMS @96442148@
+1 FAMS @39172595@
+1 FAMS @95088456@
 1 FAMS @18971698@
 1 FAMC @17155200@
 0 @22887494@ INDI
@@ -25829,8 +25873,8 @@
 1 _CRE
 2 DATE 30 SEP 2020
 3 TIME 22:13:24
-1 FAMS @17155200@
 1 FAMS @65954907@
+1 FAMS @17155200@
 0 @37249181@ INDI
 1 NAME Matilda //
 2 GIVN Matilda
@@ -25909,8 +25953,8 @@
 1 _CRE
 2 DATE 30 SEP 2020
 3 TIME 23:58:05
-1 FAMS @38823235@
 1 FAMS @31836224@
+1 FAMS @38823235@
 1 FAMC @95088456@
 0 @2690912@ INDI
 1 NAME William III /of Aquitaine/
@@ -25975,12 +26019,12 @@
 1 NAME Rodulf //
 2 GIVN Rodulf
 2 NPFX Count of Ivry
-1 NAME Rudolf //
-2 TYPE variation
-2 GIVN Rudolf
 1 NAME Raoul //
 2 TYPE variation
 2 GIVN Raoul
+1 NAME Rudolf //
+2 TYPE variation
+2 GIVN Rudolf
 1 SEX M
 1 DEAT
 2 DATE abt 1015
@@ -26103,12 +26147,12 @@
 1 NAME Aethelred II //
 2 GIVN Aethelred II
 2 NPFX King of England
-1 NAME the Unready //
-2 TYPE nick
-2 GIVN the Unready
 1 NAME the Uncounseled //
 2 TYPE nick
 2 GIVN the Uncounseled
+1 NAME the Unready //
+2 TYPE nick
+2 GIVN the Unready
 1 SEX M
 1 NOBI King of England
 2 DATE bet 978 and 1016
@@ -26124,8 +26168,8 @@
 1 _CRE
 2 DATE 01 OCT 2020
 3 TIME 00:00:34
-1 FAMS @38823235@
 1 FAMS @37006656@
+1 FAMS @38823235@
 0 @54571794@ INDI
 1 NAME Rodulf //
 2 GIVN Rodulf
@@ -26879,10 +26923,10 @@
 1 _CRE
 2 DATE 01 OCT 2020
 3 TIME 09:29:59
+1 FAMS @30030556@
+1 FAMS @1850526@
 1 FAMS @80793256@
 1 FAMS @21629984@
-1 FAMS @1850526@
-1 FAMS @30030556@
 0 @57893772@ INDI
 1 NAME Godwin //
 2 GIVN Godwin
@@ -27692,8 +27736,8 @@
 1 _CRE
 2 DATE 01 OCT 2020
 3 TIME 14:08:46
-1 FAMS @94941314@
 1 FAMS @46319249@
+1 FAMS @94941314@
 1 FAMC @11188716@
 0 @41813712@ INDI
 1 NAME Edith /of Wessex/
@@ -28064,8 +28108,8 @@
 1 _CRE
 2 DATE 03 OCT 2020
 3 TIME 22:20:07
-1 FAMS @67650716@
 1 FAMS @34798848@
+1 FAMS @67650716@
 1 FAMC @77604036@
 0 @82398586@ INDI
 1 NAME William /of Rhuddlan/
@@ -29011,8 +29055,8 @@
 1 _CRE
 2 DATE 03 OCT 2020
 3 TIME 22:47:07
-1 FAMS @19398477@
 1 FAMS @81219108@
+1 FAMS @19398477@
 1 FAMS @61289869@
 1 FAMC @46494035@
 0 @8850944@ INDI
@@ -29507,8 +29551,8 @@
 1 _CRE
 2 DATE 02 OCT 2020
 3 TIME 22:30:28
-1 FAMS @85479536@
 1 FAMS @47402367@
+1 FAMS @85479536@
 1 FAMC @77604036@
 0 @17284592@ INDI
 1 NAME Robert /of Courcy/
@@ -29540,12 +29584,12 @@
 1 NAME Unnamed /Grafeos/
 2 GIVN Unnamed
 2 SURN Grafeos
-1 NAME /Grafeo/
-2 TYPE variation
-2 SURN Grafeo
 1 NAME /de Graffaeo/
 2 TYPE variation
 2 SURN de Graffaeo
+1 NAME /Grafeo/
+2 TYPE variation
+2 SURN Grafeo
 1 SEX M
 1 CHAN
 2 DATE 08 OCT 2020
@@ -29868,31 +29912,6 @@
 1 _CRE
 2 DATE 13 MAR 2015
 3 TIME 13:39:12
-0 @46011488@ FAM
-1 MARR
-2 DATE 1168
-2 _CRE
-3 DATE 10 MAR 2019
-4 TIME 22:44:01
-1 HUSB @47318426@
-1 WIFE @I23869100@
-1 CHIL @89162460@
-1 CHIL @92017457@
-1 CHIL @51734344@
-1 _CRE
-2 DATE 03 OCT 2015
-3 TIME 17:10:14
-0 @89317936@ FAM
-1 ANUL
-2 DATE 1181
-2 _CRE
-3 DATE 10 MAR 2019
-4 TIME 22:44:40
-1 HUSB @41984657@
-1 WIFE @I23869100@
-1 _CRE
-2 DATE 03 OCT 2015
-3 TIME 17:10:41
 0 @45712854@ FAM
 1 MARR
 2 DATE 1176
@@ -29905,6 +29924,17 @@
 1 _CRE
 2 DATE 03 OCT 2015
 3 TIME 17:10:27
+0 @89317936@ FAM
+1 ANUL
+2 DATE 1181
+2 _CRE
+3 DATE 10 MAR 2019
+4 TIME 22:44:40
+1 HUSB @41984657@
+1 WIFE @I23869100@
+1 _CRE
+2 DATE 03 OCT 2015
+3 TIME 17:10:41
 0 @13473760@ FAM
 1 MARR
 2 DATE bef 1165
@@ -29920,6 +29950,20 @@
 1 _CRE
 2 DATE 03 OCT 2015
 3 TIME 17:09:55
+0 @46011488@ FAM
+1 MARR
+2 DATE 1168
+2 _CRE
+3 DATE 10 MAR 2019
+4 TIME 22:44:01
+1 HUSB @47318426@
+1 WIFE @I23869100@
+1 CHIL @89162460@
+1 CHIL @92017457@
+1 CHIL @51734344@
+1 _CRE
+2 DATE 03 OCT 2015
+3 TIME 17:10:14
 0 @F90334482@ FAM
 1 MARR
 2 DATE
@@ -29942,13 +29986,13 @@
 0 @F72248532@ FAM
 1 MARR
 2 DATE 1149
-2 SOUR @S53459732@
-3 PAGE 39.
+2 SOUR @S48881632@
+3 PAGE "King Roger Marries Sibylla as his Second Wife,"; fol. 96r
 3 QUAY 3
 3 _QUAL
 4 _INFO P
-2 SOUR @S48881632@
-3 PAGE "King Roger Marries Sibylla as his Second Wife,"; fol. 96r
+2 SOUR @S53459732@
+3 PAGE 39.
 3 QUAY 3
 3 _QUAL
 4 _INFO P
@@ -30018,68 +30062,6 @@
 1 _CRE
 2 DATE 17 APR 2019
 3 TIME 11:20:38
-0 @F20960178@ FAM
-1 MARR
-2 DATE abt 1073
-2 CHAN
-3 DATE 17 NOV 2019
-4 TIME 12:47:43
-2 _CRE
-3 DATE 07 MAR 2019
-4 TIME 17:05:53
-1 ANUL
-2 DATE 1077
-2 _CRE
-3 DATE 07 MAR 2019
-4 TIME 17:25:37
-1 HUSB @I80406592@
-1 WIFE @I59716232@
-0 @12511732@ FAM
-1 MARR
-2 DATE bet 1094 and 1100
-2 CHAN
-3 DATE 17 NOV 2019
-4 TIME 12:51:09
-2 _CRE
-3 DATE 08 APR 2016
-4 TIME 21:31:50
-1 HUSB @I80406592@
-1 WIFE @65379242@
-1 CHAN
-2 DATE 08 APR 2016
-3 TIME 21:31:53
-1 _CRE
-2 DATE 08 APR 2016
-3 TIME 21:27:28
-0 @F19941372@ FAM
-1 HUSB @I80406592@
-1 WIFE @I14837845@
-1 CHIL @I44434711@
-1 CHIL @I8518948@
-1 CHAN
-2 DATE 13 MAR 2015
-3 TIME 22:11:43
-1 _CRE
-2 DATE 13 MAR 2015
-3 TIME 22:10:04
-0 @F98053121@ FAM
-1 MARR
-2 DATE bef 08 May 1081
-2 CHAN
-3 DATE 17 NOV 2019
-4 TIME 23:57:14
-2 _CRE
-3 DATE 08 MAR 2019
-4 TIME 20:56:49
-1 HUSB @I80406592@
-1 WIFE @I35733340@
-1 CHIL @I59913038@
-1 CHAN
-2 DATE 13 MAR 2015
-3 TIME 14:58:35
-1 _CRE
-2 DATE 13 MAR 2015
-3 TIME 13:40:21
 0 @F35220493@ FAM
 1 MARR
 2 DATE abt 1100
@@ -30106,6 +30088,68 @@
 1 CHAN
 2 DATE 08 APR 2016
 3 TIME 23:23:24
+0 @F19941372@ FAM
+1 HUSB @I80406592@
+1 WIFE @I14837845@
+1 CHIL @I44434711@
+1 CHIL @I8518948@
+1 CHAN
+2 DATE 13 MAR 2015
+3 TIME 22:11:43
+1 _CRE
+2 DATE 13 MAR 2015
+3 TIME 22:10:04
+0 @12511732@ FAM
+1 MARR
+2 DATE bet 1094 and 1100
+2 CHAN
+3 DATE 17 NOV 2019
+4 TIME 12:51:09
+2 _CRE
+3 DATE 08 APR 2016
+4 TIME 21:31:50
+1 HUSB @I80406592@
+1 WIFE @65379242@
+1 CHAN
+2 DATE 08 APR 2016
+3 TIME 21:31:53
+1 _CRE
+2 DATE 08 APR 2016
+3 TIME 21:27:28
+0 @F98053121@ FAM
+1 MARR
+2 DATE bef 08 May 1081
+2 CHAN
+3 DATE 17 NOV 2019
+4 TIME 23:57:14
+2 _CRE
+3 DATE 08 MAR 2019
+4 TIME 20:56:49
+1 HUSB @I80406592@
+1 WIFE @I35733340@
+1 CHIL @I59913038@
+1 CHAN
+2 DATE 13 MAR 2015
+3 TIME 14:58:35
+1 _CRE
+2 DATE 13 MAR 2015
+3 TIME 13:40:21
+0 @F20960178@ FAM
+1 MARR
+2 DATE abt 1073
+2 CHAN
+3 DATE 17 NOV 2019
+4 TIME 12:47:43
+2 _CRE
+3 DATE 07 MAR 2019
+4 TIME 17:05:53
+1 ANUL
+2 DATE 1077
+2 _CRE
+3 DATE 07 MAR 2019
+4 TIME 17:25:37
+1 HUSB @I80406592@
+1 WIFE @I59716232@
 0 @F85804302@ FAM
 1 MARR
 2 DATE 1032
@@ -30128,23 +30172,13 @@
 0 @F55450680@ FAM
 1 MARR
 2 DATE 1151
-2 SOUR @S39930688@
-3 PAGE 425 in MGH SS XIX edition.
-3 QUAY 3
-3 _QUAL
-4 _INFO P
-2 SOUR @S1022306@
-3 PAGE 1145, page 16.
-3 QUAY 3
-3 _QUAL
-4 _INFO P
-2 SOUR @S58372725@
-3 PAGE 253.
-3 QUAY 3
-3 _QUAL
-4 _INFO P
 2 SOUR @S24609857@
 3 PAGE XXI: 508.
+3 QUAY 3
+3 _QUAL
+4 _INFO P
+2 SOUR @S48881632@
+3 PAGE "Beatrice gave birth to Constance,"
 3 QUAY 3
 3 _QUAL
 4 _INFO P
@@ -30153,13 +30187,23 @@
 3 QUAY 3
 3 _QUAL
 4 _INFO P
+2 SOUR @S39930688@
+3 PAGE 425 in MGH SS XIX edition.
+3 QUAY 3
+3 _QUAL
+4 _INFO P
+2 SOUR @S58372725@
+3 PAGE 253.
+3 QUAY 3
+3 _QUAL
+4 _INFO P
 2 SOUR @S72259024@
 3 PAGE XXIII: 852, 858 and 863.
 3 QUAY 3
 3 _QUAL
 4 _INFO P
-2 SOUR @S48881632@
-3 PAGE "Beatrice gave birth to Constance,"
+2 SOUR @S1022306@
+3 PAGE 1145, page 16.
 3 QUAY 3
 3 _QUAL
 4 _INFO P
@@ -30454,17 +30498,6 @@
 1 _CRE
 2 DATE 14 MAR 2015
 3 TIME 13:07:27
-0 @F72591347@ FAM
-1 HUSB @I98936275@
-1 WIFE @I50250000@
-1 CHIL @75037122@
-1 CHIL @I73493844@
-1 CHAN
-2 DATE 15 MAR 2015
-3 TIME 16:23:15
-1 _CRE
-2 DATE 15 MAR 2015
-3 TIME 16:23:02
 0 @F86348150@ FAM
 1 MARR
 2 DATE abt 1077
@@ -30475,6 +30508,7 @@
 1 WIFE @I50071939@
 1 CHIL @I47263504@
 1 CHIL @I66598094@
+1 CHIL @75037122@
 1 CHIL @I1428488@
 1 CHIL @I35790840@
 1 CHIL @I7292628@
@@ -30486,39 +30520,6 @@
 1 _CRE
 2 DATE 18 SEP 2015
 3 TIME 15:16:47
-0 @F16792352@ FAM
-1 MARR
-2 DATE abt 1062
-2 PLAC Mileto,Provincia di Vibo-Valentia,Calabria,Italy
-3 MAP
-4 LONG E16.069444
-4 LATI N38.609444
-2 _COR
-3 _LAD 38
-3 _LAM 36
-3 _LAS 34
-3 _LOD 16
-3 _LOM 4
-3 _LOS 10
-2 CHAN
-3 DATE 17 NOV 2019
-4 TIME 12:48:06
-2 _CRE
-3 DATE 12 MAR 2018
-4 TIME 08:53:40
-1 HUSB @I98936275@
-1 WIFE @I946406@
-1 CHIL @I96900492@
-1 CHIL @I25225477@
-1 CHIL @I42053028@
-1 CHIL @I49581476@
-1 CHIL @I56843164@
-1 CHAN
-2 DATE 15 MAR 2015
-3 TIME 16:38:02
-1 _CRE
-2 DATE 15 MAR 2015
-3 TIME 15:17:16
 0 @F93728889@ FAM
 1 MARR
 2 DATE abt 1089
@@ -30548,6 +30549,49 @@
 1 _CRE
 2 DATE 15 MAR 2015
 3 TIME 16:59:12
+0 @F72591347@ FAM
+1 HUSB @I98936275@
+1 WIFE @I50250000@
+1 CHIL @I25225477@
+1 CHIL @I73493844@
+1 CHAN
+2 DATE 15 MAR 2015
+3 TIME 16:23:15
+1 _CRE
+2 DATE 15 MAR 2015
+3 TIME 16:23:02
+0 @F16792352@ FAM
+1 MARR
+2 DATE abt 1062
+2 PLAC Mileto,Provincia di Vibo-Valentia,Calabria,Italy
+3 MAP
+4 LONG E16.069444
+4 LATI N38.609444
+2 _COR
+3 _LAD 38
+3 _LAM 36
+3 _LAS 34
+3 _LOD 16
+3 _LOM 4
+3 _LOS 10
+2 CHAN
+3 DATE 17 NOV 2019
+4 TIME 12:48:06
+2 _CRE
+3 DATE 12 MAR 2018
+4 TIME 08:53:40
+1 HUSB @I98936275@
+1 WIFE @I946406@
+1 CHIL @I96900492@
+1 CHIL @I42053028@
+1 CHIL @I49581476@
+1 CHIL @I56843164@
+1 CHAN
+2 DATE 15 MAR 2015
+3 TIME 16:38:02
+1 _CRE
+2 DATE 15 MAR 2015
+3 TIME 15:17:16
 0 @38458106@ FAM
 1 HUSB @81160608@
 1 WIFE @20073503@
@@ -30853,13 +30897,6 @@
 1 CHAN
 2 DATE 03 OCT 2015
 3 TIME 17:31:57
-0 @86966426@ FAM
-1 HUSB @I68020025@
-1 WIFE @66202474@
-1 CHIL @88422307@
-1 _CRE
-2 DATE 07 MAR 2018
-3 TIME 20:18:58
 0 @6727675@ FAM
 1 MARR
 2 PLAC Geraci Siculo,Provincia di Palermo,Sicily,Italy
@@ -30881,6 +30918,13 @@
 1 _CRE
 2 DATE 07 MAR 2018
 3 TIME 20:21:21
+0 @86966426@ FAM
+1 HUSB @I68020025@
+1 WIFE @66202474@
+1 CHIL @88422307@
+1 _CRE
+2 DATE 07 MAR 2018
+3 TIME 20:18:58
 0 @F88358681@ FAM
 1 HUSB @I90340414@
 1 CHIL @I71339813@
@@ -30896,18 +30940,18 @@
 1 _CRE
 2 DATE 13 MAR 2015
 3 TIME 13:16:01
-0 @18947894@ FAM
-1 HUSB @8765721@
-1 WIFE @91392822@
-1 _CRE
-2 DATE 02 JUN 2020
-3 TIME 01:32:13
 0 @6352745@ FAM
 1 HUSB @8765721@
 1 WIFE @55922274@
 1 _CRE
 2 DATE 30 AUG 2020
 3 TIME 23:38:37
+0 @18947894@ FAM
+1 HUSB @8765721@
+1 WIFE @91392822@
+1 _CRE
+2 DATE 02 JUN 2020
+3 TIME 01:32:13
 0 @F22482696@ FAM
 1 HUSB @I91329006@
 1 WIFE @I1428488@
@@ -31595,18 +31639,18 @@
 1 CHAN
 2 DATE 17 MAR 2019
 3 TIME 22:34:49
-0 @44119352@ FAM
-1 HUSB @6814268@
-1 WIFE @71950216@
-1 _CRE
-2 DATE 18 MAR 2019
-3 TIME 09:22:15
 0 @76352720@ FAM
 1 HUSB @43502016@
 1 WIFE @71950216@
 1 _CRE
 2 DATE 18 MAR 2019
 3 TIME 09:23:03
+0 @44119352@ FAM
+1 HUSB @6814268@
+1 WIFE @71950216@
+1 _CRE
+2 DATE 18 MAR 2019
+3 TIME 09:22:15
 0 @40244744@ FAM
 1 MARR
 2 DATE bef 1082
@@ -31820,18 +31864,18 @@
 1 _CRE
 2 DATE 03 OCT 2015
 3 TIME 17:00:15
-0 @63564001@ FAM
-1 HUSB @5111504@
-1 WIFE @81947781@
-1 _CRE
-2 DATE 17 JAN 2019
-3 TIME 09:58:09
 0 @46403224@ FAM
 1 HUSB @5111504@
 1 WIFE @90225508@
 1 _CRE
 2 DATE 17 JAN 2019
 3 TIME 09:57:32
+0 @63564001@ FAM
+1 HUSB @5111504@
+1 WIFE @81947781@
+1 _CRE
+2 DATE 17 JAN 2019
+3 TIME 09:58:09
 0 @F81251216@ FAM
 1 HUSB @I56800364@
 1 WIFE @97178294@
@@ -31931,13 +31975,13 @@
 1 _CRE
 2 DATE 17 APR 2019
 3 TIME 11:15:07
-0 @F90166357@ FAM
+0 @F81113477@ FAM
 1 HUSB @I75395283@
-1 WIFE @I36018858@
-1 CHIL @81171738@
+1 WIFE @I93813678@
+1 CHIL @20683868@
 1 CHAN
-2 DATE 17 NOV 2019
-3 TIME 19:05:57
+2 DATE 14 OCT 2016
+3 TIME 21:58:47
 0 @F24530768@ FAM
 1 MARR
 2 DATE 1154
@@ -31946,13 +31990,13 @@
 4 TIME 01:19:45
 1 HUSB @I75395283@
 1 WIFE @I13421648@
-0 @F81113477@ FAM
+0 @F90166357@ FAM
 1 HUSB @I75395283@
-1 WIFE @I93813678@
-1 CHIL @20683868@
+1 WIFE @I36018858@
+1 CHIL @81171738@
 1 CHAN
-2 DATE 14 OCT 2016
-3 TIME 21:58:47
+2 DATE 17 NOV 2019
+3 TIME 19:05:57
 0 @31208376@ FAM
 1 HUSB @I32464664@
 1 CHIL @28080369@
@@ -32177,18 +32221,18 @@
 1 _CRE
 2 DATE 17 JAN 2019
 3 TIME 09:36:14
-0 @71240740@ FAM
-1 HUSB @4528792@
-1 WIFE @86516953@
-1 _CRE
-2 DATE 17 JAN 2019
-3 TIME 11:39:45
 0 @88606776@ FAM
 1 HUSB @31535963@
 1 WIFE @86516953@
 1 _CRE
 2 DATE 17 JAN 2019
 3 TIME 09:23:12
+0 @71240740@ FAM
+1 HUSB @4528792@
+1 WIFE @86516953@
+1 _CRE
+2 DATE 17 JAN 2019
+3 TIME 11:39:45
 0 @F58727621@ FAM
 1 HUSB @I40042501@
 1 WIFE @25243078@
@@ -32728,6 +32772,14 @@
 1 _CRE
 2 DATE 14 OCT 2016
 3 TIME 13:20:23
+0 @86608307@ FAM
+1 HUSB @I20573783@
+1 WIFE @38240919@
+1 CHIL @8205178@
+1 CHIL @53323026@
+1 _CRE
+2 DATE 04 OCT 2020
+3 TIME 20:05:29
 0 @F19004129@ FAM
 1 HUSB @I20573783@
 1 WIFE @I98423850@
@@ -32739,14 +32791,6 @@
 1 _CRE
 2 DATE 14 MAR 2015
 3 TIME 16:05:16
-0 @86608307@ FAM
-1 HUSB @I20573783@
-1 WIFE @38240919@
-1 CHIL @8205178@
-1 CHIL @53323026@
-1 _CRE
-2 DATE 04 OCT 2020
-3 TIME 20:05:29
 0 @37613852@ FAM
 1 HUSB @35409381@
 1 WIFE @I31943874@
@@ -33108,16 +33152,6 @@
 1 HUSB @I30055444@
 1 WIFE @I6384503@
 1 CHIL @47056069@
-0 @38662956@ FAM
-1 HUSB @94990883@
-1 WIFE @1894592@
-1 CHIL @25005600@
-1 CHAN
-2 DATE 16 OCT 2016
-3 TIME 20:18:39
-1 _CRE
-2 DATE 16 OCT 2016
-3 TIME 20:10:26
 0 @55350342@ FAM
 1 HUSB @94990883@
 1 WIFE @94390529@
@@ -33129,6 +33163,16 @@
 1 _CRE
 2 DATE 16 OCT 2016
 3 TIME 20:09:55
+0 @38662956@ FAM
+1 HUSB @94990883@
+1 WIFE @1894592@
+1 CHIL @25005600@
+1 CHAN
+2 DATE 16 OCT 2016
+3 TIME 20:18:39
+1 _CRE
+2 DATE 16 OCT 2016
+3 TIME 20:10:26
 0 @F46618912@ FAM
 1 HUSB @I88926570@
 1 WIFE @I51480833@
@@ -34337,12 +34381,6 @@
 1 _CRE
 2 DATE 08 MAY 2020
 3 TIME 21:22:04
-0 @19354712@ FAM
-1 HUSB @I11666480@
-1 WIFE @87850032@
-1 _CRE
-2 DATE 04 OCT 2020
-3 TIME 17:21:17
 0 @F42698175@ FAM
 1 HUSB @I11666480@
 1 CHAN
@@ -34351,6 +34389,12 @@
 1 _CRE
 2 DATE 17 SEP 2015
 3 TIME 15:10:02
+0 @19354712@ FAM
+1 HUSB @I11666480@
+1 WIFE @87850032@
+1 _CRE
+2 DATE 04 OCT 2020
+3 TIME 17:21:17
 0 @F8144128@ FAM
 1 WIFE @I89306082@
 1 CHAN
@@ -34680,12 +34724,6 @@
 1 _CRE
 2 DATE 31 AUG 2020
 3 TIME 01:55:37
-0 @77963236@ FAM
-1 HUSB @22558428@
-1 WIFE @31062692@
-1 _CRE
-2 DATE 31 AUG 2020
-3 TIME 08:55:52
 0 @78497944@ FAM
 1 HUSB @45978464@
 1 WIFE @31062692@
@@ -34693,6 +34731,12 @@
 1 _CRE
 2 DATE 31 AUG 2020
 3 TIME 08:57:13
+0 @77963236@ FAM
+1 HUSB @22558428@
+1 WIFE @31062692@
+1 _CRE
+2 DATE 31 AUG 2020
+3 TIME 08:55:52
 0 @87122890@ FAM
 1 HUSB @63800514@
 1 WIFE @19009004@
@@ -34763,12 +34807,6 @@
 1 _CRE
 2 DATE 30 SEP 2020
 3 TIME 23:47:59
-0 @71930540@ FAM
-1 HUSB @75974159@
-1 WIFE @55994137@
-1 _CRE
-2 DATE 30 SEP 2020
-3 TIME 22:09:51
 0 @17155200@ FAM
 1 HUSB @75974159@
 1 WIFE @96695552@
@@ -34776,6 +34814,12 @@
 1 _CRE
 2 DATE 30 SEP 2020
 3 TIME 22:13:24
+0 @71930540@ FAM
+1 HUSB @75974159@
+1 WIFE @55994137@
+1 _CRE
+2 DATE 30 SEP 2020
+3 TIME 22:09:51
 0 @40581176@ FAM
 1 HUSB @72952632@
 1 WIFE @24366408@
@@ -35496,18 +35540,18 @@
 1 _CRE
 2 DATE 03 OCT 2020
 3 TIME 22:45:59
-0 @19398477@ FAM
-1 HUSB @73911398@
-1 WIFE @9485952@
-1 _CRE
-2 DATE 03 OCT 2020
-3 TIME 22:47:30
 0 @81219108@ FAM
 1 HUSB @73911398@
 1 WIFE @17626314@
 1 _CRE
 2 DATE 03 OCT 2020
 3 TIME 22:48:13
+0 @19398477@ FAM
+1 HUSB @73911398@
+1 WIFE @9485952@
+1 _CRE
+2 DATE 03 OCT 2020
+3 TIME 22:47:30
 0 _PLAC Venosa,Provincia di Potenza,Basilicata,Italy
 1 MAP
 2 LONG E15.814722
@@ -37769,6 +37813,14 @@
 1 _CRE
 2 DATE 02 JUN 2020
 3 TIME 01:32:39
+0 @46070690@ NOTE
+1 CONT The identity of his mother as Eremburga of Mortain is a best guess based on the information we have.
+1 CHAN
+2 DATE 08 MAR 2021
+3 TIME 08:23:56
+1 _CRE
+2 DATE 08 MAR 2021
+3 TIME 08:23:02
 0 @N62598764@ NOTE
 1 CONT Line of counts of Monte Sant'Angelo.
 1 CHAN
@@ -37833,6 +37885,14 @@
 1 _CRE
 2 DATE 17 JAN 2019
 3 TIME 11:40:58
+0 @23191250@ NOTE
+1 CONT The identification of Gisela as possible mother to Elvira is based on the argument Prof. Hayes has made in her _Roger II of Sicily: Family, Faith and Empire in the Medieval Mediterranean World_ (Brepols, 2020).
+1 CHAN
+2 DATE 08 MAR 2021
+3 TIME 13:25:13
+1 _CRE
+2 DATE 08 MAR 2021
+3 TIME 13:23:57
 0 @N99458969@ NOTE
 1 CONT Died young.
 1 CHAN
@@ -37881,14 +37941,6 @@
 1 _CRE
 2 DATE 18 MAR 2019
 3 TIME 09:13:11
-0 @89655720@ NOTE
-1 CONT See Winkelmann, p. 80 (document #89) for reference as Count of Butera in 1205.
-1 CHAN
-2 DATE 08 MAY 2020
-3 TIME 22:21:28
-1 _CRE
-2 DATE 08 MAY 2020
-3 TIME 22:21:26
 0 @12647404@ NOTE
 1 CONT See Mazzarese Fardella, "I feudi comitali dai normanni agli aragonesi," p. 22 for documentation as Count of Avellino and later as Count of Avellino and Butera. He seems to have begun as Count of Avellino, adding Butera by October 1195 and then reverting s
 1 CONC imply to Butera by 1205 (see note 1).
@@ -37898,6 +37950,14 @@
 1 _CRE
 2 DATE 08 MAY 2020
 3 TIME 22:21:16
+0 @89655720@ NOTE
+1 CONT See Winkelmann, p. 80 (document #89) for reference as Count of Butera in 1205.
+1 CHAN
+2 DATE 08 MAY 2020
+3 TIME 22:21:28
+1 _CRE
+2 DATE 08 MAY 2020
+3 TIME 22:21:26
 0 @85942614@ NOTE
 1 CONT May have been illegitimate according to Table V in Loud and Wiedemann's translation of "Hugo Falcandus."
 1 CHAN
@@ -37914,14 +37974,6 @@
 1 _CRE
 2 DATE 13 MAR 2015
 3 TIME 15:20:36
-0 @5459466@ NOTE
-1 CONT "consanguineus" of the king
-1 CHAN
-2 DATE 08 MAY 2020
-3 TIME 22:14:13
-1 _CRE
-2 DATE 08 MAY 2020
-3 TIME 22:13:57
 0 @34117464@ NOTE
 1 CONT "familiaris" of the king
 1 CHAN
@@ -37930,6 +37982,14 @@
 1 _CRE
 2 DATE 08 MAY 2020
 3 TIME 22:14:37
+0 @5459466@ NOTE
+1 CONT "consanguineus" of the king
+1 CHAN
+2 DATE 08 MAY 2020
+3 TIME 22:14:13
+1 _CRE
+2 DATE 08 MAY 2020
+3 TIME 22:13:57
 0 @37241412@ NOTE
 1 CONT "But he relationship with the royal family became strained. White, _Latin Monasticism_, p. 183 claims that the foundation document of the Abbey of St. Mary of Roccamadore in Tremestieri (near Messina) from September 9, 1193, shows "Bartholomew of Luci to 
 1 CONC have been a partizan of the Hohenstaufen faction . . . ."
@@ -38366,10 +38426,10 @@
 3 TIME 08:35:50
 0 @71951651@ NOTE
 1 CONT Note that there is disagreement over which Matilda Robert of Eu was married to. In his genealogical table, Houben, _Roger II of Sicily_, lists Eremburga of Mortain's daughter as being Robert's wife. Medlands, however, has Robert married to Judith of Evreu
-1 CONC x's daughter named Matilda. I have chosen to follow Houben given his in-depth study of the family.
+1 CONC x's daughter named Matilda. I have chosen to follow Houben given his close study of the family.
 1 CHAN
-2 DATE 18 MAR 2019
-3 TIME 09:55:38
+2 DATE 05 MAR 2021
+3 TIME 16:07:41
 1 _CRE
 2 DATE 18 MAR 2019
 3 TIME 09:53:42
