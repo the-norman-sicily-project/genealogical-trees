@@ -39,7 +39,7 @@ def get_files(element):
     return files
 
 def term2id(el):
-    return "i" + el.get_pointer().replace('@', '').lower()
+    return el.get_pointer().replace('@', '').lower()
 
 def formatGedcomDate(date_string):
     return (date_string.lower()
