@@ -223,7 +223,20 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
           }
 
-          el.tippy = tippy(ref, {
+          // Get the actual DOM element from the popper reference
+          let domElement = ref;
+          if (ref && typeof ref === 'object' && ref.state && ref.state.elements) {
+            domElement = ref.state.elements.reference;
+          } else if (ref && ref.reference) {
+            domElement = ref.reference;
+          }
+
+          if (!domElement || !domElement.nodeType) {
+            console.warn('Invalid DOM element for popper on node:', el.id());
+            return;
+          }
+
+          el.tippy = tippy(domElement, {
             // tippy options:
             theme: "normanblue",
             offset: "250,250",
