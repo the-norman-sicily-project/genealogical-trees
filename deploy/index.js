@@ -1,5 +1,10 @@
 "use strict";
 
+// Register cytoscape extensions
+if (typeof cytoscape !== 'undefined' && typeof cytoscapeFcose !== 'undefined') {
+  cytoscape.use(cytoscapeFcose);
+}
+
 const scaleBetween = (unscaledNum, minAllowed, maxAllowed, min, max) => {
   return (
     ((maxAllowed - minAllowed) * (unscaledNum - min)) / (max - min) + minAllowed
