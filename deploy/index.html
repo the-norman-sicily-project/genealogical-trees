@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <title>The Norman Sicily Project Genealogical Tree</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        <link href="cytoscape.js-panzoom.css" rel="stylesheet" type="text/css" />
+        <link type="text/css" rel="stylesheet"
+                href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="index.css" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
+</head>
+
+<body>
+        <div id="relationship_legend">
+                <ul>
+                        <li><span style="font-size:2em;color:#ff76b8;">&rarr;</span> <span
+                                        id="motherChildrenLink">Mother-Children
+                                        Link</span></li>
+                        <li><span style="font-size:2em;color:#6f93ad;">&rarr;</span> <span
+                                        id="fatherChildrenLink">Father-Children
+                                        Link</span></li>
+                        <li><span style="font-size:2em;color:#73a567;">&mdash;</span> <span id="marriageLink">Marriage
+                                        (or Union)
+                                        Link</span> </li>
+                        <li><span class="leg_circ" style="background:#eda268;"></span><span
+                                        id="grandparent">Grandparent</span>
+                        </li>
+                        <li><span class="leg_circ" style="background:#e77a68;"></span><span
+                                        id="greatGrandparent">Great-Grandparent</span> </li>
+                        <li><span class="leg_circ" style="background:#a88ebe;"></span><span
+                                        id="grandchild">Grandchild</span>
+                        </li>
+                        <li><span class="leg_circ" style="background:#d688aa;"></span><span
+                                        id="greatGrandchild">Great-Grandchild</span></li>
+                        <li><span class="leg_circ" style="background:#c683ea;"></span><span id="uncleOrAunt">Uncle
+                                        or
+                                        Aunt</span></li>
+                        <li><span class="leg_circ" style="background:#e9ca7a;"></span><span id="newphewOrNiece">Nephew
+                                        or
+                                        Niece</span></li>
+                        <li><span class="leg_circ" style="background:#6da296;"></span><span id="brotherOrSister">Brother
+                                        or
+                                        Sister</span></li>
+                        <li><span class="leg_circ" style="background:#6795fe;"></span><span id="cousin">Cousin</span>
+                        </li>
+                </ul>
+        </div>
+
+        <div id="node-search-container">
+                <div>
+                        <label id="searchLabel" for="search">Search: </label>
+                        <input id="search" placeholder="Select a name...">
+                        <button type="button" id="reset">Reset</button>
+                </div>
+                <div id="helpText" class="help-text">Names with an asterisk (*) have additional information</div>
+        </div>
+
+        <div id="cy"></div>
+
+        <div id="loading">
+                <span class="fa fa-spinner fa-spin fa-3x fa-fw" aria-hidden="true"></span>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.7.2/bluebird.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+                integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+                integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+
+        <link href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css" rel="stylesheet"
+                type="text/css" />
+
+        <script src="https://unpkg.com/cytoscape@3.29.2/dist/cytoscape.min.js"></script>
+        <script src="https://unpkg.com/cytoscape-fcose@2.2.0/cytoscape-fcose.js"></script>
+        <script src="https://unpkg.com/cytoscape-panzoom@2.5.3/cytoscape-panzoom.js"></script>
+
+        <script src="https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+        <script src="https://unpkg.com/cytoscape-popper@2.0.0/cytoscape-popper.js"></script>
+
+        <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+
+        <script type="text/javascript" src="index.js"></script>
+</body>
+
+</html>
