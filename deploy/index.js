@@ -217,30 +217,39 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
           }
 
-          let ref = el.popperRef(); // used only for positioning
-          if (!ref) {
-            console.warn('No popper reference for node:', el.id());
-            return;
-          }
+          // Create a dummy DOM element for positioning since popperRef() is problematic
+          let dummyElement = document.createElement('div');
+          dummyElement.style.position = 'absolute';
+          dummyElement.style.visibility = 'hidden';
+          dummyElement.style.pointerEvents = 'none';
+          document.body.appendChild(dummyElement);
 
-          // Get the actual DOM element from the popper reference
-          let domElement = ref;
-          if (ref && typeof ref === 'object' && ref.state && ref.state.elements) {
-            domElement = ref.state.elements.reference;
-          } else if (ref && ref.reference) {
-            domElement = ref.reference;
-          }
+          // Function to update dummy element position based on node position
+          const updateDummyPosition = () => {
+            const nodePosition = el.renderedPosition();
+            if (nodePosition) {
+              dummyElement.style.left = nodePosition.x + 'px';
+              dummyElement.style.top = nodePosition.y + 'px';
+            }
+          };
 
-          if (!domElement || !domElement.nodeType) {
-            console.warn('Invalid DOM element for popper on node:', el.id());
-            return;
-          }
+          // Initial position update
+          updateDummyPosition();
 
-          el.tippy = tippy(domElement, {
+          el.tippy = tippy(dummyElement, {
             // tippy options:
             theme: "normanblue",
-            offset: "250,250",
+            offset: [0, 10],
             zIndex: 3000,
+            onShow: () => {
+              updateDummyPosition();
+            },
+            onHidden: () => {
+              // Clean up dummy element when tooltip is hidden
+              if (dummyElement && dummyElement.parentNode) {
+                dummyElement.parentNode.removeChild(dummyElement);
+              }
+            },
             content: () => {
               let content = document.createElement("div");
 
