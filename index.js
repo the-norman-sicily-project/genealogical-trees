@@ -157,10 +157,32 @@ const getQueryParam = (key, defaultVal) =>
 document.addEventListener("DOMContentLoaded", () => {
   locale = getQueryParam("locale", "en");
   translations = fetch("translations.json")
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`Failed to load translations: ${res.status} ${res.statusText}`);
+      }
+      return res.json();
+    })
     .then((translations) => {
+      if (!translations || !translations[locale]) {
+        console.warn(`Translations not found for locale '${locale}', falling back to 'en'`);
+        locale = 'en';
+        if (!translations || !translations[locale]) {
+          throw new Error('No translations available');
+        }
+      }
       const translate = (id, key) => {
-        document.getElementById(id).innerText = translations[locale][key];
+        const element = document.getElementById(id);
+        if (!element) {
+          console.warn(`Element with id '${id}' not found for translation`);
+          return;
+        }
+        if (!translations[locale] || !translations[locale][key]) {
+          console.warn(`Translation key '${key}' not found for locale '${locale}'`);
+          element.innerText = key; // Fallback to key name
+          return;
+        }
+        element.innerText = translations[locale][key];
       };
 
       const localizeLegend = () => {
@@ -278,19 +300,34 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       };
 
-      document.title = translations[locale]["pageTitle"];
+      if (translations[locale] && translations[locale]["pageTitle"]) {
+        document.title = translations[locale]["pageTitle"];
+      } else {
+        console.warn('Page title translation not found');
+      }
 
       localizeLegend();
       translate("searchLabel", "searchFieldTitle");
-      document.getElementById("search").placeholder =
-        translations[locale]["searchFieldPlaceholder"];
+      const searchElement = document.getElementById("search");
+      if (searchElement) {
+        searchElement.placeholder = translations[locale] && translations[locale]["searchFieldPlaceholder"]
+          ? translations[locale]["searchFieldPlaceholder"]
+          : "Search for a person...";
+      } else {
+        console.warn('Search element not found');
+      }
       translate("reset", "resetButtonCaption");
       translate("helpText", "helpTextCaption");
 
       let optArray = [];
 
-      cy = cytoscape({
-        container: document.getElementById("cy"),
+      try {
+        const cyContainer = document.getElementById('cy');
+        if (!cyContainer) {
+          throw new Error('Cytoscape container element not found');
+        }
+        cy = cytoscape({
+          container: cyContainer,
         autounselectify: true,
         boxSelectionEnabled: false,
         layout: {
@@ -384,9 +421,15 @@ document.addEventListener("DOMContentLoaded", () => {
         ],
         elements: fetch("data/nsp_people.json")
           .then((res) => {
+            if (!res.ok) {
+              throw new Error(`Failed to load family data: ${res.status} ${res.statusText}`);
+            }
             return res.json();
           })
           .then((graph) => {
+            if (!graph || !graph.nodes || !graph.edges) {
+              throw new Error('Invalid family data format: missing nodes or edges');
+            }
             const nuclearRelationshipTypes = new Set([
               "isWifeOf",
               "isMotherOf",
@@ -538,34 +581,92 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             return graph;
+          })
+          .catch((error) => {
+            console.error('Error loading family data:', error);
+            const loading = document.getElementById('loading');
+            if (loading) {
+              loading.innerHTML = `
+                <div style="text-align: center; padding: 20px; color: #d32f2f;">
+                  <h3>Error Loading Family Tree</h3>
+                  <p>${error.message}</p>
+                  <p>Please check that the data file exists and is properly formatted.</p>
+                </div>
+              `;
+              loading.classList.add('loaded');
+            }
+            return { nodes: [], edges: [] }; // Return empty data to prevent further errors
           }),
-      });
-
-      cy.on("mouseover", "node", (e) => {
-        highlightNetwork(e.target);
-        e.target.tippy.show();
-      });
-
-      cy.on("mouseout", "node", (e) => {
-        resetNetwork(e.target);
-        e.target.tippy.hide();
-      });
-
-      cy.on("ready", (e) => {
-        nodesArray = cy.nodes().toArray();
-        cy.elements().forEach((el) => {
-          makePopper(el);
         });
-      });
+      } catch (error) {
+        console.error('Error initializing Cytoscape:', error);
+        const loading = document.getElementById('loading');
+        if (loading) {
+          loading.innerHTML = `
+            <div style="text-align: center; padding: 20px; color: #d32f2f;">
+              <h3>Error Initializing Visualization</h3>
+              <p>${error.message}</p>
+              <p>Your browser may not support the required features.</p>
+            </div>
+          `;
+          loading.classList.add('loaded');
+        }
+        return;
+      }
 
-      cy.panzoom({
-        // options here...
-      });
+      if (cy) {
+        cy.on("mouseover", "node", (e) => {
+          try {
+            highlightNetwork(e.target);
+            if (e.target.tippy) {
+              e.target.tippy.show();
+            }
+          } catch (error) {
+            console.error('Error handling node mouseover:', error);
+          }
+        });
+
+        cy.on("mouseout", "node", (e) => {
+          try {
+            resetNetwork(e.target);
+            if (e.target.tippy) {
+              e.target.tippy.hide();
+            }
+          } catch (error) {
+            console.error('Error handling node mouseout:', error);
+          }
+        });
+      }
+
+      if (cy) {
+        cy.on("ready", (e) => {
+          try {
+            nodesArray = cy.nodes().toArray();
+            cy.elements().forEach((el) => {
+              makePopper(el);
+            });
+          } catch (error) {
+            console.error('Error in cytoscape ready handler:', error);
+          }
+        });
+      }
+
+      if (cy) {
+        try {
+          cy.panzoom({
+            // options here...
+          });
+        } catch (error) {
+          console.error('Error initializing pan/zoom:', error);
+        }
+      }
 
       optArray = optArray.sort();
 
-      $("#search")
-        .autocomplete({
+      const searchElementJQ = $("#search");
+      if (searchElementJQ.length > 0) {
+        try {
+          searchElementJQ.autocomplete({
           minLength: 0,
           source: optArray,
           position: {
@@ -592,8 +693,10 @@ document.addEventListener("DOMContentLoaded", () => {
             $("div.list-item").off("mouseover", positionTooltip);
             $("div.list-item").off("mouseout", fadeTooltip);
           },
-        })
-        .autocomplete("instance")._renderItem = (ul, item) => {
+          });
+
+          if (searchElementJQ.autocomplete("instance")) {
+            searchElementJQ.autocomplete("instance")._renderItem = (ul, item) => {
         return $("<li>")
           .append(
             `
@@ -603,19 +706,53 @@ document.addEventListener("DOMContentLoaded", () => {
                     ${item.tooltipData.length > 0 ? `<div class="list-item-tooltip">${item.tooltipData}</div>` : ""}  
                 </div>`,
           )
-          .appendTo(ul);
-      };
+            .appendTo(ul);
+            };
+          }
+        } catch (error) {
+          console.error('Error initializing search autocomplete:', error);
+        }
+      } else {
+        console.warn('Search element not found for autocomplete initialization');
+      }
 
-      $("#reset").click(() => {
-        resetButtonClickHandler();
-      });
+      const resetButton = $("#reset");
+      if (resetButton.length > 0) {
+        resetButton.click(() => {
+          try {
+            resetButtonClickHandler();
+          } catch (error) {
+            console.error('Error handling reset button click:', error);
+          }
+        });
+      } else {
+        console.warn('Reset button not found');
+      }
 
       window.onkeydown = (e) => {
-        const keyCode = e.key || e.keyIdentifier || e.keyCode;
-        if (keyCode === 27 || keyCode === "Escape") {
-          resetButtonClickHandler();
+        try {
+          const keyCode = e.key || e.keyIdentifier || e.keyCode;
+          if (keyCode === 27 || keyCode === "Escape") {
+            resetButtonClickHandler();
+          }
+        } catch (error) {
+          console.error('Error handling keydown event:', error);
         }
       };
+    })
+    .catch((error) => {
+      console.error('Error initializing application:', error);
+      const loading = document.getElementById('loading');
+      if (loading) {
+        loading.innerHTML = `
+          <div style="text-align: center; padding: 20px; color: #d32f2f;">
+            <h3>Error Loading Application</h3>
+            <p>${error.message}</p>
+            <p>Please refresh the page or check your internet connection.</p>
+          </div>
+        `;
+        loading.classList.add('loaded');
+      }
     });
 });
 
