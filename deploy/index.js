@@ -205,8 +205,23 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       const makePopper = (el) => {
-        if (el.isNode()) {
+        try {
+          if (!el || !el.isNode || !el.isNode()) {
+            return; // Skip non-nodes or invalid elements
+          }
+
+          // Check if element has valid data
+          const nodeData = el.data();
+          if (!nodeData || !nodeData.label) {
+            console.warn('Skipping node with invalid data:', el.id());
+            return;
+          }
+
           let ref = el.popperRef(); // used only for positioning
+          if (!ref) {
+            console.warn('No popper reference for node:', el.id());
+            return;
+          }
 
           el.tippy = tippy(ref, {
             // tippy options:
@@ -302,6 +317,8 @@ document.addEventListener("DOMContentLoaded", () => {
             arrow: true,
             placement: "bottom",
           });
+        } catch (error) {
+          console.error('Error creating popper for node:', el.id(), error);
         }
       };
 
@@ -541,6 +558,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
             graph.edges = Object.assign([], edges);
 
+            // Filter out isolated nodes (nodes with no connections)
+            const connectedNodeIds = new Set();
+            graph.edges.forEach(edge => {
+              connectedNodeIds.add(edge.data.source);
+              connectedNodeIds.add(edge.data.target);
+            });
+
+            const originalNodeCount = graph.nodes.length;
+            graph.nodes = graph.nodes.filter(node => connectedNodeIds.has(node.data.id));
+            const filteredNodeCount = graph.nodes.length;
+
+            if (originalNodeCount > filteredNodeCount) {
+              console.log(`Removed ${originalNodeCount - filteredNodeCount} isolated nodes`);
+            }
+
             return graph;
           })
           .then((graph) => {
@@ -620,25 +652,26 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (cy) {
-        cy.on("mouseover", "node", (e) => {
+        cy.on("click", "node", (e) => {
           try {
             highlightNetwork(e.target);
             if (e.target.tippy) {
               e.target.tippy.show();
             }
           } catch (error) {
-            console.error('Error handling node mouseover:', error);
+            console.error('Error handling node click:', error);
           }
         });
 
-        cy.on("mouseout", "node", (e) => {
-          try {
-            resetNetwork(e.target);
-            if (e.target.tippy) {
-              e.target.tippy.hide();
-            }
-          } catch (error) {
-            console.error('Error handling node mouseout:', error);
+        // Close tooltip when clicking elsewhere
+        cy.on("click", (e) => {
+          if (e.target === cy) {
+            cy.nodes().forEach(node => {
+              if (node.tippy) {
+                node.tippy.hide();
+              }
+            });
+            resetNetwork();
           }
         });
       }
